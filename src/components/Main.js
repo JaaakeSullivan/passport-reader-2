@@ -7,7 +7,7 @@ import Book from './Book';
 import MyModal from './MyModal';
 import { openModal, closeModal } from '../actions/actionCreators';
 
-import { addHighlights, handleSelect } from '../helpers';
+import { addHighlights, handleSelect } from '../helpers/helpers';
 
 //import { Popover } from 'react-bootstrap';
 

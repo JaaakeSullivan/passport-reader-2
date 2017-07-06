@@ -1,44 +1,8 @@
 
-// ========== ADD HIGHLIGHTS FROM STATE ========== //
+import { addHighlights } from './addHighlights';
+//import { findTheSiblings } from './findTheSiblings';
 
-export function addHighlights(el, start, end, color) {
-  // ===== INSERT <span class = 'color'> at startId, startPos ===== //
-  // if currentNode.wholeText.length ===
-
-  // ===== INSERT </span> at end of startElement ===== //
-
-  // find length of startElement
-
-
-  // ===== INSERT <span class = 'color'> at startId, startPos ===== //
-
-  // Check for children with wholeText.length
-
-
-
-  // Check nodes for wholeText.length
-
-  // Move to next node
-
-
-  // ===== INSERT </span> at endPos ===== //
-
-
-  console.log(el)
-  // TODO: Add RegEx to filter out <!-- react-text: 32 --> and <!-- /react-text -->
-  let elContent = el.innerHTML.replace(/<!--.\/*react-text:* \d* *-->/g, '');
-
-  let spanOpen = "<span class =" + color + ">";
-  let spanClose = "</span>";
-  let elArray = elContent.split('');
-
-  elArray.splice(start, 0, spanOpen)
-  elArray.splice(end + 1, 0, spanClose)
-  elContent = elArray.join('');
-  console.log(elContent)
-  el.innerHTML = elContent;
-}
-
+export default addHighlights;
 // ======================================================= //
 
 // ========== COMPUTE POSITION OF SELECTED AREA ========== //
@@ -66,12 +30,16 @@ export function handleSelect(event) {
     let siblingArray = [];
 
     // ========== Find the start of the highlight ========== //
+    // === GET ABSOLUTE POSITON === //
+
 
     // === FIND THE SIBLINGS === //
     function findTheSiblings(selection) {
+
       let originalNode = selection.anchorNode;
       let previousSiblings = [];
       let nextSiblings = [];
+      let beforeCount = 0;
 
       function findPrevious(current) {
         let hasPrevious = current.previousSibling;
@@ -79,7 +47,6 @@ export function handleSelect(event) {
           previousSiblings.push(hasPrevious);
           findPrevious(hasPrevious)
         } else {
-
           return previousSiblings
         };
       }
@@ -92,6 +59,32 @@ export function handleSelect(event) {
         } else return nextSiblings;
       }
 
+      findPrevious(originalNode);
+      findNext(originalNode);
+
+      //siblingArray = [...findPrevious(originalNode), ...findNext(originalNode)];
+      // return siblingArray;
+
+      let nodeMap = [...previousSiblings, originalNode, ...nextSiblings];
+
+      //console.log (nodeMap);
+      //console.log(nodeMapLengths);
+
+
+      // let previousTotalLength = previousSiblingsLength.reduce(function(sum, value) {
+      //   return sum + value;
+      // });
+      // return (previousTotalLength)
+
+      return ({previousSiblings: previousSiblings, originalNode: originalNode, nextSiblings: nextSiblings, nodeMap: nodeMap});
+    }
+
+
+    function absolutesStartPos(selection) {
+      // returns absolute start and end positions
+
+      let previousSiblings = findTheSiblings(selection).previousSiblings;
+
       function getWholeTextLength(el){
         if (el.wholeText) {
           return el.wholeText.length
@@ -101,17 +94,15 @@ export function handleSelect(event) {
         } else return 0;
       }
 
-      findPrevious(originalNode);
-      findNext(originalNode);
+      let previousSiblingsLength = previousSiblings.map(getWholeTextLength);
+      let previousTotal = previousSiblingsLength.reduce(function(sum, value) {
+        return sum + value;
+      });
 
-      //siblingArray = [...findPrevious(originalNode), ...findNext(originalNode)];
-      // return siblingArray;
-      console.log (previousSiblings);
-      console.log (nextSiblings);
-      let nodeMap = [...previousSiblings, originalNode, ...nextSiblings];
-      let nodeMapLengths = nodeMap.map(getWholeTextLength);
-      console.log (nodeMap);
-      console.log(nodeMapLengths);
+      let startPos = select.anchorOffset + previousTotal;
+
+      return startPos;
+
     }
 
 
@@ -127,6 +118,9 @@ export function handleSelect(event) {
       let endTagId = '';
       let endPos = select.focusOffset;
 
+      let startElement;
+      let endElement;
+      let selectedArray = [];
       // === find the start === //
 
       function startLevelUp(current) {
@@ -137,6 +131,7 @@ export function handleSelect(event) {
 
         if (check.id) {
           startTagId = check.id;
+          startElement = check;
         } else {
           startPos += current.length;
           startLevelUp(check)
@@ -156,6 +151,7 @@ export function handleSelect(event) {
 
         if (check.id) {
           endTagId = check.id;
+          endElement = check;
         } else endLevelUp(check);
       }
 
@@ -164,13 +160,22 @@ export function handleSelect(event) {
         endTagId = select.focusNode.id;
       } else endLevelUp(select.focusNode);
 
+      // ===== return array of strings to rebuild innerHTML ===== //
+
+      // ===== BUILD ARRAY OF CONTENT TO JOIN LATER ===== //
+
+      addHighlights(startElement, startPos, endElement, endPos);
+
+      // ================================================================= //
 
       return ('*** ID: ' + startTagId + ' LEV: ' + startLevel + ' POS: ' + startPos
         + ' ==> ID: ' + endTagId + ' LEV: ' + endLevel + ' POS: ' + endPos + ' ***');
 
     }
-    console.log(findTheParent(select));
-    findTheSiblings(select);
+
+    console.log("absolutesStartPos", absolutesStartPos(select));
+    console.log("findTheParent", findTheParent(select));
+    console.log("findTheSiblings", findTheSiblings(select));
 
     //
     //
