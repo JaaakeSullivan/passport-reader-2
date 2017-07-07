@@ -8,9 +8,33 @@ import { bookString } from './data/bookString';
 import { highlightsString } from './data/highlightsString';
 
 // create an object for the default data
+
+let bookArray = bookString.split(/(<.*?>{1})/g).filter(function(item) {
+  return item !== "";
+});
+
+function isBody(el) {
+  return el === '<body>';
+}
+
+let bodyIndex = bookArray.findIndex(isBody);
+
+let bookDisplay = [];
+let prId = 0;
+
+for (var i = 0; i < bookArray.length; i++) {
+  if (i > bodyIndex && bookArray[i][0] !== '<') {
+    bookDisplay.push(`<span id="pr-${prId}">${bookArray[i]}</span>`);
+    prId++;
+  } else {
+    bookDisplay.push(bookArray[i]);
+  };
+}
+let bookDisplayString = bookDisplay.join('');
+
 const defaultState = {
   book: {
-    original: bookString,
+    original: bookDisplayString,
     display: ''
   },
   studentId: 'student12345',

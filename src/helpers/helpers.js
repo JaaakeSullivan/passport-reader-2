@@ -7,11 +7,20 @@ export default addHighlights;
 
 // ========== COMPUTE POSITION OF SELECTED AREA ========== //
 
+function getIdAndPosition(selection) {
+  let startId = selection.anchorNode.parentNode.id;
+  let startPos = selection.anchorOffset;
+  let endId = selection.focusNode.parentNode.id;
+  let endPos = selection.focusOffset;
+  return {startId, startPos, endId, endPos};
+}
+
 export function handleSelect(event) {
   //console.log(window.getSelection());
   // if (window.getSelection() && window.getSelection().anchorOffset != window.getSelection().focusOffset) { // All browsers except IE <9
 
   // ===== GET START AND END POSITIONS ===== //
+
 
     let parentNodeString = '.parentNode';
     let select = window.getSelection();
@@ -31,6 +40,7 @@ export function handleSelect(event) {
 
     // ========== Find the start of the highlight ========== //
     // === GET ABSOLUTE POSITON === //
+    console.log(getIdAndPosition(select));
 
 
     // === FIND THE SIBLINGS === //
@@ -97,7 +107,7 @@ export function handleSelect(event) {
       let previousSiblingsLength = previousSiblings.map(getWholeTextLength);
       let previousTotal = previousSiblingsLength.reduce(function(sum, value) {
         return sum + value;
-      });
+      }, 0);
 
       let startPos = select.anchorOffset + previousTotal;
 
@@ -173,9 +183,10 @@ export function handleSelect(event) {
 
     }
 
-    console.log("absolutesStartPos", absolutesStartPos(select));
-    console.log("findTheParent", findTheParent(select));
-    console.log("findTheSiblings", findTheSiblings(select));
+    // ===== OFFICIAL CONSOLE.LOG COMMANDS ===== //
+    // console.log("absolutesStartPos", absolutesStartPos(select));
+    // console.log("findTheParent", findTheParent(select));
+    // console.log("findTheSiblings", findTheSiblings(select));
 
     //
     //
