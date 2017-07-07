@@ -19,3 +19,30 @@ currentNode = selectedElement
 </p>
 
 Look for children
+
+
+
+function absolutesStartPos(selection) {
+  // returns absolute start and end positions
+
+  let previousSiblings = findTheSiblings(selection).previousSiblings;
+
+  function getWholeTextLength(el){
+    if (el.wholeText) {
+      return el.wholeText.length
+    } else if (el.childNodes.length > 0) {
+      let children = el.childNodes[1];
+      return children.wholeText.length;
+    } else return 0;
+  }
+
+  let previousSiblingsLength = previousSiblings.map(getWholeTextLength);
+  let previousTotal = previousSiblingsLength.reduce(function(sum, value) {
+    return sum + value;
+  }, 0);
+
+  let startPos = select.anchorOffset + previousTotal;
+
+  return startPos;
+
+}
