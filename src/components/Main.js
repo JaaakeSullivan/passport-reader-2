@@ -4,8 +4,9 @@ import './styles/App.css';
 import { AxiosProvider, Get } from 'react-axios';
 import axios from 'axios';
 import Book from './Book';
-import MyModal from './MyModal';
-import { openModal, closeModal } from '../actions/actionCreators';
+import MyNewModal from './MyNewModal';
+// import { openModal, closeModal } from '../actions/actionCreators';
+
 
 import { addHighlights, handleSelect } from '../helpers/helpers';
 
@@ -39,28 +40,22 @@ class Main extends Component {
     // this.setState({content: newContent});
   }
 
+  // add back into App ... onClick={handleSelect}
+
   render() {
     return (
-      <div className="Main" onClick={handleSelect}>
+      <div className="Main" onClick={handleSelect,this.props.openModal}>
         <div className="Main-header">
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <button>Open Modal</button>
-        <button>Close Modal</button>
+        <MyNewModal {...this.props}/>
+
+
         <div><h3>showModal: {this.props.modal.showModal.toString()} </h3></div>
 
-        {/*
-        <MyModal
-          openModal={this.openModal}
-          modalContent={this.state.highlighted}
-          modalIsOpen={this.state.modalIsOpen}
-          afterOpenModal={this.afterOpenModal}
-          closeModal={this.closeModal}
-        />
-        */}
 
         <AxiosProvider instance={axiosInstance}>
           <Get url="bump">

@@ -1,6 +1,7 @@
 
 import { addHighlights } from './addHighlights';
 //import { findTheSiblings } from './findTheSiblings';
+import * as actionCreators from '../actions/actionCreators';
 
 export default addHighlights;
 // ======================================================= //
@@ -58,14 +59,20 @@ function getBetweenArray(selection) {
 }
 
 export function handleSelect(event) {
-  //console.log(window.getSelection());
+  console.log(window.getSelection());
   // if (window.getSelection() && window.getSelection().anchorOffset != window.getSelection().focusOffset) { // All browsers except IE <9
   let select = window.getSelection();
 
+
   // ===== GET START AND END POSITIONS ===== //
-  console.log(getSelectedText(select));
-  console.log(getIdAndPosition(select));
-  console.log(getBetweenArray(select));
+
+  if (select.anchorNode) {
+    console.log(getSelectedText(select));
+    console.log(getIdAndPosition(select));
+    console.log(getBetweenArray(select));
+  }
+
+
 
 
 }
