@@ -3,12 +3,13 @@ import logo from './logo.svg';
 import './styles/App.css';
 import { AxiosProvider, Get } from 'react-axios';
 import axios from 'axios';
-import Book from './Book';
-import MyNewModal from './MyNewModal';
-// import { openModal, closeModal } from '../actions/actionCreators';
+import BookContainer from '../containers/BookContainer';
+import ModalContainer from '../containers/ModalContainer';
+import OverlayContainer from '../containers/OverlayContainer';
 
+import { MuiThemeProvider } from 'material-ui/styles';
 
-import { addHighlights, handleSelect } from '../helpers/helpers';
+import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
 
 //import { Popover } from 'react-bootstrap';
 
@@ -18,44 +19,37 @@ const axiosInstance = axios.create({
   headers: { 'X-Mashape-Key': 'yZPFHy2XLqmshfaf5FjvS2cgDODSp1cIEx3jsnYJHVyPyYWJ8b', 'Accept': 'application/json'}
 });
 
+function handleSelect(event) {
+
+  console.log(window.getSelection());
+  let select = window.getSelection();
+
+  // ===== GET START AND END POSITIONS ===== //
+
+  if (select.anchorNode) {
+    console.log(getSelectedText(select));
+    console.log(getIdAndPosition(select));
+    console.log(getBetweenArray(select));
+  }
+}
+
 class Main extends Component {
-
-  componentDidMount() {
-    // var content = '';
-    //
-    // // TODO: Wait to update data! ... currently sending a blank string
-    // axios.get("http://localhost:3000/OPS/content1.xhtml").then(response => {
-    //   content = response.data;
-    //   this.updateContent(content)
-    // });
-
-  }
-
-  componentDidUpdate() {
-    // let el = document.getElementById('p5');
-    // addHighlights(el, 51, 88, 'orange');
-  }
-
-  updateContent(newContent) {
-    // this.setState({content: newContent});
-  }
-
-  // add back into App ... onClick={handleSelect}
 
   render() {
     return (
-      <div className="Main" onClick={handleSelect,this.props.openModal}>
+      <MuiThemeProvider>
+      <div className="Main" onClick={handleSelect}>
         <div className="Main-header">
           <h2>Welcome to React</h2>
         </div>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <MyNewModal {...this.props}/>
+        {/*<AlertDialogSlide {...this.props}/>*/}
 
+        <OverlayContainer {...this.props} />
 
         <div><h3>showModal: {this.props.modal.showModal.toString()} </h3></div>
-
 
         <AxiosProvider instance={axiosInstance}>
           <Get url="bump">
@@ -67,7 +61,7 @@ class Main extends Component {
                 return (<div>Loading...</div>)
               }
               else if(response !== null) {
-                console.log(response);
+                //console.log(response);
                 return (
                   <div>
                     <div>{response.data.word}</div>
@@ -80,9 +74,10 @@ class Main extends Component {
           </Get>
         </AxiosProvider>
 
-        <Book content={this.props.book.original}/>
+        <BookContainer {...this.props} />
 
       </div>
+      </MuiThemeProvider>
     );
   }
 }

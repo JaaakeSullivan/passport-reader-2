@@ -1,19 +1,18 @@
 
 import { addHighlights } from './addHighlights';
-//import { findTheSiblings } from './findTheSiblings';
-import * as actionCreators from '../actions/actionCreators';
+
 
 export default addHighlights;
 // ======================================================= //
 
 // ========== COMPUTE POSITION OF SELECTED AREA ========== //
 
-function getSelectedText(selection) {
+export function getSelectedText(selection) {
   let selectedText = selection.toString();
   return selectedText;
 }
 
-function getIdAndPosition(selection) {
+export function getIdAndPosition(selection) {
   function sliceId(id) {
     let sliced = id.slice(3);
     return sliced;
@@ -46,7 +45,7 @@ function getIdAndPosition(selection) {
 }
 
 //=== build array of ids between start and end ===//
-function getBetweenArray(selection) {
+export function getBetweenArray(selection) {
   let startIdNum = getIdAndPosition(selection).startIdNum;
   let endIdNum = getIdAndPosition(selection).endIdNum;
   let idNum = startIdNum + 1;
@@ -58,21 +57,17 @@ function getBetweenArray(selection) {
   return betweenIds;
 }
 
-export function handleSelect(event) {
-  console.log(window.getSelection());
-  // if (window.getSelection() && window.getSelection().anchorOffset != window.getSelection().focusOffset) { // All browsers except IE <9
-  let select = window.getSelection();
-
-
-  // ===== GET START AND END POSITIONS ===== //
-
-  if (select.anchorNode) {
-    console.log(getSelectedText(select));
-    console.log(getIdAndPosition(select));
-    console.log(getBetweenArray(select));
-  }
-
-
-
-
-}
+// export function handleSelect(event) {
+//   console.log(window.getSelection());
+//   // if (window.getSelection() && window.getSelection().anchorOffset != window.getSelection().focusOffset) { // All browsers except IE <9
+//   let select = window.getSelection();
+//
+//
+//   // ===== GET START AND END POSITIONS ===== //
+//
+//   if (select.anchorNode) {
+//     console.log(getSelectedText(select));
+//     console.log(getIdAndPosition(select));
+//     console.log(getBetweenArray(select));
+//   }
+// }

@@ -9,6 +9,7 @@ import App from './components/App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
+
 console.log(store.getState());
 store.dispatch({
   type: 'CLOSE_MODAL'
