@@ -6,19 +6,30 @@
 
 
 function modal (state=[], action) {
-  //console.log("modal reducer has been triggered!");
+  // console.log('action', action);
+  // console.log("modal reducer has been triggered!");
   switch (action.type) {
     case 'OPEN_MODAL':
       return {
         ...state,
         showModal: true,
-        modalContent: 'modal content!!!'
+        selectedText: action.selectedText,
+        startId: action.idAndPosition.startId,
+        endId: action.idAndPosition.endId,
+        startPos: action.idAndPosition.startPos,
+        endPos: action.idAndPosition.endPos,
+        betweenArray: action.betweenArray
       };
     case 'CLOSE_MODAL':
       return {
         ...state,
         showModal: false,
-        modalContent: ''
+        selectedText: '',
+        startId: '',
+        endId: '',
+        startPos: '',
+        endPos: '',
+        betweenArray: ''
       };
     default:
       return state;

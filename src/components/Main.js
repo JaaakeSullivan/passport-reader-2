@@ -5,7 +5,6 @@ import { AxiosProvider, Get } from 'react-axios';
 import axios from 'axios';
 import BookContainer from '../containers/BookContainer';
 import ModalContainer from '../containers/ModalContainer';
-import OverlayContainer from '../containers/OverlayContainer';
 
 import { MuiThemeProvider } from 'material-ui/styles';
 
@@ -19,26 +18,30 @@ const axiosInstance = axios.create({
   headers: { 'X-Mashape-Key': 'yZPFHy2XLqmshfaf5FjvS2cgDODSp1cIEx3jsnYJHVyPyYWJ8b', 'Accept': 'application/json'}
 });
 
-function handleSelect(event) {
 
-  console.log(window.getSelection());
-  let select = window.getSelection();
-
-  // ===== GET START AND END POSITIONS ===== //
-
-  if (select.anchorNode) {
-    console.log(getSelectedText(select));
-    console.log(getIdAndPosition(select));
-    console.log(getBetweenArray(select));
-  }
-}
 
 class Main extends Component {
+
+  // handleSelect(event) {
+  //   console.log('event', event);
+  //   console.log(window.getSelection());
+  //   let select = window.getSelection();
+  //   let selectedText = select.toString();
+  //   console.log('props', this);
+  //   // ===== GET START AND END POSITIONS ===== //
+  //
+  //   if (select.anchorNode) {
+  //     console.log(getSelectedText(select));
+  //     console.log(getIdAndPosition(select));
+  //     console.log(getBetweenArray(select));
+  //   }
+  // }
+
 
   render() {
     return (
       <MuiThemeProvider>
-      <div className="Main" onClick={handleSelect}>
+      <div className="Main" >
         <div className="Main-header">
           <h2>Welcome to React</h2>
         </div>
@@ -47,7 +50,7 @@ class Main extends Component {
         </p>
         {/*<AlertDialogSlide {...this.props}/>*/}
 
-        <OverlayContainer {...this.props} />
+        <ModalContainer {...this.props} />
 
         <div><h3>showModal: {this.props.modal.showModal.toString()} </h3></div>
 

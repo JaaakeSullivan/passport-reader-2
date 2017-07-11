@@ -9,7 +9,7 @@ import Dialog, {
   DialogTitle,
 } from 'material-ui/Dialog';
 
-export default class Overlay extends Component {
+export default class Modal extends Component {
 
 
   render() {
@@ -20,12 +20,13 @@ export default class Overlay extends Component {
 
         <Dialog open={this.props.modal.showModal} onRequestClose={this.props.closeModal}>
           <DialogTitle>
-            {this.props.modal.modalContent}
+            {this.props.modal.selectedText}
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
-              Let Google help apps determine location. This means sending anonymous location data to
-              Google, even when no apps are running.
+              <div>Starts at postion: {this.props.modal.startPos} of #{this.props.modal.startId}.</div>
+              <div>And ends at position: {this.props.modal.endPos} #{this.props.modal.endId}.</div>
+              <div>The elements between are: {this.props.modal.betweenArray.toString()}</div>
             </DialogContentText>
           </DialogContent>
           <DialogActions>

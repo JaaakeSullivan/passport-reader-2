@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import MyNewModal from '../components/MyNewModal';
+import Modal from '../components/Modal';
 
 export default class ModalContainer extends Component {
+
   render() {
     return(
-      <MyNewModal {...this.props}/>
+      <Modal {...this.props}/>
     )
   }
 }

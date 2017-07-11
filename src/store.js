@@ -39,7 +39,6 @@ const defaultState = {
   },
   studentId: 'student12345',
   mainContent: "main content goes here",
-  modalContent: "modal content goes here",
   highlights: highlightsString
 };
 

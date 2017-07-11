@@ -24,10 +24,16 @@ const VISIBILITY_FILTERS = {
 
 // Open modal and populate with content
 
-export function openModal(content) {
+export function openModal(
+    selectedText,
+    idAndPosition,
+    betweenArray
+  ){
   return {
     type: OPEN_MODAL,
-    content
+    selectedText,
+    idAndPosition,
+    betweenArray
   }
 }
 
