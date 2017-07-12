@@ -30,6 +30,9 @@ for (var i = 0; i < bookArray.length; i++) {
     bookDisplay.push(bookArray[i]);
   };
 }
+
+console.log(bookDisplay);
+
 let bookDisplayString = bookDisplay.join('');
 
 const defaultState = {

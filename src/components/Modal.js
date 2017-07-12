@@ -16,7 +16,6 @@ export default class Modal extends Component {
     return (
       <div>
         {/* ===== DELETE THIS LINE ===== */}
-        <Button onClick={this.props.openModal}>Open alert dialog</Button>
 
         <Dialog open={this.props.modal.showModal} onRequestClose={this.props.closeModal}>
           <DialogTitle>
