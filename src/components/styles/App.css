@@ -12,6 +12,11 @@ p {
   background-color: orange;
 }
 
+.aside-tag {
+  display: inline-flex;
+  background-color: red;
+}
+
 /*#p5>[anchorOffset=52]~#p5>[anchorOffset=70] {
   background-color: red;
 }*/

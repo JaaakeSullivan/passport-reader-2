@@ -5,10 +5,11 @@ import { AxiosProvider, Get } from 'react-axios';
 import axios from 'axios';
 import BookContainer from '../containers/BookContainer';
 import ModalContainer from '../containers/ModalContainer';
+import AsideContainer from '../containers/AsideContainer';
 
 import { MuiThemeProvider } from 'material-ui/styles';
 
-import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
+//import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
 
 //import { Popover } from 'react-bootstrap';
 
@@ -18,25 +19,7 @@ const axiosInstance = axios.create({
   headers: { 'X-Mashape-Key': 'yZPFHy2XLqmshfaf5FjvS2cgDODSp1cIEx3jsnYJHVyPyYWJ8b', 'Accept': 'application/json'}
 });
 
-
-
 class Main extends Component {
-
-  // handleSelect(event) {
-  //   console.log('event', event);
-  //   console.log(window.getSelection());
-  //   let select = window.getSelection();
-  //   let selectedText = select.toString();
-  //   console.log('props', this);
-  //   // ===== GET START AND END POSITIONS ===== //
-  //
-  //   if (select.anchorNode) {
-  //     console.log(getSelectedText(select));
-  //     console.log(getIdAndPosition(select));
-  //     console.log(getBetweenArray(select));
-  //   }
-  // }
-
 
   render() {
     return (
@@ -44,6 +27,8 @@ class Main extends Component {
       <div className="Main" >
 
         <ModalContainer {...this.props} />
+
+        <AsideContainer {...this.props} />
 
         <div><h3>showModal: {this.props.modal.showModal.toString()} </h3></div>
 

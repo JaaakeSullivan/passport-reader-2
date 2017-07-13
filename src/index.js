@@ -31,6 +31,10 @@ store.dispatch({
   type: 'SAVE_HIGHLIGHT'
 })
 
+// store.dispatch({
+//   type: 'OPEN_ASIDE'
+// })
+
 ReactDOM.render(
 
   <Provider store={store}>

@@ -6,7 +6,17 @@ export default class BookContainer extends Component {
 
 
   handleSelect(event) {
-    console.log(window.getSelection());
+
+    // ===== check for <a> ===== //
+    if (event.target.parentElement.localName === 'a' ) {
+      //let asideArray = this.props.asidArray;
+      let id = event.target.parentElement.id;
+      
+      console.log(id);
+      this.props.openAside(id);
+    }
+
+    console.log('getSelection', window.getSelection());
     let select = window.getSelection();
 
     if (select.anchorNode !== null) {

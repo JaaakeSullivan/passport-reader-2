@@ -7,6 +7,8 @@ const OPEN_MODAL = 'OPEN_MODAL'
 const CLOSE_MODAL = 'CLOSE_MODAL'
 const SAVE_HIGHLIGHT = 'SAVE_HIGHLIGHT'
 const DELETE_HIGHLIGHT = 'DELETE_HIGHLIGHT'
+const OPEN_ASIDE = 'OPEN_ASIDE'
+const CLOSE_ASIDE = 'CLOSE_ASIDE'
 
 /*
  * other constants
@@ -43,23 +45,6 @@ export function closeModal() {
   }
 }
 
-
-// export function getBook(content) {
-//   return {
-//     type: GET_BOOK,
-//     content
-//   }
-// }
-//
-//
-// export function filterContent(item, status) {
-//   return {
-//     type: FILTER_CONTENT,
-//     item,
-//     status
-//   }
-// }
-//
 export function saveHighlight(
   _id,
   userId,
@@ -92,8 +77,19 @@ export function deleteHighlight(_id) {
   }
 }
 
+export function openAside(id) {
+  return {
+    type: OPEN_ASIDE,
+    id
+  }
 
+}
 
+export function closeAside() {
+  return {
+    type: CLOSE_ASIDE
+  }
+}
 
 
 
