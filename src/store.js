@@ -5,22 +5,24 @@ import rootReducer from './reducers/index';
 
 //import comments from './data/comments';
 import { bookString } from './data/bookString';
-import { highlightsString } from './data/highlightsString';
+import { highlightsDefault } from './data/highlightsDefault';
 
 // create an object for the default data
 
+// ===== SPLIT ORIGINAL STRING INTO ARRAY ===== //
 let bookArray = bookString.split(/(<.*?>{1})/g).filter(function(item) {
   return item !== "";
 });
 
+// ===== FIND PLACE TO START ADDING PR-# IDS ===== //
 function isBody(el) {
   return el === '<body>';
 }
-
 let bodyIndex = bookArray.findIndex(isBody);
 
-let bookDisplay = [];
-let prId = 0;
+
+let bookDisplay = []; // EMPTY ARRAY TO PUSH PROCESSED ELEMENTS TO
+let prId = 0; // INITIAL PR-# ID
 
 // ===== REFINE BOOK ARRAY WITH CUSTOM PROPERTIES ===== //
 for (var i = 0; i < bookArray.length; i++) {
@@ -30,9 +32,9 @@ for (var i = 0; i < bookArray.length; i++) {
     prId++;
   }
   else if (bookArray[i][1] === 'a' && bookArray[i][2] === ' ')
-  { // ===== change href to id on all links ===== //
+  { // ===== change 'href' to 'id' on all links ===== //
     let tempATag = bookArray[i].replace('href', 'id').replace('epub:type="noteref"', '');
-    // === for aside popover links, add class to style === //
+    // === for aside popover links, add class "aside-tag" === //
     if (tempATag.includes('popup')) {
       let splitATagArray = tempATag.split('');
       //console.log(splitATagArray);
@@ -47,6 +49,10 @@ for (var i = 0; i < bookArray.length; i++) {
     bookDisplay.push(bookArray[i]);
   }
 }
+
+
+
+  console.log('bookDisplay', bookDisplay);
 
 
 // ===== CONVERT HTML ARRAY TO STRING ===== //
@@ -66,12 +72,16 @@ let asideArray = asideString.split(regExAsideElements).filter(function(item) {
 // ===== REMOVE ASIDE ELEMENTS FROM MAIN CONTENT ===== //
 let bookDisplayString = fullBookDisplayString.replace(regExAsideBlock, '');
 
+
 console.log(asideArray);
+console.log(highlightsDefault);
+
+
 
 const defaultState = {
   book: {
     original: bookDisplayString,
-    display: '',
+    display: 'hey there',
     asides: asideArray
   },
   popover: {
@@ -80,7 +90,7 @@ const defaultState = {
   },
   studentId: 'student12345',
   mainContent: "main content goes here",
-  highlights: highlightsString
+  highlights: highlightsDefault
 };
 
 //const store = createStore(rootReducer, defaultState);

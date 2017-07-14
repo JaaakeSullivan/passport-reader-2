@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-// import our custom reducers
+// ===== import custom reducers ===== //
 import book from './book';
 import highlights from './highlights';
 import modal from './modal';

@@ -18,17 +18,14 @@ export default class AsideModal extends Component {
 
     return (
       <div>
-        {/* ===== DELETE THIS LINE ===== */}
-        <Button onClick={this.props.openAside}>Open Aside Dialog</Button>
-
         <Dialog open={this.props.aside.showAside} onRequestClose={this.props.closeAside}>
           <DialogTitle>
+          Aside Content
           </DialogTitle>
           <DialogContent>
             <Aside content={asideHTML} />
           </DialogContent>
           <DialogActions>
-            
           </DialogActions>
         </Dialog>
       </div>

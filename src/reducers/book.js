@@ -6,6 +6,48 @@
 // we set state to an empty array to start off
 function book(state=[], action) {
   //console.log("from book reducer: ", state, action)
+  switch (action.type) {
+    case 'INITIALIZE_CONTENT':
+      return [
+        ...state,
+        {
+
+        }
+      ]
+    case 'HIGHLIGHT_CONTENT':
+      return [
+        ...state,
+        {
+          // ===== ADD HIGHLIGHT <span class=pr-color> </span> TO ELEMENTS IN ARRAY ===== //
+          // ==== FOR EACH ITEM IN HIGHLIGHTS ARRAY
+          // === STARTING AND ENDING TAGS === //
+          // find index of startId, return value (string)
+          // split into array on element tag, special characters, then character
+          // REGEX HERE: /<.*?>/ || /&.*?;/ || ''
+          // === INSERT END ID TAG === //
+          // (if startId === endId) ? splice </span> at endPos + 1
+          // (else) add </span> at end array[-2] to put it inside the last closing tag
+          // === INSERT START ID TAG === //
+          // splice <span class=pr-color> into array at startPos + 1 (to skip the opening tag)
+          // === JOIN ARRAY AND REPLACE IN MAIN ARRAY
+          // join array into one string
+          // splice string back into bookDisplay at index of startId
+
+          // === END ID === //
+
+
+          // if startId == endId, add </span> to endId at endPos + 1, else add </span> to end
+            //
+
+          // === if startId !== endId === //
+            // add </span> at end of startId
+            // add <span class=pr-color> to start of endId
+
+          // === if betweenIds === //
+            // add class=pr-color to each
+        }
+      ];
+    }
   return state;
 }
 

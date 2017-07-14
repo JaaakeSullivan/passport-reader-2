@@ -5,11 +5,11 @@
 const GET_BOOK = 'GET_BOOK'
 const OPEN_MODAL = 'OPEN_MODAL'
 const CLOSE_MODAL = 'CLOSE_MODAL'
-const SAVE_HIGHLIGHT = 'SAVE_HIGHLIGHT'
+const SAVE_HIGHLIGHT = 'ADD_HIGHLIGHT'
 const DELETE_HIGHLIGHT = 'DELETE_HIGHLIGHT'
 const OPEN_ASIDE = 'OPEN_ASIDE'
 const CLOSE_ASIDE = 'CLOSE_ASIDE'
-
+const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
 /*
  * other constants
  */
@@ -45,7 +45,7 @@ export function closeModal() {
   }
 }
 
-export function saveHighlight(
+export function addHighlight(
   _id,
   userId,
   bookId,
@@ -90,36 +90,3 @@ export function closeAside() {
     type: CLOSE_ASIDE
   }
 }
-
-
-
-
-
-//
-// // increment
-// export function increment(index) {
-//   return {
-//     type: 'INCREMENT_LIKES',
-//     index
-//   }
-// }
-//
-// // add comment
-// export function addComment(postId, author, comment) {
-//   return {
-//     type: 'ADD_COMMENT',
-//     postId,
-//     author,
-//     comment
-//   }
-// }
-//
-// // remove comment
-//
-// export function removeComment(postId, i) {
-//   return {
-//     type: 'REMOVE_COMMENT',
-//     i,
-//     postId
-//   }
-// }

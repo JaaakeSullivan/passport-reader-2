@@ -6,7 +6,7 @@ import Main from './Main';
 function mapStateToProps(state) {
   return {
     book: state.book,
-    highlights: state.modal,
+    highlights: state.highlights,
     modal: state.modal,
     visibility: state.visibility,
     aside: state.aside
