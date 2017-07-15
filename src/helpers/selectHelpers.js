@@ -1,8 +1,7 @@
 
-import { addHighlights } from './addHighlights';
+// import { addHighlights } from './addHighlights';
+// export default addHighlights;
 
-
-export default addHighlights;
 // ======================================================= //
 
 // ========== COMPUTE POSITION OF SELECTED AREA ========== //

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Book from '../components/Book';
-import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
+import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/selectHelpers';
 
 export default class BookContainer extends Component {
 
@@ -11,7 +11,7 @@ export default class BookContainer extends Component {
     if (event.target.parentElement.localName === 'a' ) {
       //let asideArray = this.props.asidArray;
       let id = event.target.parentElement.id;
-      
+
       console.log(id);
       this.props.openAside(id);
     }
@@ -44,8 +44,9 @@ export default class BookContainer extends Component {
   }
 
   render() {
+
     return(
-      <Book content={this.props.book.original} handleSelect={this.handleSelect.bind(this)} />
+      <Book content={this.props.book.display} handleSelect={this.handleSelect.bind(this)} />
     )
   }
 }

@@ -31,6 +31,14 @@ store.dispatch({
   type: 'SAVE_HIGHLIGHT'
 })
 
+store.dispatch({
+  type: 'INITIALIZE_CONTENT'
+})
+
+store.dispatch({
+  type: 'HIGHLIGHT_CONTENT'
+})
+
 // store.dispatch({
 //   type: 'OPEN_ASIDE'
 // })

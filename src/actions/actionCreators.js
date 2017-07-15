@@ -10,6 +10,7 @@ const DELETE_HIGHLIGHT = 'DELETE_HIGHLIGHT'
 const OPEN_ASIDE = 'OPEN_ASIDE'
 const CLOSE_ASIDE = 'CLOSE_ASIDE'
 const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
+const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
 /*
  * other constants
  */
@@ -25,6 +26,15 @@ const VISIBILITY_FILTERS = {
  */
 
 // Open modal and populate with content
+
+export function initializeContent(
+  content
+) {
+  return {
+    type: INITIALIZE_CONTENT,
+    content
+  }
+}
 
 export function openModal(
     selectedText,
@@ -46,10 +56,8 @@ export function closeModal() {
 }
 
 export function addHighlight(
-  _id,
-  userId,
-  bookId,
-  elId,
+  startId,
+  endId,
   startPos,
   endPos,
   color,
@@ -58,10 +66,8 @@ export function addHighlight(
 ) {
   return {
     type: SAVE_HIGHLIGHT,
-    _id,
-    userId,
-    bookId,
-    elId,
+    startId,
+    endId,
     startPos,
     endPos,
     color,
