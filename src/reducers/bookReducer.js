@@ -16,17 +16,10 @@ function book(state=[], action) {
 
   if (originalContent) { // check if original conent is loaded
     let contentObject = buildDisplayContent(originalContent)
-    displayArray = contentObject.displayArray;
+    console.log(contentObject);
+
     displayContent = contentObject.bookDisplayString;
-    
-    if (displayArray) {
-      console.log('displayArray', displayArray)
-    }
-
-    // START HERE !!!!!!!!!!!!!!!!!!!!!!!!!!!
-    // BUILD ARRAY THAT CAN BE UPDATED EASILY!!!
-    // displayContent = displayArray.join('');
-
+    displayArray = contentObject.bookDisplay;
     asideArray = contentObject.asideArray;
   }
 
