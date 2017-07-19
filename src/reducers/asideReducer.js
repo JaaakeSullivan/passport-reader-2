@@ -1,4 +1,4 @@
-function aside (state=[], action) {
+function asideDisplay (state=[], action) {
   // console.log('action', action);
   // console.log("modal reducer has been triggered!");
   switch (action.type) {
@@ -8,13 +8,13 @@ function aside (state=[], action) {
       return {
         ...state,
         showAside: true,
-        asideText: popupId
+        asideText: popupId 
       };
     case 'CLOSE_ASIDE':
       return {
         ...state,
         showAside: false,
-        asideText: '',
+        // asideText: '', // clearing this too quick, causes glitch on close
       };
     default:
       return state;
@@ -23,4 +23,4 @@ function aside (state=[], action) {
   return state;
 }
 
-export default aside;
+export default asideDisplay;

@@ -41,12 +41,18 @@ export default class BookContainer extends Component {
 
   componentDidMount() {
     // console.log(this.props.book.original);
+
+    // TODO: CREATE THE SWITCH TO TURN HIGHLIGHTS ON OR OFF -- ERROR ISSUES ARE HERE!!!
+
+    // let onScreenDisplay = (this.props.visibility.showHighlights) ? this.props.book.displayHighlights.join('') : this.props.book.displayArray.join('');
+
+    //let onScreenDisplay = this.props.book.displayArray.join('');
   }
 
   render() {
 
     return(
-      <Book content={this.props.book.displayArray.join('')} handleSelect={this.handleSelect.bind(this)} />
+      <Book content={this.props.book.displayHighlights.join('')} handleSelect={this.handleSelect.bind(this)} />
     )
   }
 }

@@ -2,6 +2,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actionCreators from '../actions/actionCreators';
 import Main from './Main';
+import '../helpers/utilityHelpers'
+
 
 function mapStateToProps(state) {
   return {
@@ -9,7 +11,7 @@ function mapStateToProps(state) {
     highlights: state.highlights,
     modal: state.modal,
     visibility: state.visibility,
-    aside: state.aside
+    asideDisplay: state.asideDisplay
   }
 }
 

@@ -1,5 +1,27 @@
 export function buildDisplayContent(originalContent){
-  let bookArray = originalContent.split(/(<.*?>{1})/g).filter(function(item) {
+
+  // ========================================= //
+  // ***** BUILD ARRAY OF ASIDE ELEMENTS ***** //
+  // ========================================= //
+
+  let regExAsideBlock = /<aside (.*)<\/aside>/g; // use for separating asides from main content
+  let regExAsideElements = /(<aside .*?<\/aside>)/g; // use for splitting asideString into asideArray
+
+  // ===== CREATE STRING OF ASIDE ELEMENTS ===== //
+  let asideString = originalContent.match(regExAsideBlock).join('');
+
+  // ===== SPLIT ASIDE ELEMENTS INTO ARRAY, REMOVE SPACES ===== //
+  let asideArray = asideString.split(regExAsideElements).filter(function(item) {
+    return item !== "";
+  });
+
+  // ===== REMOVE ASIDE ELEMENTS FROM MAIN CONTENT ===== //
+  let bookDisplayString = originalContent.replace(regExAsideBlock, '');
+
+  // ================================================== //
+  // ***** SPLIT BOOK INTO ARRAY & ADD CUSTOM IDS ***** //
+  // ================================================== //
+  let bookArray = bookDisplayString.split(/(<.*?>{1})/g).filter(function(item) {
     return item !== "";
   });
 
@@ -37,24 +59,5 @@ export function buildDisplayContent(originalContent){
       bookDisplay.push(bookArray[i]);
     }
   }
-
-  // ===== CONVERT HTML ARRAY TO STRING ===== //
-  let fullBookDisplayString = bookDisplay.join('');
-
-  // ===== BUILD ARRAY OF ASIDE ELEMENTS ===== //
-  let regExAsideBlock = /<aside (.*)<\/aside>/g;
-  let regExAsideElements = /(<aside .*?<\/aside>)/g;
-
-  // ===== CREATE STRING OF ASIDE ELEMENTS ===== //
-  let asideString = fullBookDisplayString.match(regExAsideBlock).join('');
-
-  // ===== SPLIT ASIDE ELEMENTS INTO ARRAY, REMOVE SPACES ===== //
-  let asideArray = asideString.split(regExAsideElements).filter(function(item) {
-    return item !== "";
-  });
-
-  // ===== REMOVE ASIDE ELEMENTS FROM MAIN CONTENT ===== //
-  let bookDisplayString = fullBookDisplayString.replace(regExAsideBlock, '');
-
   return { bookDisplayString, asideArray, bookDisplay }
 }

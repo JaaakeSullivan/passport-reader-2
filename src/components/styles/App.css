@@ -14,7 +14,7 @@ p {
 
 .aside-tag {
   display: inline-flex;
-  background-color: red;
+  //background-color: red;
 }
 
 /*#p5>[anchorOffset=52]~#p5>[anchorOffset=70] {
@@ -40,4 +40,12 @@ p {
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.blue {
+  background-color: #40C4FF;
+}
+
+.pink {
+  background-color: #FF4081;
 }

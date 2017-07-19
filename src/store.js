@@ -7,14 +7,16 @@ import rootReducer from './reducers/index';
 import { bookString } from './data/bookString';
 import { highlightsDefault } from './data/highlightsDefault';
 
-let asideArray = [];
+//let asideArray = [];
 
 const defaultState = {
   book: {
     original: bookString,
-    display: 'hey there',
+    //display: 'hey there',
     displayArray: [],
-    asides: asideArray
+    displayHighlights: [],
+    asides: [],
+    highlights: highlightsDefault
   },
   popover: {
     showPopover: false,
@@ -22,7 +24,6 @@ const defaultState = {
   },
   studentId: 'student12345',
   mainContent: "main content goes here",
-  highlights: highlightsDefault
 };
 
 //const store = createStore(rootReducer, defaultState);

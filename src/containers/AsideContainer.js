@@ -12,13 +12,13 @@ export default class AsideModal extends Component {
 
   render() {
     let asideHTML = '';
-    if (this.props.aside.asideText) {
-      asideHTML = this.props.book.asides[this.props.aside.asideText];
+    if (this.props.asideDisplay.asideText) {
+      asideHTML = this.props.book.asides[this.props.asideDisplay.asideText];
     }
 
     return (
       <div>
-        <Dialog open={this.props.aside.showAside} onRequestClose={this.props.closeAside}>
+        <Dialog open={this.props.asideDisplay.showAside} onRequestClose={this.props.closeAside}>
           <DialogTitle>
           Aside Content
           </DialogTitle>
