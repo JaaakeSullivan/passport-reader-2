@@ -51,7 +51,7 @@ export default class BookContainer extends Component {
   render() {
 
     return(
-      <Book content={this.props.book.displayHighlights.join('')} handleSelect={this.handleSelect.bind(this)} />
+      <Book content={this.props.book.displayHighlights.join('')} contentArray={this.props.book.displayHighlights} handleSelect={this.handleSelect.bind(this)} />
     )
   }
 }
