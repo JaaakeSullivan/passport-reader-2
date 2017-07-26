@@ -11,7 +11,6 @@ export default class BookContainer extends Component {
     if (event.target.parentElement.localName === 'a' ) {
       //let asideArray = this.props.asidArray;
       let id = event.target.parentElement.id;
-
       console.log(id);
       this.props.openAside(id);
     }

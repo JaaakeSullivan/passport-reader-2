@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^2.12.0",
     "axios": "^0.16.2",
+    "classnames": "^2.2.5",
     "install": "^0.10.1",
     "material-ui": "^1.0.0-alpha.21",
     "material-ui-icons": "^1.0.0-alpha.19",

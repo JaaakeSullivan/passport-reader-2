@@ -5,12 +5,13 @@
 const GET_BOOK = 'GET_BOOK'
 const OPEN_MODAL = 'OPEN_MODAL'
 const CLOSE_MODAL = 'CLOSE_MODAL'
-const SAVE_HIGHLIGHT = 'ADD_HIGHLIGHT'
+const ADD_HIGHLIGHT = 'ADD_HIGHLIGHT'
 const DELETE_HIGHLIGHT = 'DELETE_HIGHLIGHT'
 const OPEN_ASIDE = 'OPEN_ASIDE'
 const CLOSE_ASIDE = 'CLOSE_ASIDE'
 const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
 const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
+
 /*
  * other constants
  */
@@ -60,18 +61,20 @@ export function addHighlight(
   endId,
   startPos,
   endPos,
+  betweenArray,
   color,
-  content,
+  selectedText,
   note
 ) {
   return {
-    type: SAVE_HIGHLIGHT,
+    type: ADD_HIGHLIGHT,
     startId,
     endId,
     startPos,
     endPos,
+    betweenArray,
     color,
-    content,
+    selectedText,
     note
   }
 }

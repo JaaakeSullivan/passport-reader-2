@@ -12,7 +12,8 @@ const rootReducer = combineReducers({
   highlights,
   modal,
   asideDisplay,
-  visibility
+  visibility,
+
 });
 
 export default rootReducer;

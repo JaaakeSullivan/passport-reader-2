@@ -24,7 +24,7 @@ export function addHighlights (displayArray, highlightsArray) {
 
   // ==== FOR EACH ITEM IN HIGHLIGHTS ARRAY === //
   for (let i = 0; i < highlightsArray.length; i ++) {
-    let { startId, endId, startPos, endPos, betweenArray, color } = highlightsArray[i];
+    let { _id, startId, endId, startPos, endPos, betweenArray, color } = highlightsArray[i];
     let preserveSpecialChar = /(&.*?;|.)/g;
 
     // declare start of highlight variables
@@ -37,7 +37,7 @@ export function addHighlights (displayArray, highlightsArray) {
     let endSplitElement = splitElement(displayHighlights, endIndex);
     let endInnerArray = endSplitElement[1].split(preserveSpecialChar).removeBlanks();
 
-    let spanOpen =  `<span class = "highlighted ${ color }">`
+    let spanOpen =  `<span id=${_id} class="highlight ${ color }">`
     let spanClose = `</span>`
 
     // holding variables for final insert
@@ -46,24 +46,30 @@ export function addHighlights (displayArray, highlightsArray) {
     // insert closing span tag -- this ALWAYS happens
     endInnerArray.splice(endPos, 0, spanClose);
 
-    // insert opening span tag & splice into displayHighlights
-    if (startIndex === endIndex) { // happens when one id
+    // ===== RUNS WHEN SELECTION IS WITHIN ONE PR-ID ===== //
+    if (startIndex === endIndex) {
       endInnerArray.splice(startPos, 0, spanOpen);
       let endInnerString = endInnerArray.join('');
-      displayHighlights.splice(endIndex, 1, endInnerString);
-    } else { // happens when highlighting across ids
+      endSplitElement.splice(1, 1, endInnerString);
+      displayHighlights.splice(endIndex, 1, endSplitElement.join(''));
+
+    // ===== RUNS WHEN SELECTION IS ACROSS MULTIPLE PR-IDS ===== //
+    } else {
       // add opening tag to start of endInnerArray
       endInnerArray.splice(0, 0, spanOpen);
       // add closing tag to end of startInnerArray
-      startInnerArray.splice(-1, 0, spanClose);
+      startInnerArray.splice(startInnerArray.length, 0, spanClose);
       // add opening tag to start of startInnerArray
       startInnerArray.splice(startPos, 0, spanOpen);
       // join *InnerArrays into strings
       startInnerString = startInnerArray.join('');
       endInnerString = endInnerArray.join('');
+      // create final (hightlight processed) elements
+      endSplitElement.splice(1, 1, endInnerString);
+      startSplitElement.splice(1, 1, startInnerString);
       // splice finals back into displayHighlights array
-      displayHighlights.splice(endIndex, 1, endInnerString);
-      displayHighlights.splice(startIndex, 1, startInnerString);
+      displayHighlights.splice(endIndex, 1, endSplitElement.join(''));
+      displayHighlights.splice(startIndex, 1, startSplitElement.join(''));
     }
 
     // insert opening and closing spans on all elements in betweeen startId & endId

@@ -16,7 +16,7 @@ const defaultState = {
     displayArray: [],
     displayHighlights: [],
     asides: [],
-    highlights: highlightsDefault
+    //highlights: highlightsDefault
   },
   popover: {
     showPopover: false,

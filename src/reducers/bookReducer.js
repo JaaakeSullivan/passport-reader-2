@@ -6,6 +6,7 @@
 // we set state to an empty array to start off
 import { buildDisplayContent } from '../helpers/displayHelpers';
 import { getIndexOfId, splitElement, removeBlanksFromArray, addHighlights } from '../helpers/highlightsHelpers';
+import store from '../store';
 
 function book(state=[], action) {
   let originalContent = state.original; // get the original content from state
@@ -29,14 +30,13 @@ function book(state=[], action) {
         asides: asideArray
       }
     case 'HIGHLIGHT_CONTENT':
-
-      let highlightsArray = state.highlights;
+      let highlightsArray = store.getState().highlights;
+      // let highlightsArray = state.highlights;
+      // BUILD THE DISPLAY FOR SHOWING HIGHLIGHTS //
       let displayHighlights = addHighlights(displayArray, highlightsArray);
-
       return {
         ...state,
         displayHighlights: displayHighlights
-
       };
     }
   return state;
