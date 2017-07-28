@@ -67,6 +67,12 @@ class Modal extends Component {
               The elements between are: {this.props.modal.betweenArray.toString()}
             </DialogContentText>
             <ColorSelectors {...this.props} />
+            <DialogContentText>
+              HighlightSelected: {this.props.modal.highlightSelected.value.toString()}
+            </DialogContentText>
+            <DialogContentText>
+              Matches: {this.props.modal.highlightSelected.matches.toString()}
+            </DialogContentText>
           </DialogContent>
           <DialogActions>
             {/*

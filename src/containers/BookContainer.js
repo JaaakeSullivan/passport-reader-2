@@ -23,7 +23,7 @@ export default class BookContainer extends Component {
       let selectedText = getSelectedText(select);
       let betweenArray = getBetweenArray(select);
 
-      let highlightSelected = isHighlightSelected(idAndPosition, this.props.highlights, betweenArray);
+      let highlightSelected = isHighlightSelected(idAndPosition, this.props.highlights, betweenArray, select);
 
       // 1) RETURN TRUE IF STARTID = HIGHLIGHLIGHT
 

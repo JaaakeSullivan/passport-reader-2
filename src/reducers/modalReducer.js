@@ -31,7 +31,10 @@ function modal (state=[], action) {
         startPos: '',
         endPos: '',
         betweenArray: '',
-        highlightSelected: false
+        highlightSelected: {
+          value: false,
+          matches: []
+        }
       };
     default:
       return state;
