@@ -40,13 +40,15 @@ export function initializeContent(
 export function openModal(
     selectedText,
     idAndPosition,
-    betweenArray
+    betweenArray,
+    highlightSelected
   ){
   return {
     type: OPEN_MODAL,
     selectedText,
     idAndPosition,
-    betweenArray
+    betweenArray,
+    highlightSelected
   }
 }
 

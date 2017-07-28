@@ -22,8 +22,10 @@ export function addHighlights (displayArray, highlightsArray) {
 
   let displayHighlights = [...displayArray];
 
-  // ==== FOR EACH ITEM IN HIGHLIGHTS ARRAY === //
-  for (let i = 0; i < highlightsArray.length; i ++) {
+
+
+  // ==== FOR EACH ITEM IN HIGHLIGHTS ARRAY -- HIGHLIGHT BACKWARDS === //
+  for (let i = highlightsArray.length - 1; i >= 0; i --) {
     let { _id, startId, endId, startPos, endPos, betweenArray, color } = highlightsArray[i];
     let preserveSpecialChar = /(&.*?;|.)/g;
 

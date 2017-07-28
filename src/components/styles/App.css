@@ -42,6 +42,11 @@ p {
   to { transform: rotate(360deg); }
 }
 
+.highlight {
+  border-radius: 3px;
+  
+}
+
 .blue {
   background-color: #40C4FF;
 }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Book from '../components/Book';
-import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/selectHelpers';
+import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray, isHighlightSelected } from '../helpers/selectHelpers';
 
 export default class BookContainer extends Component {
 
@@ -23,8 +23,14 @@ export default class BookContainer extends Component {
       let selectedText = getSelectedText(select);
       let betweenArray = getBetweenArray(select);
 
+      let highlightSelected = isHighlightSelected(idAndPosition, this.props.highlights, betweenArray);
+
+      // 1) RETURN TRUE IF STARTID = HIGHLIGHLIGHT
+
+      // (select.anchorNode.parentNode.id.includes('hl') || select.focusNode.parentNode.id.includes('hl')) ? true : false;
+
       if (idAndPosition.startId !== idAndPosition.endId || idAndPosition.startPos !== idAndPosition.endPos) {
-        this.props.openModal(selectedText, idAndPosition, betweenArray);
+        this.props.openModal(selectedText, idAndPosition, betweenArray, highlightSelected);
       }
     }
 
@@ -51,7 +57,11 @@ export default class BookContainer extends Component {
   render() {
 
     return(
-      <Book content={this.props.book.displayHighlights.join('')} contentArray={this.props.book.displayHighlights} handleSelect={this.handleSelect.bind(this)} />
+      <Book
+        content={this.props.book.displayHighlights.join('')}
+        contentArray={this.props.book.displayHighlights}
+        handleSelect={this.handleSelect.bind(this)}
+      />
     )
   }
 }

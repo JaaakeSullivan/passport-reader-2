@@ -18,7 +18,8 @@ function modal (state=[], action) {
         endId: action.idAndPosition.endId,
         startPos: action.idAndPosition.startPos,
         endPos: action.idAndPosition.endPos,
-        betweenArray: action.betweenArray
+        betweenArray: action.betweenArray,
+        highlightSelected: action.highlightSelected,
       };
     case 'CLOSE_MODAL':
       return {
@@ -29,7 +30,8 @@ function modal (state=[], action) {
         endId: '',
         startPos: '',
         endPos: '',
-        betweenArray: ''
+        betweenArray: '',
+        highlightSelected: false
       };
     default:
       return state;

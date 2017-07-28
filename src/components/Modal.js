@@ -11,6 +11,7 @@ import Dialog, {
 //import { withStyles, createStyleSheet } from 'material-ui/styles';
 import HighlightColors from './HighlightColors';
 import ColorSelectors from './colorSelectors';
+// import { isHighlightSelected } from '../helpers/selectHelpers';
 
 class Modal extends Component {
 
@@ -37,13 +38,13 @@ class Modal extends Component {
     //this.props.deleteHighlight(this.props.selected)
   }
 
-  deleteButton() {
-    if (this.props.modal.startId.includes('hl')) {
-      return (
-        <Button onClick={this.handleDelete} color="primary">
-          Delete Highlight
-        </Button>
-  )}};
+  // deleteButton() {
+  //   if (isHighlightSelected) {
+  //     return (
+  //       <Button onClick={this.handleDelete} color="primary">
+  //         Previous Highlight is Selected
+  //       </Button>
+  // )}};
 
   render() {
 
@@ -78,7 +79,7 @@ class Modal extends Component {
               Take Note
             </Button>
           </DialogActions>
-          {this.deleteButton()}
+          {/* {this.deleteButton()} */}
         </Dialog>
       </div>
     );
