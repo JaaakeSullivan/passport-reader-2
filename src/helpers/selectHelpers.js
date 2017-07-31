@@ -25,65 +25,102 @@ export function getBetweenArray(selection) {
 }
 
 // === CHECK TO SEE IF HIGHLIGHTED AREA IS SELECTED === //
-export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray, select) {
+export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray) {
   let { startId, endId, startPos, endPos } = idAndPosition;
   let value = false;
   let matchingHighlights = [];
-  let anchorId = select.anchorNode.parentNode.id;
-  let focusId = select.focusNode.parentNode.id;
-
-  // 1) CHECK FOR STARTID INSIDE ANOTHER HIGHLIGHT //
-  if (anchorId.includes('hl')) {
-    value = true;
-    matchingHighlights.push(anchorId)
-  }
-
-  // 2) CHECK FOR ENDID INSIDE ANOTHER HIGHLIGHT //
-  if (focusId.includes('hl')) {
-    value = true;
-    matchingHighlights.push(focusId)
-  }
 
   for (let i=0; i<highlightsArray.length; i++) {
     // BIG CHECK FOR MATCHES ... BUILD ARRAY //
     let highlight = highlightsArray[i];
 
-    // 3) CHECK FOR STARTID OR ENDID IN ANY BETWEEN ARRAY //
-    if (highlight.betweenArray.length > 0) {
-      for (let j=0; j<highlight.betweenArray.length; j++) {
-        if (startId === highlight.betweenArray[j] || endId === highlight.betweenArray[j]) {
-          value = true;
-          matchingHighlights.push(highlight._id)
+    // 1) CHECK FOR STARTID INSIDE ANOTHER HIGHLIGHT
+    function isStartInHighlight() {
+      if  (
+            ((startId === highlight.startId) && (startPos >= highlight.startPos && startPos < highlight.endPos)) ||
+            ((startId === highlight.endId) && (startPos > highlight.startPos && startPos < highlight.endPos))
+          ) {
+            // console.log('check1');
+            return true;
+          }
+    }
+
+    // 2) CHECK FOR ENDID INSIDE ANOTHER HIGHLIGHT //
+    function isEndInHighlight() {
+      if (
+          ((endId === highlight.endId) && (endPos <= highlight.endPos && endPos > highlight.startPos)) ||
+          ((endId === highlight.startId) && (endPos < highlight.endPos && endPos > highlight.startPos))
+        ) {
+        // console.log('check2');
+        return true;
+      }
+    }
+
+    // 3) CHECK FOR STARTID OR ENDID IN HIGHLIGHTED BETWEEN ARRAY //
+    function startOrEndInBetweenArray() {
+      if (highlight.betweenArray.length > 0) {
+        for (let j=0; j<highlight.betweenArray.length; j++) {
+          if (startId === highlight.betweenArray[j] || endId === highlight.betweenArray[j]) {
+            // console.log('check3');
+            return true
+          }
         }
       }
     }
 
-    // 4) CHECK SELECTED BETWEEN ARRAY ELEMENTS IN HIGHLIGHT
-    else for (let k=0; k<betweenArray.length; k++) {
-      console.log('current', betweenArray[k], 'compare', highlight.betweenArray)
+    // 4) CHECK FOR WRAPPING AN EXISTING HIGHLIGHT WITH EMPTY BETWEENARRAY
+    function doesSelectSurroundHighlight() {
       if (
-        betweenArray[k] === highlight.startId ||
-        betweenArray[k] === highlight.endId ||
-        highlight.betweenArray.includes(betweenArray[k])
-      )
+          // SELECT WITHIN IN SAME ELEMENT AS HIGHLIGHT
+          (
+            (startId === highlight.startId && endId === highlight.endId) &&
+            (startPos <= highlight.startPos && endPos >= highlight.endPos)
+          ) ||
+          // SELECT ID ENDS AFTER HIGHLIGHT
+          (
+            startId === highlight.startId &&
+            startPos < highlight.startPos &&
+            parseInt(sliceId(endId)) > parseInt(sliceId(highlight.startId))
+          ) ||
+          // SELECT ID STARTS ENDS BEFORE HIGHLIGHT
+          (
+            endId === highlight.endId &&
+            endPos > highlight.endPos &&
+            parseInt(sliceId(startId)) < parseInt(sliceId(highlight.endId))
+          ) ||
+          (
+            parseInt(sliceId(startId)) < parseInt(sliceId(highlight.startId)) &&
+            parseInt(sliceId(endId)) > parseInt(sliceId(highlight.endId))
+          )
+        )
+          {
+            // console.log('check4');
+            return true
+          }
+    }
+
+    if (isStartInHighlight() ||
+        isEndInHighlight() ||
+        startOrEndInBetweenArray() ||
+        doesSelectSurroundHighlight()
+        //checkSelectedBetweenArrays()
+       )
       {
         value = true;
         matchingHighlights.push(highlight._id)
-        break;
       }
-    }
-
-    // 5) CHECK FOR WRAPPING AN EXISTING HIGHLIGHT WITH EMPTY BETWEENARRAY
   }
 
-  let cleanMatchingHighlights = [];
-  for (let l=0; l<matchingHighlights.length; l++) {
-    if (!cleanMatchingHighlights.includes(matchingHighlights[l])) {
-      cleanMatchingHighlights.push(matchingHighlights[l]);
-    }
-  }
 
-  return { value: value, matches: cleanMatchingHighlights }
+
+  // let cleanMatchingHighlights = [];
+  // for (let l=0; l<matchingHighlights.length; l++) {
+  //   if (!cleanMatchingHighlights.includes(matchingHighlights[l])) {
+  //     cleanMatchingHighlights.push(matchingHighlights[l]);
+  //   }
+  // }
+
+  return { value: value, matches: matchingHighlights }
 }
 
 // === REMOVE 'PR-' FROM ID TO CHECK FOR ASIDE CONTENT === //

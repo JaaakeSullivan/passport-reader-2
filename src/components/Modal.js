@@ -34,17 +34,29 @@ class Modal extends Component {
   // }
 
   handleDelete() {
-    console.log('deleting highlight')
-    //this.props.deleteHighlight(this.props.selected)
+    // console.log('deleting highlight')
+    let matchesToDelete = this.props.modal.highlightSelected.matches;
+    for (let i=0; i<matchesToDelete.length; i++) {
+      let match = matchesToDelete[i];
+      console.log("match", match);
+      // let indexToDelete = matchesToDelete.getIndexOfHighlight(match);
+      this.props.deleteHighlight(match, this.props.highlights)
+    }
   }
 
-  // deleteButton() {
-  //   if (isHighlightSelected) {
-  //     return (
-  //       <Button onClick={this.handleDelete} color="primary">
-  //         Previous Highlight is Selected
-  //       </Button>
-  // )}};
+  deleteButton() {
+    if (this.props.modal.highlightSelected.value) {
+      let ifPlural = ''
+      if (this.props.modal.highlightSelected.matches.length > 1) {
+        ifPlural = 's'
+      }
+
+      return (
+        <Button onClick={() => this.handleDelete()} color="primary">
+          Delete Highlight{ifPlural}: {this.props.modal.highlightSelected.matches}
+        </Button>
+      )} else return null;
+    };
 
   render() {
 
@@ -85,7 +97,7 @@ class Modal extends Component {
               Take Note
             </Button>
           </DialogActions>
-          {/* {this.deleteButton()} */}
+            {this.deleteButton()}
         </Dialog>
       </div>
     );

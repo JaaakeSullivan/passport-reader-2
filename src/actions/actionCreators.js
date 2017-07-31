@@ -11,6 +11,7 @@ const OPEN_ASIDE = 'OPEN_ASIDE'
 const CLOSE_ASIDE = 'CLOSE_ASIDE'
 const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
 const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
+const OPEN_HIGHLIGHT = 'OPEN_HIGHLIGHT'
 
 /*
  * other constants
@@ -58,6 +59,13 @@ export function closeModal() {
   }
 }
 
+export function openHighlight(highlightClicked) {
+  return {
+    type: OPEN_HIGHLIGHT,
+    highlightClicked
+  }
+}
+
 export function addHighlight(
   startId,
   endId,
@@ -81,10 +89,11 @@ export function addHighlight(
   }
 }
 
-export function deleteHighlight(_id) {
+export function deleteHighlight(_id, highlights) {
   return {
     type: DELETE_HIGHLIGHT,
-    _id
+    _id,
+    highlights
   }
 }
 

@@ -23,7 +23,7 @@ export default class BookContainer extends Component {
       let selectedText = getSelectedText(select);
       let betweenArray = getBetweenArray(select);
 
-      let highlightSelected = isHighlightSelected(idAndPosition, this.props.highlights, betweenArray, select);
+      let highlightSelected = isHighlightSelected(idAndPosition, this.props.highlights, betweenArray);
 
       // 1) RETURN TRUE IF STARTID = HIGHLIGHLIGHT
 
@@ -31,6 +31,14 @@ export default class BookContainer extends Component {
 
       if (idAndPosition.startId !== idAndPosition.endId || idAndPosition.startPos !== idAndPosition.endPos) {
         this.props.openModal(selectedText, idAndPosition, betweenArray, highlightSelected);
+      } else if (select.anchorNode.parentNode.id.includes('hl')) {
+        let idClicked = select.anchorNode.parentNode.id;
+        let highlightClicked = (this.props.highlights.getHighlight(idClicked));
+        this.props.openHighlight(highlightClicked);
+        // console.log(highlightClicked);
+        
+        //this.props.openModal(selectedText, idAndPosition, betweenArray, highlightSelected);
+
       }
     }
 

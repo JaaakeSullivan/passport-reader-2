@@ -24,10 +24,6 @@ function highlights(state=[], action) {
   ];
 
   // === SORT HIGHLIGHTS IN ASCENDING ORDER === //
-  // sortedHighlights.sort(function(a, b) {
-  //   return (a.startPos - b.startPos)
-  // });
-  //console.log(sortedHighlights.length);
 
   sortedHighlights.sort(function(a, b) {
     // console.log(a, b);
@@ -50,8 +46,12 @@ function highlights(state=[], action) {
         ...sortedHighlights
       ];
     case 'DELETE_HIGHLIGHT':
+      console.log(action._id);
+      let index = action.highlights.getIndexOfHighlight(action._id);
+      console.log("deleting ", action._id, "from", action.highlights, "index ", index);
+      let splicedState = [...state];
       return [
-        ...state,
+        splicedState.splice(index, 1),
         // {
         //   _id: 'al39al2'
         // }

@@ -36,6 +36,22 @@ function modal (state=[], action) {
           matches: []
         }
       };
+    case 'OPEN_HIGHLIGHT':
+      return {
+        ...state,
+        showModal: true,
+        selectedText: action.highlightClicked.selectedText,
+        startId: action.highlightClicked.startId,
+        startPos: action.highlightClicked.startPos,
+        endId: action.highlightClicked.endId,
+        endPos: action.highlightClicked.endPos,
+        betweenArray: action.highlightClicked.betweenArray,
+        highlightSelected: {
+          value: true,
+          matches: [action.highlightClicked._id]
+        }
+      }
+
     default:
       return state;
   }

@@ -5,3 +5,25 @@ Array.prototype.removeBlanks = function() {
     return item !== "";
   }));
 }
+
+Array.prototype.getIndexOfHighlight = function(id) {
+
+  for (let i=0; i<this.length; i++) {
+    let idInHighlight = this[i]._id
+    console.log("idInHighLight", idInHighlight, " id ", id)
+    if (id === idInHighlight) {
+      return i;
+    }
+  }
+  return -1;
+}
+
+Array.prototype.getHighlight = function(id) {
+  for (let i=0; i<this.length; i++) {
+    let idInHighlight = this[i]._id
+    if (id === idInHighlight) {
+      return this[i];
+    }
+  }
+  return -1;
+}
