@@ -12,6 +12,7 @@ import Dialog, {
 import HighlightColors from './HighlightColors';
 import ColorSelectors from './colorSelectors';
 // import { isHighlightSelected } from '../helpers/selectHelpers';
+import store from '../store';
 
 class Modal extends Component {
 
@@ -36,12 +37,18 @@ class Modal extends Component {
   handleDelete() {
     // console.log('deleting highlight')
     let matchesToDelete = this.props.modal.highlightSelected.matches;
-    for (let i=0; i<matchesToDelete.length; i++) {
-      let match = matchesToDelete[i];
-      console.log("match", match);
-      // let indexToDelete = matchesToDelete.getIndexOfHighlight(match);
-      this.props.deleteHighlight(match, this.props.highlights)
-    }
+    console.log("matches to delete", matchesToDelete);
+    // for (let i=0; i<matchesToDelete.length; i++) {
+    //   let match = matchesToDelete[i];
+    //   console.log("match", match);
+    //   // let indexToDelete = matchesToDelete.getIndexOfHighlight(match);
+    //   this.props.deleteHighlight(match, this.props.highlights)
+    // }
+    this.props.deleteHighlight(matchesToDelete)
+
+    store.dispatch({
+      type: 'HIGHLIGHT_CONTENT'
+    })
   }
 
   deleteButton() {

@@ -89,11 +89,10 @@ export function addHighlight(
   }
 }
 
-export function deleteHighlight(_id, highlights) {
+export function deleteHighlight(matchesToDelete) {
   return {
     type: DELETE_HIGHLIGHT,
-    _id,
-    highlights
+    matchesToDelete
   }
 }
 

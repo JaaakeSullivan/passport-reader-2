@@ -45,16 +45,21 @@ function highlights(state=[], action) {
       return [
         ...sortedHighlights
       ];
+
     case 'DELETE_HIGHLIGHT':
-      console.log(action._id);
-      let index = action.highlights.getIndexOfHighlight(action._id);
-      console.log("deleting ", action._id, "from", action.highlights, "index ", index);
-      let splicedState = [...state];
+      let deleted = [];
+      for (let i=0; i<action.matchesToDelete.length; i++) {
+        let match = action.matchesToDelete[i];
+        let index = state.getIndexOfHighlight(match);
+        console.log("deleting ", match, "from", state, "index ", index);
+        let deletedHighlight = state.splice(index, 1);
+        deleted.push(...deletedHighlight);
+      }
+      console.log("Deleted Highlights: ", deleted);
+      console.log("Active Highlights: ", state)
+      // TODO: save deleted highlights array
       return [
-        splicedState.splice(index, 1),
-        // {
-        //   _id: 'al39al2'
-        // }
+        ...state,
       ];
     default:
       return state;
