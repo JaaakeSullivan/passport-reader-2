@@ -28,6 +28,7 @@ export function getBetweenArray(selection) {
 export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray) {
   let { startId, endId, startPos, endPos } = idAndPosition;
   let value = false;
+  let toDelete = false;
   let matchingHighlights = [];
 
   for (let i=0; i<highlightsArray.length; i++) {
@@ -107,6 +108,7 @@ export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray
        )
       {
         value = true;
+        toDelete = true;
         matchingHighlights.push(highlight._id)
       }
   }
@@ -120,12 +122,15 @@ export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray
   //   }
   // }
 
-  return { value: value, matches: matchingHighlights }
+  return { value: value, toDelete: toDelete, matches: matchingHighlights }
 }
 
 // === REMOVE 'PR-' FROM ID TO CHECK FOR ASIDE CONTENT === //
 export function sliceId(id) {
+  // TODO: figure out why this errors out after 10 highlights
+  // console.log('homeslice', id)
   let sliced = id.slice(3);
+  // console.log('slided', sliced)
   return sliced;
 }
 

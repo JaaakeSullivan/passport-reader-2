@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './styles/App.css';
-import { AxiosProvider, Get } from 'react-axios';
-import axios from 'axios';
-import BookContainer from '../containers/BookContainer';
-import ModalContainer from '../containers/ModalContainer';
-import AsideContainer from '../containers/AsideContainer';
-
-import { MuiThemeProvider } from 'material-ui/styles';
+import React, { Component } from 'react'
+import logo from './logo.svg'
+import './styles/App.css'
+import { AxiosProvider, Get } from 'react-axios'
+import axios from 'axios'
+import BookContainer from '../containers/BookContainer'
+import ModalContainer from '../containers/ModalContainer'
+import AsideContainer from '../containers/AsideContainer'
+import UndockedDrawer from './UndockedDrawer'
+import { MuiThemeProvider } from 'material-ui/styles'
 
 //import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
 
@@ -29,6 +29,7 @@ class Main extends Component {
         <ModalContainer {...this.props} />
 
         <AsideContainer {...this.props} />
+        <UndockedDrawer />
 
         <div><h3>showModal: {this.props.modal.showModal.toString()} </h3></div>
 

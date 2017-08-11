@@ -1,13 +1,15 @@
-import { createStore } from 'redux';
-
-// import the root reducer
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './reducers/index';
+
 
 //import comments from './data/comments';
 import { bookString } from './data/bookString';
 import { highlightsDefault } from './data/highlightsDefault';
 
 //let asideArray = [];
+
 
 const defaultState = {
   book: {
@@ -16,7 +18,7 @@ const defaultState = {
     displayArray: [],
     displayHighlights: [],
     asides: [],
-    //highlights: highlightsDefault
+    // highlights: highlightsDefault
   },
   popover: {
     showPopover: false,
@@ -27,18 +29,17 @@ const defaultState = {
 };
 
 //const store = createStore(rootReducer, defaultState);
+const loggerMiddleware = createLogger()
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
-   rootReducer, defaultState,
-   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+   rootReducer, defaultState, composeEnhancers(
+     applyMiddleware(
+       thunkMiddleware, // lets us dispatch() functions
+       loggerMiddleware // neat middleware that logs actions
+     )
+   )
   );
-
-
-// if(module.hot) {
-//   module.hot.accept('./reducers/',() => {
-//     const nextRootReducer = require('./reducers/index').default;
-//     store.replaceReducer(nextRootReducer);
-//   });
-// }
 
 export default store;

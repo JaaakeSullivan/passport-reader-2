@@ -1,49 +1,30 @@
 // TODO: FIX ERROR >> <div> cannot appear as a descendant of <p>. See Modal >
 
-import React, { Component } from 'react';
-import Button from 'material-ui/Button';
+import React, { Component } from 'react'
+import Button from 'material-ui/Button'
 import Dialog, {
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
-} from 'material-ui/Dialog';
+} from 'material-ui/Dialog'
+import TextField from 'material-ui/TextField'
+import ModalDevelInfo from './ModalDevelInfo'
 //import { withStyles, createStyleSheet } from 'material-ui/styles';
-import HighlightColors from './HighlightColors';
-import ColorSelectors from './colorSelectors';
+import HighlightColors from './HighlightColors'
+import ColorSelectors from './colorSelectors'
+import NoteForm from './NoteForm'
+import DeleteWarning from './DeleteWarning'
+
 // import { isHighlightSelected } from '../helpers/selectHelpers';
 import store from '../store';
 
 class Modal extends Component {
 
-  // handleHighlight(color) {
-  //   //e.preventDefault();
-  //   console.log("ready to save");
-  //   this.props.addHighlight(
-  //     this.props.modal.startId,
-  //     this.props.modal.endId,
-  //     this.props.modal.startPos,
-  //     this.props.modal.endPos,
-  //     this.props.modal.betweenArray,
-  //     color,
-  //     this.props.modal.selectedText,
-  //     this.props.modal.note
-  //   );
-  //   store.dispatch({
-  //     type: 'HIGHLIGHT_CONTENT'
-  //   })
-  // }
-
   handleDelete() {
     // console.log('deleting highlight')
     let matchesToDelete = this.props.modal.highlightSelected.matches;
-    console.log("matches to delete", matchesToDelete);
-    // for (let i=0; i<matchesToDelete.length; i++) {
-    //   let match = matchesToDelete[i];
-    //   console.log("match", match);
-    //   // let indexToDelete = matchesToDelete.getIndexOfHighlight(match);
-    //   this.props.deleteHighlight(match, this.props.highlights)
-    // }
+    // console.log("matches to delete", matchesToDelete);
     this.props.deleteHighlight(matchesToDelete)
 
     store.dispatch({
@@ -65,6 +46,10 @@ class Modal extends Component {
       )} else return null;
     };
 
+  handleChangeMultiline = event => {
+    console.log(event.target.value)
+  };
+
   render() {
 
     return (
@@ -76,33 +61,28 @@ class Modal extends Component {
           </DialogTitle>
 
           <DialogContent>
-            <DialogContentText>
-              Starts at postion: {this.props.modal.startPos} of #{this.props.modal.startId}.
-            </DialogContentText>
-            <DialogContentText>
-              And ends at position: {this.props.modal.endPos} #{this.props.modal.endId}.
-            </DialogContentText>
-            <DialogContentText>
-              The elements between are: {this.props.modal.betweenArray.toString()}
-            </DialogContentText>
+            <DeleteWarning {...this.props} />
             <ColorSelectors {...this.props} />
-            <DialogContentText>
-              HighlightSelected: {this.props.modal.highlightSelected.value.toString()}
-            </DialogContentText>
-            <DialogContentText>
-              Matches: {this.props.modal.highlightSelected.matches.toString()}
-            </DialogContentText>
+            <ModalDevelInfo {...this.props} />
+            <NoteForm />
           </DialogContent>
           <DialogActions>
             {/*
-            <Button onClick={this.handleDelete} color="primary">
-              Delete Highlight
-            </Button>
-            */}
-
             <Button onClick={this.props.closeModal} color="primary">
               Take Note
             </Button>
+
+            <TextField
+              id="multiline-flexible"
+              label="Highlight Note"
+              multiline
+              rowsMax="4"
+              value="Take a note here"
+              onChange={this.handleChangeMultiline}
+              className="none"
+              margin="normal"
+            />
+            */}
           </DialogActions>
             {this.deleteButton()}
         </Dialog>

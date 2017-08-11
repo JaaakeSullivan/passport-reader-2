@@ -1,3 +1,5 @@
+import store from '../store'
+
 /*
  * action types -- defined as strings to use in creators
  */
@@ -12,6 +14,8 @@ const CLOSE_ASIDE = 'CLOSE_ASIDE'
 const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
 const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
 const OPEN_HIGHLIGHT = 'OPEN_HIGHLIGHT'
+const UPDATE_COLOR = 'UPDATE_COLOR'
+const UPDATE_NOTE = 'UPDATE_NOTE'
 
 /*
  * other constants
@@ -35,6 +39,12 @@ export function initializeContent(
   return {
     type: INITIALIZE_CONTENT,
     content
+  }
+}
+
+export function highlightContent() {
+  return {
+    type: HIGHLIGHT_CONTENT
   }
 }
 
@@ -66,28 +76,50 @@ export function openHighlight(highlightClicked) {
   }
 }
 
-export function addHighlight(
-  startId,
-  endId,
-  startPos,
-  endPos,
-  betweenArray,
-  color,
-  selectedText,
-  note
-) {
-  return {
-    type: ADD_HIGHLIGHT,
-    startId,
-    endId,
-    startPos,
-    endPos,
-    betweenArray,
-    color,
-    selectedText,
-    note
-  }
+// ===== CREATE A NEW HIGHLIGHT ===== //
+export const addHighlight = (_id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note ) => dispatch => {
+  dispatch({
+    type: ADD_HIGHLIGHT, _id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note
+  })
+  return (Promise.resolve())
+};
+
+// ===== UPDATE AN EXISTING HIGHLIGHT COLOR ===== //
+export const updateColor = (_id, color) => dispatch => {
+  dispatch({
+    type: UPDATE_COLOR, _id, color
+  })
+  return (Promise.resolve())
 }
+
+
+
+// export function addHighlight(
+//   _id,
+//   startId,
+//   endId,
+//   startPos,
+//   endPos,
+//   betweenArray,
+//   color,
+//   selectedText,
+//   time,
+//   note
+// ) {
+//   return {
+//     type: ADD_HIGHLIGHT,
+//     _id,
+//     startId,
+//     endId,
+//     startPos,
+//     endPos,
+//     betweenArray,
+//     color,
+//     selectedText,
+//     time,
+//     note
+//   }
+// }
 
 export function deleteHighlight(matchesToDelete) {
   return {

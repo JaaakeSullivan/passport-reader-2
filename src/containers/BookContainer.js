@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Book from '../components/Book';
 import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray, isHighlightSelected } from '../helpers/selectHelpers';
+import { connect } from 'react-redux';
 
 export default class BookContainer extends Component {
 
@@ -25,41 +26,30 @@ export default class BookContainer extends Component {
 
       let highlightSelected = isHighlightSelected(idAndPosition, this.props.highlights, betweenArray);
 
-      // 1) RETURN TRUE IF STARTID = HIGHLIGHLIGHT
 
       // (select.anchorNode.parentNode.id.includes('hl') || select.focusNode.parentNode.id.includes('hl')) ? true : false;
 
+      // TODO: ADD LOGIC HERE TO DECIDE HOW TO OPEN HIGHLIGHT
+
+      // HANDLES A HIGHLIGHT OF NON-OVERLAPPING CONTENT
       if (idAndPosition.startId !== idAndPosition.endId || idAndPosition.startPos !== idAndPosition.endPos) {
         this.props.openModal(selectedText, idAndPosition, betweenArray, highlightSelected);
+        
+      // HANDLES A SINGLE CLICK ON A HIGHLIGHT
       } else if (select.anchorNode.parentNode.id.includes('hl')) {
         let idClicked = select.anchorNode.parentNode.id;
         let highlightClicked = (this.props.highlights.getHighlight(idClicked));
         this.props.openHighlight(highlightClicked);
         // console.log(highlightClicked);
-        
+
         //this.props.openModal(selectedText, idAndPosition, betweenArray, highlightSelected);
 
       }
     }
-
-
-    // ===== GET START AND END POSITIONS ===== //
-
-    // if (select.anchorNode) {
-    //   console.log(getSelectedText(select));
-    //   console.log(getIdAndPosition(select));
-    //   console.log(getBetweenArray(select));
-    // }
   }
 
   componentDidMount() {
-    // console.log(this.props.book.original);
 
-    // TODO: CREATE THE SWITCH TO TURN HIGHLIGHTS ON OR OFF -- ERROR ISSUES ARE HERE!!!
-
-    // let onScreenDisplay = (this.props.visibility.showHighlights) ? this.props.book.displayHighlights.join('') : this.props.book.displayArray.join('');
-
-    //let onScreenDisplay = this.props.book.displayArray.join('');
   }
 
   render() {

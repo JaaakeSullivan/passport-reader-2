@@ -33,10 +33,12 @@ function modal (state=[], action) {
         betweenArray: '',
         highlightSelected: {
           value: false,
+          toDelete: false,
           matches: []
         }
       };
     case 'OPEN_HIGHLIGHT':
+      // console.log('openHighlight State', [...state])
       return {
         ...state,
         showModal: true,
@@ -48,6 +50,7 @@ function modal (state=[], action) {
         betweenArray: action.highlightClicked.betweenArray,
         highlightSelected: {
           value: true,
+          toDelete: false,
           matches: [action.highlightClicked._id]
         }
       }
