@@ -10,6 +10,7 @@ import ColorSelectors from './colorSelectors'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
 import DeleteIcon from 'material-ui-icons/Delete'
+import DoneIcon from 'material-ui-icons/Done'
 import DeleteButton from './DeleteButton'
 import Dialog, {
   DialogActions,
@@ -48,10 +49,10 @@ class Modal extends Component {
     if (this.props.modal.highlightSelected.value && !this.props.modal.highlightSelected.toDelete) {
       return (
         <div>
-          <Button onClick={this.props.closeModal} color="primary">
-            Save
-          </Button>
           <DeleteButton {...this.props} />
+          <Button onClick={this.props.closeModal} color="primary">
+            <DoneIcon />
+          </Button>
         </div>
       )
     }
@@ -74,7 +75,7 @@ class Modal extends Component {
             {/* <ModalDevelInfo {...this.props} /> */}
             {this.noteForm()}
           </DialogContent>
-          <DialogActions>
+          <DialogActions >
             {this.currentHighlight()}
           </DialogActions>
 

@@ -2,20 +2,20 @@ import React from 'react';
 
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
-import DeleteIcon from 'material-ui-icons/Delete';
-
+import ModeEditIcon from 'material-ui-icons/ModeEdit';
 
 function DeleteWarning(props) {
 
   const deleteListing = props.modal.highlightSelected.matches.map((item) => {
 
-      let highlightText = props.highlights.getHighlight(item).selectedText;
-      let highlightNote = props.highlights.getHighlight(item).note;
+      let highlight = props.highlights.getHighlight(item);
+      let highlightText = highlight.selectedText;
+      let highlightNote = highlight.note;
 
       return (
-        <ListItem button>
+        <ListItem button onClick={() => {props.openHighlight(highlight)}}>
           <Avatar>
-            <DeleteIcon />
+            <ModeEditIcon />
           </Avatar>
           <ListItemText primary={highlightText} secondary={highlightNote} />
         </ListItem>

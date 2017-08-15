@@ -26,6 +26,9 @@ function DeleteButton(props) {
     store.dispatch({
       type: 'HIGHLIGHT_CONTENT'
     })
+    store.dispatch({
+      type: 'CLOSE_MODAL'
+    })
   }
 
   let ifMultiple = ''
