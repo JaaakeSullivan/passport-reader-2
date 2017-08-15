@@ -2,12 +2,6 @@
 
 import React, { Component } from 'react'
 import Button from 'material-ui/Button'
-import Dialog, {
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-} from 'material-ui/Dialog'
 import TextField from 'material-ui/TextField'
 import ModalDevelInfo from './ModalDevelInfo'
 //import { withStyles, createStyleSheet } from 'material-ui/styles';
@@ -15,40 +9,47 @@ import HighlightColors from './HighlightColors'
 import ColorSelectors from './colorSelectors'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
+import DeleteIcon from 'material-ui-icons/Delete'
+import DeleteButton from './DeleteButton'
+import Dialog, {
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from 'material-ui/Dialog'
 
 // import { isHighlightSelected } from '../helpers/selectHelpers';
 import store from '../store';
 
 class Modal extends Component {
 
-  handleDelete() {
-    // console.log('deleting highlight')
-    let matchesToDelete = this.props.modal.highlightSelected.matches;
-    // console.log("matches to delete", matchesToDelete);
-    this.props.deleteHighlight(matchesToDelete)
+  noteForm() {
+    if (this.props.modal.highlightSelected.value && !this.props.modal.highlightSelected.toDelete) {
+      let currentId = this.props.modal.highlightSelected.matches[0];
+      let currentNote = this.props.highlights.getHighlight(currentId).note;
 
-    store.dispatch({
-      type: 'HIGHLIGHT_CONTENT'
-    })
-  }
-
-  deleteButton() {
-    if (this.props.modal.highlightSelected.value) {
-      let ifPlural = ''
-      if (this.props.modal.highlightSelected.matches.length > 1) {
-        ifPlural = 's'
-      }
+      // if (this.props.highlights.getHighlight(currentId).note === '') {
+      //   currentNote = 'Take note'
+      // } else currentNote = this.props.highlights.getHighlight(currentId).note;
 
       return (
-        <Button onClick={() => this.handleDelete()} color="primary">
-          Delete Highlight{ifPlural}: {this.props.modal.highlightSelected.matches}
-        </Button>
-      )} else return null;
-    };
+        <NoteForm highlightId={currentId} note={currentNote} updateNote={this.props.updateNote} />
+      )
+    } else return null;
+  }
 
   handleChangeMultiline = event => {
     console.log(event.target.value)
   };
+
+  currentHighlight() {
+    if (this.props.modal.highlightSelected.value) {
+      return (
+        <DeleteButton {...this.props} />
+      )
+    }
+  }
+
 
   render() {
 
@@ -63,15 +64,18 @@ class Modal extends Component {
           <DialogContent>
             <DeleteWarning {...this.props} />
             <ColorSelectors {...this.props} />
-            <ModalDevelInfo {...this.props} />
-            <NoteForm />
+            {/* <ModalDevelInfo {...this.props} /> */}
+            {this.noteForm()}
           </DialogContent>
           <DialogActions>
-            {/*
+
             <Button onClick={this.props.closeModal} color="primary">
-              Take Note
+              Save
             </Button>
 
+
+
+            {/*
             <TextField
               id="multiline-flexible"
               label="Highlight Note"
@@ -84,7 +88,9 @@ class Modal extends Component {
             />
             */}
           </DialogActions>
-            {this.deleteButton()}
+
+          {this.currentHighlight}
+
         </Dialog>
       </div>
     );

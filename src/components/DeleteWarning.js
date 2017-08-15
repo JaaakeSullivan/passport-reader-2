@@ -10,13 +10,14 @@ function DeleteWarning(props) {
   const deleteListing = props.modal.highlightSelected.matches.map((item) => {
 
       let highlightText = props.highlights.getHighlight(item).selectedText;
+      let highlightNote = props.highlights.getHighlight(item).note;
 
       return (
         <ListItem button>
           <Avatar>
             <DeleteIcon />
           </Avatar>
-          <ListItemText primary={highlightText} secondary={item} />
+          <ListItemText primary={highlightText} secondary={highlightNote} />
         </ListItem>
       )
     }

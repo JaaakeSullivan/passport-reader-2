@@ -76,6 +76,15 @@ export function openHighlight(highlightClicked) {
   }
 }
 
+export function updateNote(_id, note) {
+  console.log(note)
+  return {
+    type: UPDATE_NOTE,
+    _id,
+    note
+  }
+}
+
 // ===== CREATE A NEW HIGHLIGHT ===== //
 export const addHighlight = (_id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note ) => dispatch => {
   dispatch({

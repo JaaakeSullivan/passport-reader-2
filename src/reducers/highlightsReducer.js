@@ -21,7 +21,7 @@ function highlights(state=[], action) {
           color: action.color,
           selectedText: action.selectedText,
           time : action.time,
-          note: 'This is my note'
+          note: ''
         }
       ];
 
@@ -55,6 +55,17 @@ function highlights(state=[], action) {
 
       console.log(`Updated ${action._id} to ${action.color}`);
 
+      return [
+        ...state
+      ];
+
+    case 'UPDATE_NOTE':
+
+      let highlight = state.getHighlight(action._id)
+      let noteIndex = state.getIndexOfHighlight(action._id)
+      highlight.note = action.note;
+      state.splice(noteIndex, 1, highlight);
+      //console.log('updating note', highlight);
       return [
         ...state
       ];

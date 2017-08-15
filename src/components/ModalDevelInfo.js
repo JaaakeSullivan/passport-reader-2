@@ -17,7 +17,7 @@ class ModalDevelInfo extends Component {
           HighlightSelected: {this.props.modal.highlightSelected.value.toString()}
         </div>
         <div>
-          ToDelete: {this.props.modal.highlightSelected.value.toString()}
+          ToDelete: {this.props.modal.highlightSelected.toDelete.toString()}
         </div>
         <div>
           Matches: {this.props.modal.highlightSelected.matches.toString()}
