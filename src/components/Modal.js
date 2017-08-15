@@ -33,7 +33,9 @@ class Modal extends Component {
       // } else currentNote = this.props.highlights.getHighlight(currentId).note;
 
       return (
-        <NoteForm highlightId={currentId} note={currentNote} updateNote={this.props.updateNote} />
+        <div>
+          <NoteForm highlightId={currentId} note={currentNote} updateNote={this.props.updateNote} />
+        </div>
       )
     } else return null;
   }
@@ -43,9 +45,14 @@ class Modal extends Component {
   };
 
   currentHighlight() {
-    if (this.props.modal.highlightSelected.value) {
+    if (this.props.modal.highlightSelected.value && !this.props.modal.highlightSelected.toDelete) {
       return (
-        <DeleteButton {...this.props} />
+        <div>
+          <Button onClick={this.props.closeModal} color="primary">
+            Save
+          </Button>
+          <DeleteButton {...this.props} />
+        </div>
       )
     }
   }
@@ -68,28 +75,10 @@ class Modal extends Component {
             {this.noteForm()}
           </DialogContent>
           <DialogActions>
-
-            <Button onClick={this.props.closeModal} color="primary">
-              Save
-            </Button>
-
-
-
-            {/*
-            <TextField
-              id="multiline-flexible"
-              label="Highlight Note"
-              multiline
-              rowsMax="4"
-              value="Take a note here"
-              onChange={this.handleChangeMultiline}
-              className="none"
-              margin="normal"
-            />
-            */}
+            {this.currentHighlight()}
           </DialogActions>
 
-          {this.currentHighlight}
+
 
         </Dialog>
       </div>
