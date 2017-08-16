@@ -38,8 +38,13 @@ export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray
     // 1) CHECK FOR STARTID INSIDE ANOTHER HIGHLIGHT
     function isStartInHighlight() {
       if  (
-            ((startId === highlight.startId) && (startPos >= highlight.startPos && startPos < highlight.endPos)) ||
-            ((startId === highlight.endId) && (startPos > highlight.startPos && startPos < highlight.endPos))
+            ((startId === highlight.startId) && (startPos >= highlight.startPos &&
+              (startPos < highlight.endPos || highlight.startId != highlight.endId))
+            )
+            ||
+            ((startId === highlight.endId) && (startPos < highlight.endPos &&
+              (startPos > highlight.startPos || highlight.startId != highlight.endId))
+            )
           ) {
             // console.log('check1');
             return true;
@@ -49,10 +54,15 @@ export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray
     // 2) CHECK FOR ENDID INSIDE ANOTHER HIGHLIGHT //
     function isEndInHighlight() {
       if (
-          ((endId === highlight.endId) && (endPos <= highlight.endPos && endPos > highlight.startPos)) ||
-          ((endId === highlight.startId) && (endPos < highlight.endPos && endPos > highlight.startPos))
+          ((endId === highlight.endId) && (endPos <= highlight.endPos &&
+            (endPos > highlight.startPos || highlight.startId != highlight.endId))
+          )
+          ||
+          ((endId === highlight.startId) && (endPos > highlight.startPos &&
+            (endPos < highlight.endPos || highlight.startId != highlight.endId))
+          )
         ) {
-        // console.log('check2');
+        console.log('check2');
         return true;
       }
     }

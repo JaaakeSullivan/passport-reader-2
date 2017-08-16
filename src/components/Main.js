@@ -9,6 +9,7 @@ import AsideContainer from '../containers/AsideContainer'
 import UndockedDrawer from './UndockedDrawer'
 import { MuiThemeProvider } from 'material-ui/styles'
 
+
 //import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
 
 //import { Popover } from 'react-bootstrap';
@@ -23,8 +24,10 @@ class Main extends Component {
 
   render() {
     return (
+
       <MuiThemeProvider>
       <div className="Main" >
+
 
         <ModalContainer {...this.props} />
 

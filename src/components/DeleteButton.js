@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
 import store from '../store';
 import DeleteIcon from 'material-ui-icons/Delete'
+import DoneIcon from 'material-ui-icons/Done'
+
 import Button from 'material-ui/Button'
 
 
@@ -12,7 +14,18 @@ const styleSheet = createStyleSheet('DeleteButton', theme => ({
   },
 }));
 
+const style = {
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'space-between',
+  padding: '10px'
+};
 
+const buttonStyle = {
+  boxShadow: '0 3px 3px 2px rgba(0, 0, 0, .20)',
+  borderRadius: 3,
+  margin: '10px'
+}
 
 function DeleteButton(props) {
   const classes = props.classes;
@@ -37,9 +50,14 @@ function DeleteButton(props) {
   }
 
   return (
-    <Button onClick={() => handleDelete()} color="primary">
+    <div style={style}>
+    <Button onClick={() => handleDelete()} raised >
       <DeleteIcon /> {ifMultiple}
     </Button>
+    <Button onClick={props.closeModal} raised color="primary" >
+      <DoneIcon />
+    </Button>
+    </div>
   )
 }
 

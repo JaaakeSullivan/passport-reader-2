@@ -6,7 +6,8 @@ import TextField from 'material-ui/TextField'
 import ModalDevelInfo from './ModalDevelInfo'
 //import { withStyles, createStyleSheet } from 'material-ui/styles';
 import HighlightColors from './HighlightColors'
-import ColorSelectors from './colorSelectors'
+import ColorSelectors from './ColorSelectors'
+// import ColorTabs from './ColorTabs'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
 import DeleteIcon from 'material-ui-icons/Delete'
@@ -18,9 +19,12 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog'
-
-// import { isHighlightSelected } from '../helpers/selectHelpers';
 import store from '../store';
+
+const centerContent = {
+  display: 'flex',
+  justifyContent: 'space-around'
+}
 
 class Modal extends Component {
 
@@ -48,12 +52,7 @@ class Modal extends Component {
   currentHighlight() {
     if (this.props.modal.highlightSelected.value && !this.props.modal.highlightSelected.toDelete) {
       return (
-        <div>
-          <DeleteButton {...this.props} />
-          <Button onClick={this.props.closeModal} color="primary">
-            <DoneIcon />
-          </Button>
-        </div>
+        <DeleteButton {...this.props} />
       )
     }
   }
@@ -71,14 +70,21 @@ class Modal extends Component {
 
           <DialogContent>
             <DeleteWarning {...this.props} />
-            <ColorSelectors {...this.props} />
+
+            <div style={centerContent}>
+              <ColorSelectors {...this.props} />
+            </div>
+
             {/* <ModalDevelInfo {...this.props} /> */}
             {this.noteForm()}
+            {this.currentHighlight()}
           </DialogContent>
-          <DialogActions >
+
+          {/*
+          <DialogActions style={style} >
             {this.currentHighlight()}
           </DialogActions>
-
+          */}
 
 
         </Dialog>
