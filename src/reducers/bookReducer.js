@@ -13,6 +13,7 @@ function book(state=[], action) {
   let displayContent = "loading";
   let displayArray = [];
   let asideArray = [];
+  let imageArray = [];
 
   if (originalContent) { // check if original conent is loaded
     // buildDisplayContent is in ../helpers/displayHelpers.js & returns object
@@ -20,6 +21,7 @@ function book(state=[], action) {
     //displayContent = bookDisplayString; // no longer needed
     displayArray = displayContent.bookDisplay;
     asideArray = displayContent.asideArray;
+    imageArray = displayContent.imageArray;
   }
 
   switch (action.type) {
@@ -27,7 +29,8 @@ function book(state=[], action) {
       return {
         ...state,
         displayArray: displayArray,
-        asides: asideArray
+        asides: asideArray,
+        images: imageArray
       }
     case 'HIGHLIGHT_CONTENT':
       let highlightsArray = store.getState().highlights;

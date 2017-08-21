@@ -6,9 +6,35 @@ export function buildDisplayContent(originalContent){
 
   let regExAsideBlock = /<aside (.*)<\/aside>/g; // use for separating asides from main content
   let regExAsideElements = /(<aside .*?<\/aside>)/g; // use for splitting asideString into asideArray
+  let regExImageGallery = /<object id="gallery.*?\/object>/g // use for getting image gallery sections
+  let regExImageGallerySingle = /<object id="gallery.*?\/object>/ // use for getting image gallery sections
+  let regExImageThumbnail = /data-thumbnail-src.*?=".*?"/g // use for getting array of thumbnail image src
+  let regExImageFullSize = / src.*?=".*?"/g // use for getting array of full size image src
+  let regExFigCaption = /<figcaption .*?"caption">.*?<\/figcaption>/g //use for getting image captions
 
   // ===== CREATE STRING OF ASIDE ELEMENTS ===== //
   let asideString = originalContent.match(regExAsideBlock).join('');
+
+  // ===== CREATE ARRAY OF GALLERY OBJECTS ===== //
+  let galleryArray = originalContent.match(regExImageGallery);
+  // console.log('galleryArray', galleryArray);
+  let imageArray = [];
+  for (let j=0; j<galleryArray.length; j++) {
+    let currentGallery=galleryArray[j];
+    let thumbnailArray = currentGallery.match(regExImageThumbnail);
+    let fullSizeArray = currentGallery.match(regExImageFullSize);
+    let captionArray = currentGallery.match(regExFigCaption);
+    imageArray[j] = [];
+
+    for (let k=0; k<thumbnailArray.length; k++) {
+      imageArray[j][k] = {
+        thumbnail: thumbnailArray[k].slice(20, -1),
+        src: fullSizeArray[k].slice(6, -1),
+        caption: captionArray[k].replace(/<figcaption .*?"caption">/, '').replace('</figcaption>', '')
+      }
+    }
+  }
+
 
   // ===== SPLIT ASIDE ELEMENTS INTO ARRAY, REMOVE SPACES ===== //
   let asideArray = asideString.split(regExAsideElements).filter(function(item) {
@@ -16,7 +42,12 @@ export function buildDisplayContent(originalContent){
   });
 
   // ===== REMOVE ASIDE ELEMENTS FROM MAIN CONTENT ===== //
-  let bookDisplayString = originalContent.replace(regExAsideBlock, '');
+  let bookDisplayString = originalContent.replace(regExAsideBlock, '')
+
+  // ===== REPLACE IMAGE GALLERY ELEMENTS WITH GALLERY ID ===== //
+  for (let i=0; i<imageArray.length; i++) {
+    bookDisplayString = bookDisplayString.replace(regExImageGallerySingle, `<div id="image-gallery-${i}"></div>`);
+  }
 
   // ================================================== //
   // ***** SPLIT BOOK INTO ARRAY & ADD CUSTOM IDS ***** //
@@ -54,10 +85,14 @@ export function buildDisplayContent(originalContent){
       }
       else bookDisplay.push(tempATag);
     }
+    // else if ()
+    // { // ===== check for image tags -- add id -- add to imageArray ===== //
+    //
+    // }
     else
     { // ===== DEFAULT - for standard tag elements ===== //
       bookDisplay.push(bookArray[i]);
     }
   }
-  return { bookDisplayString, asideArray, bookDisplay }
+  return { bookDisplayString, asideArray, imageArray, bookDisplay }
 }

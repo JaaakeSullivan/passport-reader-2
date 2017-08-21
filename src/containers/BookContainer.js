@@ -17,6 +17,7 @@ export default class BookContainer extends Component {
     }
 
     console.log('getSelection', window.getSelection());
+    console.log('this is this', this);
     let select = window.getSelection();
 
     if (select.anchorNode !== null) {
@@ -34,7 +35,7 @@ export default class BookContainer extends Component {
       // HANDLES A HIGHLIGHT OF NON-OVERLAPPING CONTENT
       if (idAndPosition.startId !== idAndPosition.endId || idAndPosition.startPos !== idAndPosition.endPos) {
         this.props.openModal(selectedText, idAndPosition, betweenArray, highlightSelected);
-        
+
       // HANDLES A SINGLE CLICK ON A HIGHLIGHT
       } else if (select.anchorNode.parentNode.id.includes('hl')) {
         let idClicked = select.anchorNode.parentNode.id;

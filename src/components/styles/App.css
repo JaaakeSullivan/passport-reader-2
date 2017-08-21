@@ -44,7 +44,7 @@ p {
 
 .highlight {
   border-radius: 3px;
-  
+
 }
 
 .blue {
@@ -65,4 +65,11 @@ p {
 
 .purple {
   background-color: #E040FB;
+}
+
+/* ===== IMAGE GALLERY ===== */
+
+.gallery-section {
+  display: flex;
+  justify-content: space-around;
 }
