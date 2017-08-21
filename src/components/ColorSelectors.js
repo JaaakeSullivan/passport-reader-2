@@ -102,11 +102,16 @@ function ColorSelectors(props) {
 
   if (props.modal.highlightSelected.value && !props.modal.highlightSelected.toDelete) {
     let colorBackground = {
+      //backgroundColor: '#C8C8C8',
       backgroundColor: '#e0e0e0',
       boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
     };
 
-    let noBackground = '';
+    let noBackground = {
+      // this is the standard mui gray
+      // backgroundColor: '#e0e0e0',
+      // boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+    };
 
     switch(props.highlights.getHighlight(props.modal.highlightSelected.matches[0]).color) {
       case 'blue':

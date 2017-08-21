@@ -9,10 +9,8 @@ export default class BookContainer extends Component {
   handleSelect(event) {
 
     // ===== check for <a> ===== //
-    if (event.target.parentElement.localName === 'a' ) {
-      //let asideArray = this.props.asidArray;
+    if (event.target.parentElement.localName === 'a' && event.target.parentElement.className === 'aside-tag') {
       let id = event.target.parentElement.id;
-      console.log(id);
       this.props.openAside(id);
     }
 

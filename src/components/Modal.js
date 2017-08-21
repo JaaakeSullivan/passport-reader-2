@@ -26,6 +26,10 @@ const centerContent = {
   justifyContent: 'space-around'
 }
 
+// const selectedTextBorder = {
+//   backgroundColor: 'red'
+// }
+
 class Modal extends Component {
 
   noteForm() {
@@ -57,6 +61,30 @@ class Modal extends Component {
     }
   }
 
+  selectedTextBorder = () => {
+    if (this.props.modal.highlightSelected.value && !this.props.modal.highlightSelected.toDelete) {
+      let color = '';
+
+      switch(this.props.highlights.getHighlight(this.props.modal.highlightSelected.matches[0]).color) {
+        case 'blue': color = '#40C4FF'; break;
+        case 'pink': color = '#FF4081'; break;
+        case 'yellow': color = '#FFFF00'; break;
+        case 'green': color = '#B2FF59'; break;
+        case 'purple': color = '#E040FB'; break;
+      }
+
+      return (
+        {
+          border: 'solid',
+          borderColor: color,
+          borderWidth: '0px 10px 0px 10px',
+          margin: '10px',
+          borderRadius: '10px',
+          // backgroundColor: 'rgba(0, 0, 0, .1)'
+        }
+      )
+    }
+  }
 
   render() {
 
@@ -64,7 +92,7 @@ class Modal extends Component {
       <div>
 
         <Dialog open={this.props.modal.showModal} onRequestClose={this.props.closeModal}>
-          <DialogTitle>
+          <DialogTitle style={this.selectedTextBorder()}>
             {this.props.modal.selectedText}
           </DialogTitle>
 

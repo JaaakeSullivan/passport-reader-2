@@ -96,6 +96,7 @@ class Gallery extends Component {
 					onClose={this.closeLightbox}
 					showThumbnails={this.props.showThumbnails}
 					theme={this.props.theme}
+					backdropClosesModal={true}
 				/>
 			</div>
 		);

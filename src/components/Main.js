@@ -8,7 +8,7 @@ import ModalContainer from '../containers/ModalContainer'
 import AsideContainer from '../containers/AsideContainer'
 import UndockedDrawer from './UndockedDrawer'
 import { MuiThemeProvider } from 'material-ui/styles'
-import ImageGalleryContainer from '../containers/ImageGalleryContainer'
+import GalleryContainer from '../containers/GalleryContainer'
 
 
 //import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
@@ -29,7 +29,7 @@ class Main extends Component {
       <MuiThemeProvider>
       <div className="Main" >
 
-        <ImageGalleryContainer {...this.props}/>
+        <GalleryContainer gallerySet={this.props.book.images}/>
         <ModalContainer {...this.props} />
 
         <AsideContainer {...this.props} />
