@@ -37,11 +37,11 @@ class ColorTabs extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     const { value } = this.state;
 
     return (
-      <div className={classes.root}>
+      <div >
         <AppBar position="static">
           <Tabs value={value} onChange={this.handleChange}>
             <Tab label="Item One" />
@@ -70,4 +70,4 @@ ColorTabs.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ColorTabs);
+export default ColorTabs;

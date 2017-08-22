@@ -8,7 +8,8 @@ import AsideContainer from '../containers/AsideContainer'
 import UndockedDrawer from './UndockedDrawer'
 import { MuiThemeProvider } from 'material-ui/styles'
 import GalleryContainer from '../containers/GalleryContainer'
-
+import ColorTabs from './ColorTabs'
+import FullWidthTabs from './FullWidthTabs'
 
 //import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
 
@@ -27,8 +28,8 @@ class Main extends Component {
     return (
 
       <MuiThemeProvider>
-      <div className="Main" >
-
+      <div className="Main" style={{ width: '100vw' }}>
+        <FullWidthTabs />
         <GalleryContainer gallerySet={this.props.book.images}/>
         <ModalContainer {...this.props} />
 
@@ -36,7 +37,7 @@ class Main extends Component {
         <UndockedDrawer />
 
         <div><h3>showModal: {this.props.modal.showModal.toString()} </h3></div>
-
+        {/*
         <AxiosProvider instance={axiosInstance}>
           <Get url="bump">
             {(error, response, isLoading) => {
@@ -59,6 +60,7 @@ class Main extends Component {
             }}
           </Get>
         </AxiosProvider>
+        */}
 
         <BookContainer {...this.props} />
 
