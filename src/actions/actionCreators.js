@@ -1,5 +1,3 @@
-import store from '../store'
-
 /*
  * action types -- defined as strings to use in creators
  */

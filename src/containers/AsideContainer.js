@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Button from 'material-ui/Button';
+// import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
   DialogContent,
-  DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
 import Aside from '../components/Aside'

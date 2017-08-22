@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AccessAlarmIcon from 'material-ui-icons/AccessAlarm';
-import ThreeDRotation from 'material-ui-icons/ThreeDRotation';
 import { withStyles, createStyleSheet } from 'material-ui/styles';
-import store from '../store';
 
 import Label from 'material-ui-icons/Label';
 

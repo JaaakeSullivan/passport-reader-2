@@ -3,11 +3,11 @@
 // then return copy of updated state
 
 // we set state to an empty array to start off
-const defaultVis = {
-  showAudio: false,
-  showHighlights: true,
-  showNotes: false
-}
+// const defaultVis = {
+//   showAudio: false,
+//   showHighlights: true,
+//   showNotes: false
+// }
 
 
 function visibility(state=[], action) {
@@ -31,7 +31,7 @@ function visibility(state=[], action) {
       return state;
   }
 
-  return state;
+  // return state;
 }
 
 export default visibility;

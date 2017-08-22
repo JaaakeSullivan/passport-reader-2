@@ -8,7 +8,7 @@ function asideDisplay (state=[], action) {
       return {
         ...state,
         showAside: true,
-        asideText: popupId 
+        asideText: popupId
       };
     case 'CLOSE_ASIDE':
       return {
@@ -19,8 +19,8 @@ function asideDisplay (state=[], action) {
     default:
       return state;
   }
-  //console.log(state, action)
-  return state;
+  // console.log(state, action)
+  // return state;
 }
 
 export default asideDisplay;

@@ -5,19 +5,19 @@
 
 // we set state to an empty array to start off
 import { buildDisplayContent } from '../helpers/displayHelpers';
-import { getIndexOfId, splitElement, removeBlanksFromArray, addHighlights } from '../helpers/highlightsHelpers';
+import { addHighlights } from '../helpers/highlightsHelpers';
 import store from '../store';
 
 function book(state=[], action) {
   let originalContent = state.original; // get the original content from state
-  let displayContent = "loading";
+  let displayContent = "LOADING CONTENT";
   let displayArray = [];
   let asideArray = [];
   let imageArray = [];
 
   if (originalContent) { // check if original conent is loaded
     // buildDisplayContent is in ../helpers/displayHelpers.js & returns object
-    let displayContent = buildDisplayContent(originalContent); //returns { bookDisplayString, bookDisplay, asideArray }
+    displayContent = buildDisplayContent(originalContent); //returns { bookDisplayString, bookDisplay, asideArray }
     //displayContent = bookDisplayString; // no longer needed
     displayArray = displayContent.bookDisplay;
     asideArray = displayContent.asideArray;
@@ -41,8 +41,9 @@ function book(state=[], action) {
         ...state,
         displayHighlights: displayHighlights
       };
+    default:
+      return state;
     }
-  return state;
 }
 
 export default book;

@@ -6,6 +6,17 @@ import '../helpers/utilityHelpers'
 
 
 function mapStateToProps(state) {
+
+  state.highlights.getHighlight = function(id) {
+    for (let i=0; i<this.length; i++) {
+      let idInHighlight = this[i]._id
+      if (id === idInHighlight) {
+        return this[i];
+      }
+    }
+    return -1;
+  }
+
   return {
     book: state.book,
     highlights: state.highlights,

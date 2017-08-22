@@ -1,51 +1,27 @@
 export const highlightsDefault = [
-
   {
-    _id: 'unique123',
-    startId: 'pr-4',
-    endId: 'pr-4',
-    startPos: 51,
-    endPos: 85,
-    betweenArray: [],
-    color: 'pink',
-    selectedText: 'everything in it but hammer and nails',
-    time : '1998-12-17T03:24:00',
-    note: 'This is my note'
+    _id:"hl-1503413757154",
+    betweenArray:[],
+    color:"pink",
+    endId:"pr-4",
+    endPos:323,
+    note:"Wow! What a tug!",
+    selectedText:"The strap broke with the single tug",
+    startId:"pr-4",
+    startPos:288,
+    time:"Tue Aug 22 2017 09:55:57 GMT-0500 (CDT)"
   },
   {
-    _id: 'unique123',
-    startId: 'pr-5',
-    endId: 'pr-10',
-    startPos: 0,
-    endPos: 10,
-    betweenArray: ['pr-6','pr-7','pr-8','pr-9'],
-    color: 'blue',
-    selectedText: 'After that the woman said, “Pick up my pocketbook, boy, and give it here.” She still held him tightly. But she bent down enough to permit him to stoop and pick up her purse. Then she said, “Now ain’t you ashamed of yourself?” Firmly gripped by his shirt front, the boy said, “Yes’m.” The woman said, “What did',
-    time : '1998-12-17T03:24:00',
-    note: ''
-  },
-  {
-    _id: 'unique123',
-    startId: 'pr-10',
-    endId: 'pr-10',
-    startPos: 0,
-    endPos: 24,
-    betweenArray: [],
-    color: 'purple',
-    selectedText: 'said, “What did you want',
-    time : '1998-12-17T03:24:00',
-    note: ''
-  },
-  {
-    _id: 'unique123',
-    startId: 'pr-4',
-    endId: 'pr-4',
-    startPos: 0,
-    endPos: 8,
-    betweenArray: [],
-    color: 'yellow',
-    selectedText: 'multiples',
-    time : '1998-12-17T03:24:00',
-    note: ''
+    _id:"hl-1503414638133",
+    betweenArray:["pr-13"],
+    color:"purple",
+    endId:"pr-14",
+    endPos:36,
+    note:"",
+    selectedText:"She said, “You a lie!”\nBy that time two or three people passed, stopped, turned to look, and some stood watching.\n“If I turn you loose, will you run?”",
+    startId:"pr-12",
+    startPos:0,
+    time:"Tue Aug 22 2017 10:10:38 GMT-0500 (CDT)"
   }
+
 ]

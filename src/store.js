@@ -17,15 +17,9 @@ const defaultState = {
     //display: 'hey there',
     displayArray: [],
     displayHighlights: [],
-    asides: [],
-    // highlights: highlightsDefault
+    asides: []
   },
-  popover: {
-    showPopover: false,
-    popoverContent: 'default popover'
-  },
-  studentId: 'student12345',
-  mainContent: "main content goes here",
+  highlights: highlightsDefault
 };
 
 //const store = createStore(rootReducer, defaultState);

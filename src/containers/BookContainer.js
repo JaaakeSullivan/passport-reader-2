@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Book from '../components/Book';
-import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray, isHighlightSelected } from '../helpers/selectHelpers';
-import { connect } from 'react-redux';
+import { getSelectedText, getIdAndPosition, getBetweenArray, isHighlightSelected } from '../helpers/selectHelpers';
+// import { connect } from 'react-redux';
 
 export default class BookContainer extends Component {
 
@@ -18,7 +18,8 @@ export default class BookContainer extends Component {
     console.log('this is this', this);
     let select = window.getSelection();
 
-    if (select.anchorNode !== null) {
+    // ===== check that valid "highlightable" text is selected -- ignore selections that start or end on aside-tags ===== //
+    if (select.anchorNode !== null && select.anchorNode.className !== 'aside-tag' && select.focusNode.className !== 'aside-tag') {
       let idAndPosition = getIdAndPosition(select);
       let selectedText = getSelectedText(select);
       let betweenArray = getBetweenArray(select);

@@ -64,14 +64,14 @@ class Gallery extends Component {
 
 		const gallery = images.map((obj, i) => {
 			return (
-				<div className={css(classes.gallery)}>
+				<div className={css(classes.gallery)} key={i}>
 					<a
 						href={obj.src}
 						className={css(classes.thumbnail, classes[obj.orientation])}
 						key={i}
 						onClick={(e) => this.openLightbox(i, e)}
 					>
-						<img src={obj.thumbnail} className={css(classes.source)} />
+						<img src={obj.thumbnail} className={css(classes.source)} alt="" />
 					</a>
 				</div>
 			)

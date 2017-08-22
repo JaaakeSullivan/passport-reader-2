@@ -21,14 +21,14 @@ const style = {
   padding: '10px'
 };
 
-const buttonStyle = {
-  boxShadow: '0 3px 3px 2px rgba(0, 0, 0, .20)',
-  borderRadius: 3,
-  margin: '10px'
-}
+// const buttonStyle = {
+//   boxShadow: '0 3px 3px 2px rgba(0, 0, 0, .20)',
+//   borderRadius: 3,
+//   margin: '10px'
+// }
 
-function DeleteButton(props) {
-  const classes = props.classes;
+function ModalButtons(props) {
+  //const classes = props.classes;
 
   function handleDelete() {
     // console.log('deleting highlight')
@@ -61,8 +61,8 @@ function DeleteButton(props) {
   )
 }
 
-DeleteButton.propTypes = {
+ModalButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styleSheet)(DeleteButton);
+export default withStyles(styleSheet)(ModalButtons);

@@ -39,11 +39,11 @@ export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray
     function isStartInHighlight() {
       if  (
             ((startId === highlight.startId) && (startPos >= highlight.startPos &&
-              (startPos < highlight.endPos || highlight.startId != highlight.endId))
+              (startPos < highlight.endPos || highlight.startId !== highlight.endId))
             )
             ||
             ((startId === highlight.endId) && (startPos < highlight.endPos &&
-              (startPos > highlight.startPos || highlight.startId != highlight.endId))
+              (startPos > highlight.startPos || highlight.startId !== highlight.endId))
             )
           ) {
             // console.log('check1');
@@ -55,11 +55,11 @@ export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray
     function isEndInHighlight() {
       if (
           ((endId === highlight.endId) && (endPos <= highlight.endPos &&
-            (endPos > highlight.startPos || highlight.startId != highlight.endId))
+            (endPos > highlight.startPos || highlight.startId !== highlight.endId))
           )
           ||
           ((endId === highlight.startId) && (endPos > highlight.startPos &&
-            (endPos < highlight.endPos || highlight.startId != highlight.endId))
+            (endPos < highlight.endPos || highlight.startId !== highlight.endId))
           )
         ) {
         console.log('check2');
@@ -91,17 +91,17 @@ export function isHighlightSelected(idAndPosition, highlightsArray, betweenArray
           (
             startId === highlight.startId &&
             startPos < highlight.startPos &&
-            parseInt(sliceId(endId)) > parseInt(sliceId(highlight.startId))
+            parseInt(sliceId(endId), 10) > parseInt(sliceId(highlight.startId), 10)
           ) ||
           // SELECT ID STARTS ENDS BEFORE HIGHLIGHT
           (
             endId === highlight.endId &&
             endPos > highlight.endPos &&
-            parseInt(sliceId(startId)) < parseInt(sliceId(highlight.endId))
+            parseInt(sliceId(startId), 10) < parseInt(sliceId(highlight.endId), 10)
           ) ||
           (
-            parseInt(sliceId(startId)) < parseInt(sliceId(highlight.startId)) &&
-            parseInt(sliceId(endId)) > parseInt(sliceId(highlight.endId))
+            parseInt(sliceId(startId), 10) < parseInt(sliceId(highlight.startId), 10) &&
+            parseInt(sliceId(endId), 10) > parseInt(sliceId(highlight.endId), 10)
           )
         )
           {

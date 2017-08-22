@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import logo from './logo.svg'
 import './styles/App.css'
 import { AxiosProvider, Get } from 'react-axios'
 import axios from 'axios'
@@ -22,6 +21,7 @@ const axiosInstance = axios.create({
 });
 
 class Main extends Component {
+
 
   render() {
     return (

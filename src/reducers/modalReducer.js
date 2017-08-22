@@ -59,7 +59,6 @@ function modal (state=[], action) {
       return state;
   }
   //console.log(state, action)
-  return state;
 }
 
 export default modal;

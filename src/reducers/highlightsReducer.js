@@ -1,11 +1,32 @@
-import { sliceId } from '../helpers/selectHelpers';
-import { getIndexOfId } from '../helpers/highlightsHelpers';
+// import { sliceId } from '../helpers/selectHelpers';
+// import { getIndexOfId } from '../helpers/highlightsHelpers';
 
 // we set state to an empty array to start off
 function highlights(state=[], action) {
   //console.log("from book reducer: ", state, action)
 
   //console.log(action);
+
+  state.getIndexOfHighlight = function(id) {
+    for (let i=0; i<this.length; i++) {
+      let idInHighlight = this[i]._id
+      console.log("idInHighLight", idInHighlight, " id ", id)
+      if (id === idInHighlight) {
+        return i;
+      }
+    }
+    return -1;
+  }
+
+  state.getHighlight = function(id) {
+    for (let i=0; i<this.length; i++) {
+      let idInHighlight = this[i]._id
+      if (id === idInHighlight) {
+        return this[i];
+      }
+    }
+    return -1;
+  }
 
 
   switch (action.type) {
@@ -33,12 +54,12 @@ function highlights(state=[], action) {
           console.log('a', a, 'b', b)
           let aStartNum = a.startId.slice(3);
           let bStartNum = b.startId.slice(3);
-          if (a.startId == b.startId) {
+          if (a.startId === b.startId) {
             return (a.startPos - b.startPos)
           } else {
             return (aStartNum - bStartNum)
           }
-        }
+        } else return null;
       });
       //console.log('sortedHighlights',[...sortedHighlights]);
       return [
@@ -89,8 +110,6 @@ function highlights(state=[], action) {
     default:
       return state;
   }
-
-  return state;
 }
 
 export default highlights;

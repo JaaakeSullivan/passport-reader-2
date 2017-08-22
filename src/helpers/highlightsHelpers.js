@@ -9,7 +9,11 @@ export function getIndexOfId(array, id) {
 
 export function splitElement(array, index) {
   //splits element into an array of 3 items [<tag>, inner content, </tag>]
-  let splitElement = array[index].split(/(<.*?>)/g).removeBlanks();
+  // FORMERLY ...
+  // let splitElement = array[index].split(/(<.*?>)/g).removeBlanks();
+  let splitElement = array[index].split(/(<.*?>)/g).filter(function(item) {
+    return item !== "";
+  });
   return splitElement;
 }
 
@@ -30,12 +34,20 @@ export function addHighlights (displayArray, highlightsArray) {
     // declare start of highlight variables
     let startIndex = getIndexOfId(displayHighlights, startId);
     let startSplitElement = splitElement(displayHighlights, startIndex);
-    let startInnerArray = startSplitElement[1].split(preserveSpecialChar).removeBlanks();
+    // FORMERLY ...
+    // let startInnerArray = startSplitElement[1].split(preserveSpecialChar).removeBlanks();
+    let startInnerArray = startSplitElement[1].split(preserveSpecialChar).filter(function(item) {
+      return item !== "";
+    });
 
     // declare the end of highlight variables
     let endIndex = getIndexOfId(displayHighlights, endId);
     let endSplitElement = splitElement(displayHighlights, endIndex);
-    let endInnerArray = endSplitElement[1].split(preserveSpecialChar).removeBlanks();
+    // FORMERLY ...
+    // let endInnerArray = endSplitElement[1].split(preserveSpecialChar).removeBlanks();
+    let endInnerArray = endSplitElement[1].split(preserveSpecialChar).filter(function(item) {
+      return item !== "";
+    });
 
     let spanOpen =  `<span id=${_id} class="highlight ${ color }">`
     let spanClose = `</span>`

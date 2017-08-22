@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Input from 'material-ui/Input/Input';
+// import Input from 'material-ui/Input/Input';
 import TextField from 'material-ui/TextField';
 
 
@@ -25,5 +25,9 @@ function NoteForm(props) {
     </div>
   );
 }
+
+NoteForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 export default NoteForm;
