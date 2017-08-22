@@ -6,7 +6,7 @@ export const highlightsDefault = [
     endId:"pr-4",
     endPos:323,
     note:"Wow! What a tug!",
-    selectedText:"The strap broke with the single tug",
+    selectedText:"The strap broke with the single tug -- BTW, this was auto-generated",
     startId:"pr-4",
     startPos:288,
     time:"Tue Aug 22 2017 09:55:57 GMT-0500 (CDT)"
