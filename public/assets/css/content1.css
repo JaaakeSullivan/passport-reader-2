@@ -1,5 +1,5 @@
 body{
-	white-space: pre-wrap;
+	/*white-space: pre-wrap;*/
 }
 .columnbreak{
 	break-after: column;

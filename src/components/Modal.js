@@ -53,21 +53,12 @@ class Modal extends Component {
 
   selectedTextBorder = () => {
     if (this.props.modal.highlightSelected.value && !this.props.modal.highlightSelected.toDelete) {
-      let color = '';
-
-      switch(this.props.highlights.getHighlight(this.props.modal.highlightSelected.matches[0]).color) {
-        case 'blue': color = '#40C4FF'; break;
-        case 'pink': color = '#FF4081'; break;
-        case 'yellow': color = '#FFFF00'; break;
-        case 'green': color = '#B2FF59'; break;
-        case 'purple': color = '#E040FB'; break;
-        default: break;
-      }
+      let colorCode = this.props.highlights.getHighlight(this.props.modal.highlightSelected.matches[0]).colorCode;
 
       return (
         {
           border: 'solid',
-          borderColor: color,
+          borderColor: colorCode,
           borderWidth: '0px 10px 0px 10px',
           margin: '10px',
           borderRadius: '10px',

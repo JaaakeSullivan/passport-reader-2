@@ -4,7 +4,6 @@ import * as actionCreators from '../actions/actionCreators';
 import Main from './Main';
 import '../helpers/utilityHelpers'
 
-
 function mapStateToProps(state) {
 
   state.highlights.getHighlight = function(id) {

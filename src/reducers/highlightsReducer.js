@@ -28,6 +28,16 @@ function highlights(state=[], action) {
     return -1;
   }
 
+  let colorCode;
+
+  switch(action.color) {
+    case 'blue': colorCode = '#40C4FF'; break;
+    case 'pink': colorCode = '#FF4081'; break;
+    case 'yellow': colorCode = '#FFFF00'; break;
+    case 'green': colorCode = '#B2FF59'; break;
+    case 'purple': colorCode = '#E040FB'; break;
+    default: break;
+  }
 
   switch (action.type) {
     case 'ADD_HIGHLIGHT':
@@ -40,6 +50,7 @@ function highlights(state=[], action) {
           endPos: action.endPos,
           betweenArray: action.betweenArray,
           color: action.color,
+          colorCode: colorCode,
           selectedText: action.selectedText,
           time : action.time,
           note: ''
@@ -72,6 +83,8 @@ function highlights(state=[], action) {
       let highlightToUpdate = state[index];
 
       highlightToUpdate.color = action.color;
+      highlightToUpdate.colorCode = colorCode;
+      
       state.splice(index, 1, highlightToUpdate);
 
       console.log(`Updated ${action._id} to ${action.color}`);

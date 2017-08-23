@@ -7,6 +7,8 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import SwipeableViews from 'react-swipeable-views';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
+import WordsAPI from './WordsAPI'
+import BookContainer from '../containers/BookContainer'
 
 function TabContainer(props) {
   return (
@@ -27,7 +29,7 @@ TabContainer.propTypes = {
 //   },
 // });
 
-// === ADD THIS === // AND import createStyleSheet
+// === ADD THIS === // + ADD import createStyleSheet
 const styles = createStyleSheet('FullWidthTabs', theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
@@ -36,7 +38,7 @@ const styles = createStyleSheet('FullWidthTabs', theme => ({
 
 class FullWidthTabs extends Component {
   state = {
-    value: 0,
+    value: 1,
   };
 
   handleChange = (event, value) => {
@@ -60,9 +62,9 @@ class FullWidthTabs extends Component {
             textColor="primary"
             fullWidth
           >
-            <Tab label="Item One" />
-            <Tab label="Item Two" />
-            <Tab label="Item Three" />
+            <Tab label="Settings" />
+            <Tab label="Book" />
+            <Tab label="Highlights" />
           </Tabs>
         </AppBar>
         <SwipeableViews index={this.state.value} onChangeIndex={this.handleChangeIndex}>
@@ -71,6 +73,7 @@ class FullWidthTabs extends Component {
           </TabContainer>
           <TabContainer>
             {'Item Two'}
+            <BookContainer {...this.props}/>
           </TabContainer>
           <TabContainer>
             {'Item Three'}

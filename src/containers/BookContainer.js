@@ -1,13 +1,16 @@
-import React, { Component } from 'react';
-import Book from '../components/Book';
+import React, { Component } from 'react'
+import Book from '../components/Book'
+import GalleryContainer from './GalleryContainer'
+import ModalContainer from './ModalContainer'
+import AsideContainer from './AsideContainer'
 import { getSelectedText, getIdAndPosition, getBetweenArray, isHighlightSelected } from '../helpers/selectHelpers';
-// import { connect } from 'react-redux';
+//import { connect } from 'react-redux';
 
 export default class BookContainer extends Component {
 
 
   handleSelect(event) {
-
+    console.log('my event', event)
     // ===== check for <a> ===== //
     if (event.target.parentElement.localName === 'a' && event.target.parentElement.className === 'aside-tag') {
       let id = event.target.parentElement.id;
@@ -55,11 +58,21 @@ export default class BookContainer extends Component {
   render() {
 
     return(
-      <Book
-        content={this.props.book.displayHighlights.join('')}
-        contentArray={this.props.book.displayHighlights}
-        handleSelect={this.handleSelect.bind(this)}
-      />
+      <div>
+        <GalleryContainer gallerySet={this.props.book.images}/>
+        <ModalContainer {...this.props} />
+        <AsideContainer {...this.props} />
+        <Book
+          content={this.props.book.displayHighlights.join('')}
+          contentArray={this.props.book.displayHighlights}
+          handleSelect={this.handleSelect.bind(this)}
+        />
+      </div>
     )
   }
 }
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(BookContainer)

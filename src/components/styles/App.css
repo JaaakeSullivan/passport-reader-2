@@ -8,6 +8,10 @@ p {
   text-align: left;
 }
 
+body {
+	white-space: unset;
+}
+
 .orange {
   background-color: orange;
 }
@@ -76,7 +80,7 @@ p {
 
 /* ===== TESTING -- DELETE ===== */
 #media-0 {
-  max-width: 100vw;
+  max-width: 300px;
 }
 
 #p56 {

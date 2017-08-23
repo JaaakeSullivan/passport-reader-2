@@ -14,7 +14,8 @@ const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
 const OPEN_HIGHLIGHT = 'OPEN_HIGHLIGHT'
 const UPDATE_COLOR = 'UPDATE_COLOR'
 const UPDATE_NOTE = 'UPDATE_NOTE'
-
+const VIEW_HIGHLIGHTS = 'VIEW_HIGHLIGHTS'
+const VIEW_BOOK = 'VIEW_BOOK'
 /*
  * other constants
  */
@@ -99,35 +100,6 @@ export const updateColor = (_id, color) => dispatch => {
   return (Promise.resolve())
 }
 
-
-
-// export function addHighlight(
-//   _id,
-//   startId,
-//   endId,
-//   startPos,
-//   endPos,
-//   betweenArray,
-//   color,
-//   selectedText,
-//   time,
-//   note
-// ) {
-//   return {
-//     type: ADD_HIGHLIGHT,
-//     _id,
-//     startId,
-//     endId,
-//     startPos,
-//     endPos,
-//     betweenArray,
-//     color,
-//     selectedText,
-//     time,
-//     note
-//   }
-// }
-
 export function deleteHighlight(matchesToDelete) {
   return {
     type: DELETE_HIGHLIGHT,
@@ -146,5 +118,17 @@ export function openAside(id) {
 export function closeAside() {
   return {
     type: CLOSE_ASIDE
+  }
+}
+
+export function viewHighlights() {
+  return {
+    type: VIEW_HIGHLIGHTS
+  }
+}
+
+export function viewBook() {
+  return {
+    type: VIEW_BOOK
   }
 }

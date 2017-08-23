@@ -1,68 +1,81 @@
 import React, { Component } from 'react'
 import './styles/App.css'
-import { AxiosProvider, Get } from 'react-axios'
-import axios from 'axios'
+
 import BookContainer from '../containers/BookContainer'
-import ModalContainer from '../containers/ModalContainer'
-import AsideContainer from '../containers/AsideContainer'
 import UndockedDrawer from './UndockedDrawer'
 import { MuiThemeProvider } from 'material-ui/styles'
-import GalleryContainer from '../containers/GalleryContainer'
 import ColorTabs from './ColorTabs'
-import FullWidthTabs from './FullWidthTabs'
+//import FullWidthTabs from './FullWidthTabs'
+import SwipeableViews from 'react-swipeable-views'
+import HighlightsList from './HighlightsList'
+import Tabs, { Tab } from 'material-ui/Tabs';
 
-//import { addHighlights, getSelectedText, getIdAndPosition, getBetweenArray } from '../helpers/helpers';
 
-//import { Popover } from 'react-bootstrap';
-
-const axiosInstance = axios.create({
-  baseURL: 'https://wordsapiv1.p.mashape.com/words/',
-  timeout: 2000,
-  headers: { 'X-Mashape-Key': 'yZPFHy2XLqmshfaf5FjvS2cgDODSp1cIEx3jsnYJHVyPyYWJ8b', 'Accept': 'application/json'}
-});
+const styles = {
+  slideContainer: {
+    height: '100vh',
+    WebkitOverflowScrolling: 'touch', // iOS momentum scrolling
+  },
+  slide: {
+    padding: 15,
+    minHeight: 100,
+    color: '#fff',
+  },
+  slide1: {
+    backgroundColor: '#FFF',
+  },
+  slide2: {
+    backgroundColor: '#FFF',
+  },
+  slide3: {
+    backgroundColor: '#6AC0FF',
+  },
+};
 
 class Main extends Component {
 
+  state = {
+    index: 0,
+  };
+
+  handleChange = (event, value) => {
+    this.setState({
+      index: value,
+    });
+  };
+
+  handleChangeIndex = index => {
+    this.setState({
+      index,
+    });
+  };
 
   render() {
+    const { index } = this.state;
+
     return (
 
       <MuiThemeProvider>
+
       <div className="Main" style={{ width: '100vw' }}>
-        <FullWidthTabs />
-        <GalleryContainer gallerySet={this.props.book.images}/>
-        <ModalContainer {...this.props} />
 
-        <AsideContainer {...this.props} />
-        <UndockedDrawer />
+        {/* <UndockedDrawer /> */}
+        <Tabs index={index} fullWidth onChange={this.handleChange}>
+          <Tab label="Book" />
+          <Tab label="Highlights" />
+          <Tab label="Activities" />
+        </Tabs>
 
-        <div><h3>showModal: {this.props.modal.showModal.toString()} </h3></div>
-        {/*
-        <AxiosProvider instance={axiosInstance}>
-          <Get url="bump">
-            {(error, response, isLoading) => {
-              if(error) {
-                return (<div>Something bad happened: {error.message}</div>)
-              }
-              else if(isLoading) {
-                return (<div>Loading...</div>)
-              }
-              else if(response !== null) {
-                //console.log(response);
-                return (
-                  <div>
-                    <div>{response.data.word}</div>
-                    <div>{response.data.results[0].definition}</div>
-                  </div>
-                )
-              }
-              return (<div>Default message before request is made.</div>)
-            }}
-          </Get>
-        </AxiosProvider>
-        */}
+        <SwipeableViews index={index} onChangeIndex={this.handleChangeIndex} containerStyle={styles.slideContainer}>
+          <div style={Object.assign({}, styles.slide, styles.slide1)}>
+            <BookContainer {...this.props} />
+          </div>
+          <div style={Object.assign({}, styles.slide, styles.slide2)}>
+            <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
+          </div>
+          <div style={Object.assign({}, styles.slide, styles.slide3)}>slide n°3</div>
+        </SwipeableViews>
 
-        <BookContainer {...this.props} />
 
       </div>
       </MuiThemeProvider>
