@@ -16,6 +16,11 @@ const UPDATE_COLOR = 'UPDATE_COLOR'
 const UPDATE_NOTE = 'UPDATE_NOTE'
 const VIEW_HIGHLIGHTS = 'VIEW_HIGHLIGHTS'
 const VIEW_BOOK = 'VIEW_BOOK'
+const OPEN_GALLERY = 'OPEN_GALLERY'
+const CLOSE_GALLERY = 'CLOSE_GALLERY'
+const NEXT_IMAGE = 'NEXT_IMAGE'
+const PREVIOUS_IMAGE = 'PREVIOUS_IMAGE'
+
 /*
  * other constants
  */
@@ -130,5 +135,32 @@ export function viewHighlights() {
 export function viewBook() {
   return {
     type: VIEW_BOOK
+  }
+}
+
+
+export function openGallery(galleryIndex, imageIndex) {
+  return {
+    type: OPEN_GALLERY,
+    galleryIndex,
+    imageIndex
+  }
+}
+
+export function closeGallery() {
+  return {
+    type: CLOSE_GALLERY
+  }
+}
+
+export function nextImage() {
+  return {
+    type: NEXT_IMAGE
+  }
+}
+
+export function previousImage() {
+  return {
+    type: PREVIOUS_IMAGE
   }
 }

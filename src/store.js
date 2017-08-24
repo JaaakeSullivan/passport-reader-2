@@ -12,12 +12,18 @@ import { highlightsDefault } from './data/highlightsDefault';
 
 
 const defaultState = {
+
   book: {
     original: bookString,
     //display: 'hey there',
     displayArray: [],
     displayHighlights: [],
     asides: []
+  },
+  galleryDisplay: {
+    showGallery: false,
+    galleryIndex: 0,
+    imageIndex: 0
   },
   highlights: highlightsDefault
 };

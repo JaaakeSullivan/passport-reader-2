@@ -7,7 +7,6 @@ import DoneIcon from 'material-ui-icons/Done'
 
 import Button from 'material-ui/Button'
 
-
 const styleSheet = createStyleSheet('DeleteButton', theme => ({
   icon: {
     margin: theme.spacing.unit,

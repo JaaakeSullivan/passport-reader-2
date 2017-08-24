@@ -9,7 +9,9 @@ import ColorTabs from './ColorTabs'
 import SwipeableViews from 'react-swipeable-views'
 import HighlightsList from './HighlightsList'
 import Tabs, { Tab } from 'material-ui/Tabs';
-
+import GalleryContainer from '../containers/GalleryContainer'
+import ModalContainer from '../containers/ModalContainer'
+import AsideContainer from '../containers/AsideContainer'
 
 const styles = {
   slideContainer: {
@@ -57,27 +59,37 @@ class Main extends Component {
 
       <MuiThemeProvider>
 
-      <div className="Main" style={{ width: '100vw' }}>
+        <div className="Main" style={{ width: '100vw' }}>
+          <GalleryContainer
+            images={this.props.book.images}
+            openGallery={this.props.openGallery}
+            closeGallery={this.props.closeGallery}
+            nextImage={this.props.nextImage}
+            previousImage={this.props.previousImage}
+            galleryDisplay={this.props.galleryDisplay}
+          />
+          <ModalContainer {...this.props} />
+          <AsideContainer {...this.props} />
 
-        {/* <UndockedDrawer /> */}
-        <Tabs index={index} fullWidth onChange={this.handleChange}>
-          <Tab label="Book" />
-          <Tab label="Highlights" />
-          <Tab label="Activities" />
-        </Tabs>
+          {/* <UndockedDrawer /> */}
+          <Tabs index={index} fullWidth onChange={this.handleChange}>
+            <Tab label="Book" />
+            <Tab label="Highlights" />
+            <Tab label="Activities" />
+          </Tabs>
 
-        <SwipeableViews index={index} onChangeIndex={this.handleChangeIndex} containerStyle={styles.slideContainer}>
-          <div style={Object.assign({}, styles.slide, styles.slide1)}>
-            <BookContainer {...this.props} />
-          </div>
-          <div style={Object.assign({}, styles.slide, styles.slide2)}>
-            <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
-          </div>
-          <div style={Object.assign({}, styles.slide, styles.slide3)}>slide n°3</div>
-        </SwipeableViews>
+          <SwipeableViews index={index} onChangeIndex={this.handleChangeIndex} containerStyle={styles.slideContainer}>
+            <div style={Object.assign({}, styles.slide, styles.slide1)}>
+              <BookContainer {...this.props} />
+            </div>
+            <div style={Object.assign({}, styles.slide, styles.slide2)}>
+              <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
+            </div>
+            <div style={Object.assign({}, styles.slide, styles.slide3)}>slide n°3</div>
+          </SwipeableViews>
 
 
-      </div>
+        </div>
       </MuiThemeProvider>
     );
   }

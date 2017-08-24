@@ -1,8 +1,5 @@
 import React, { Component } from 'react'
 import Book from '../components/Book'
-import GalleryContainer from './GalleryContainer'
-import ModalContainer from './ModalContainer'
-import AsideContainer from './AsideContainer'
 import { getSelectedText, getIdAndPosition, getBetweenArray, isHighlightSelected } from '../helpers/selectHelpers';
 //import { connect } from 'react-redux';
 
@@ -10,18 +7,18 @@ export default class BookContainer extends Component {
 
 
   handleSelect(event) {
-    console.log('my event', event)
+    // console.log('my event', event)
+    console.log('my selection', window.getSelection());
+    // console.log('this is this', this);
+    let select = window.getSelection();
+
     // ===== check for <a> ===== //
     if (event.target.parentElement.localName === 'a' && event.target.parentElement.className === 'aside-tag') {
       let id = event.target.parentElement.id;
       this.props.openAside(id);
     }
 
-    console.log('getSelection', window.getSelection());
-    console.log('this is this', this);
-    let select = window.getSelection();
-
-    // ===== check that valid "highlightable" text is selected -- ignore selections that start or end on aside-tags ===== //
+    // ===== check that valid "highlightable" text is selected -- ignore selections that start or end on aside-tags ===== // TODO: Add else statement
     if (select.anchorNode !== null && select.anchorNode.className !== 'aside-tag' && select.focusNode.className !== 'aside-tag') {
       let idAndPosition = getIdAndPosition(select);
       let selectedText = getSelectedText(select);
@@ -59,9 +56,6 @@ export default class BookContainer extends Component {
 
     return(
       <div>
-        <GalleryContainer gallerySet={this.props.book.images}/>
-        <ModalContainer {...this.props} />
-        <AsideContainer {...this.props} />
         <Book
           content={this.props.book.displayHighlights.join('')}
           contentArray={this.props.book.displayHighlights}

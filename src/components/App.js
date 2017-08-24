@@ -21,7 +21,8 @@ function mapStateToProps(state) {
     highlights: state.highlights,
     modal: state.modal,
     visibility: state.visibility,
-    asideDisplay: state.asideDisplay
+    asideDisplay: state.asideDisplay,
+    galleryDisplay: state.galleryDisplay
   }
 }
 
