@@ -13,6 +13,7 @@ import GalleryContainer from '../containers/GalleryContainer'
 import ModalContainer from '../containers/ModalContainer'
 import AsideContainer from '../containers/AsideContainer'
 import SettingsContainer from '../containers/SettingsContainer'
+import AudioContainer from '../containers/AudioContainer'
 
 import Settings from 'material-ui-icons/Settings'
 
@@ -98,6 +99,7 @@ class Main extends Component {
               />
             </div>
             <div style={Object.assign({}, styles.slide, styles.slide1)}>
+              <AudioContainer audio={this.props.book.audio}/>
               <GalleryContainer
                 images={this.props.book.images}
                 openGallery={this.props.openGallery}
@@ -106,7 +108,6 @@ class Main extends Component {
                 previousImage={this.props.previousImage}
                 galleryDisplay={this.props.galleryDisplay}
               />
-
               <BookContainer {...this.props} />
             </div>
             <div style={Object.assign({}, styles.slide, styles.slide2)}>

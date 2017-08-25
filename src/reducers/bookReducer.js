@@ -14,14 +14,15 @@ function book(state=[], action) {
   let displayArray = [];
   let asideArray = [];
   let imageArray = [];
+  let audioArray = [];
 
   if (originalContent) { // check if original conent is loaded
     // buildDisplayContent is in ../helpers/displayHelpers.js & returns object
     displayContent = buildDisplayContent(originalContent); //returns { bookDisplayString, bookDisplay, asideArray }
-    //displayContent = bookDisplayString; // no longer needed
     displayArray = displayContent.bookDisplay;
     asideArray = displayContent.asideArray;
     imageArray = displayContent.imageArray;
+    audioArray = ['assets/media/Thank%20You%20Mam.m4p']
   }
 
   switch (action.type) {
@@ -30,7 +31,8 @@ function book(state=[], action) {
         ...state,
         displayArray: displayArray,
         asides: asideArray,
-        images: imageArray
+        images: imageArray,
+        audio: audioArray
       }
     case 'HIGHLIGHT_CONTENT':
       let highlightsArray = store.getState().highlights;

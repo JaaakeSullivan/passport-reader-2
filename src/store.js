@@ -15,10 +15,11 @@ const defaultState = {
 
   book: {
     original: bookString,
-    //display: 'hey there',
     displayArray: [],
     displayHighlights: [],
-    asides: []
+    asides: [],
+    images: [],
+    audio: []
   },
   galleryDisplay: {
     showGallery: false,
