@@ -30,10 +30,10 @@ function Gallery(props) {
 Gallery.propTypes = {
 	classes: PropTypes.object.isRequired,
 	images: PropTypes.array,
-	openGallery: PropTypes.function,
-	closeGallery: PropTypes.function,
-	nextImage: PropTypes.function,
-	previousImage: PropTypes.function,
+	openGallery: PropTypes.func,
+	closeGallery: PropTypes.func,
+	nextImage: PropTypes.func,
+	previousImage: PropTypes.func,
 };
 
 export default Gallery;

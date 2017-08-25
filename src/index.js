@@ -13,18 +13,6 @@ store.dispatch({
 })
 
 store.dispatch({
-  type: 'TOGGLE_AUDIO'
-})
-
-store.dispatch({
-  type: 'TOGGLE_HIGHLIGHTS'
-})
-
-store.dispatch({
-  type: 'TOGGLE_NOTES'
-})
-
-store.dispatch({
   type: 'SAVE_HIGHLIGHT'
 })
 

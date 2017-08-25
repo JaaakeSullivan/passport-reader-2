@@ -1,5 +1,10 @@
 @import '~antd/dist/antd.css';
 
+#root {
+  display: flex;
+  justify-content: center;
+}
+
 .Main {
   text-align: center;
 }
@@ -9,7 +14,8 @@ p {
 }
 
 body {
-	white-space: unset;
+	//white-space: unset;
+
 }
 
 .orange {
@@ -52,23 +58,28 @@ body {
 }
 
 .blue {
-  background-color: #40C4FF;
+  // background-color: #40C4FF;
+  background-color: #B3E5FC;
 }
 
 .pink {
-  background-color: #FF4081;
+  // background-color: #FF4081;
+  background-color: #FF80AB
 }
 
 .yellow {
-  background-color: #FFFF00;
+  // background-color: #FFFF00;
+  background-color: #F4FF81
 }
 
 .green {
-  background-color: #B2FF59;
+  // background-color: #B2FF59;
+  background-color: #CCFF90
 }
 
 .purple {
-  background-color: #E040FB;
+  // background-color: #E040FB;
+  background-color: #EA80FC
 }
 
 /* ===== IMAGE GALLERY ===== */

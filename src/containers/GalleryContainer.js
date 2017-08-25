@@ -26,9 +26,7 @@ const imageStyle = {
 }
 
 const buttonStyle = {
-  width: '20px',
-  backgroundColor: 'red',
-  padding: '0'
+
 }
 
 export default class GalleryContainer extends React.Component {
@@ -38,7 +36,6 @@ export default class GalleryContainer extends React.Component {
     for (let i=0; i<this.props.images.length; i++) {
       ReactDOM.render(
         <div>
-          <h2>GALLERY {i} GOES HERE</h2>
           <Gallery
             images={this.props.images[i]}
             galleryIndex={i}
@@ -72,15 +69,9 @@ export default class GalleryContainer extends React.Component {
         </DialogTitle>
         */}
         <DialogContent style={modalStyle}>
-          {galleryDisplay.imageIndex > 0
-            ? <Button onClick={previousImage} style={buttonStyle}><ChevronLeft /></Button>
-            : <div style={buttonStyle}></div>
-          }
+
           <img src={imageSrc} alt='' style={imageStyle}/>
-          {galleryDisplay.imageIndex < images[galleryDisplay.galleryIndex].length-1
-            ? <Button onClick={nextImage} style={buttonStyle}><ChevronRight /></Button>
-            : <div style={buttonStyle}></div>
-          }
+
           <DialogContentText>
           </DialogContentText>
         </DialogContent>
@@ -88,6 +79,14 @@ export default class GalleryContainer extends React.Component {
           {renderHTML(imageCaption)}
         </DialogActions>
         <DialogActions>
+        {galleryDisplay.imageIndex > 0
+          ? <Button onClick={previousImage} style={buttonStyle}><ChevronLeft /></Button>
+          : <div style={buttonStyle}></div>
+        }
+        {galleryDisplay.imageIndex < images[galleryDisplay.galleryIndex].length-1
+          ? <Button onClick={nextImage} style={buttonStyle}><ChevronRight /></Button>
+          : <div style={buttonStyle}></div>
+        }
         </DialogActions>
       </Dialog>
     )

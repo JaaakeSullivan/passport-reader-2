@@ -10,23 +10,33 @@
 // }
 
 
-function visibility(state=[], action) {
+function settings(state=[], action) {
   switch (action.type) {
     case 'TOGGLE_AUDIO':
       return {
         ...state,
-        showAudio: true,
+        showAudio: !state.showAudio
       };
     case 'TOGGLE_HIGHLIGHTS':
       return {
         ...state,
-        showHighlights: true
+        showHighlights: !state.showHighlights
       };
-    case 'TOGGLE_NOTES':
+    case 'TOGGLE_DARK_MODE':
       return {
         ...state,
-        showNotes: true
+        darkMode: !state.darkMode
       };
+    case 'CHANGE_FONT_SIZE':
+      return {
+        ...state,
+        fontSize: action.value
+      };
+    case 'CHANGE_VIEW':
+      return {
+        ...state,
+        view: action.view
+      }
     default:
       return state;
   }
@@ -34,4 +44,4 @@ function visibility(state=[], action) {
   // return state;
 }
 
-export default visibility;
+export default settings;

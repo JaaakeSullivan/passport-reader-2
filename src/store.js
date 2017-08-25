@@ -25,7 +25,14 @@ const defaultState = {
     galleryIndex: 0,
     imageIndex: 0
   },
-  highlights: highlightsDefault
+  highlights: highlightsDefault,
+  settings: {
+    showHighlights: true,
+    showAudio: true,
+    fontSize: 1,
+    darkMode: false,
+    view: 1
+  }
 };
 
 //const store = createStore(rootReducer, defaultState);

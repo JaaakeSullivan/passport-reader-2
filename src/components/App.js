@@ -20,9 +20,9 @@ function mapStateToProps(state) {
     book: state.book,
     highlights: state.highlights,
     modal: state.modal,
-    visibility: state.visibility,
     asideDisplay: state.asideDisplay,
-    galleryDisplay: state.galleryDisplay
+    galleryDisplay: state.galleryDisplay,
+    settings: state.settings,
   }
 }
 

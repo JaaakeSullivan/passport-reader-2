@@ -14,22 +14,20 @@ const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
 const OPEN_HIGHLIGHT = 'OPEN_HIGHLIGHT'
 const UPDATE_COLOR = 'UPDATE_COLOR'
 const UPDATE_NOTE = 'UPDATE_NOTE'
-const VIEW_HIGHLIGHTS = 'VIEW_HIGHLIGHTS'
-const VIEW_BOOK = 'VIEW_BOOK'
+
+
+// ===== gallery ===== //
 const OPEN_GALLERY = 'OPEN_GALLERY'
 const CLOSE_GALLERY = 'CLOSE_GALLERY'
 const NEXT_IMAGE = 'NEXT_IMAGE'
 const PREVIOUS_IMAGE = 'PREVIOUS_IMAGE'
 
-/*
- * other constants
- */
-
-const VISIBILITY_FILTERS = {
-  SHOW_NOTES: 'SHOW_NOTES',
-  SHOW_HIGHLIGHTS: 'SHOW_HIGHLIGHTS',
-  SHOW_AUDIO: 'SHOW_AUDIO'
-}
+// ===== settings ===== //
+const TOGGLE_AUDIO = 'TOGGLE_AUDIO'
+const TOGGLE_HIGHLIGHTS = 'TOGGLE_HIGHLIGHTS'
+const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'
+const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE'
+const CHANGE_VIEW = 'CHANGE_VIEW'
 
 /*
  * action creators
@@ -126,18 +124,6 @@ export function closeAside() {
   }
 }
 
-export function viewHighlights() {
-  return {
-    type: VIEW_HIGHLIGHTS
-  }
-}
-
-export function viewBook() {
-  return {
-    type: VIEW_BOOK
-  }
-}
-
 
 export function openGallery(galleryIndex, imageIndex) {
   return {
@@ -162,5 +148,39 @@ export function nextImage() {
 export function previousImage() {
   return {
     type: PREVIOUS_IMAGE
+  }
+}
+
+// ===== settings ===== //
+
+export function toggleAudio() {
+  return {
+    type: TOGGLE_AUDIO
+  }
+}
+
+export function toggleHighlights() {
+  return {
+    type: TOGGLE_HIGHLIGHTS
+  }
+}
+
+export function toggleDarkMode() {
+  return {
+    type: TOGGLE_DARK_MODE
+  }
+}
+
+export function changeFontSize(value) {
+  return {
+    type: CHANGE_FONT_SIZE,
+    value
+  }
+}
+
+export function changeView(view) {
+  return {
+    type: CHANGE_VIEW,
+    view
   }
 }

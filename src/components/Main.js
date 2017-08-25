@@ -12,6 +12,20 @@ import Tabs, { Tab } from 'material-ui/Tabs';
 import GalleryContainer from '../containers/GalleryContainer'
 import ModalContainer from '../containers/ModalContainer'
 import AsideContainer from '../containers/AsideContainer'
+import SettingsContainer from '../containers/SettingsContainer'
+
+import Settings from 'material-ui-icons/Settings'
+
+import LibraryBooks from 'material-ui-icons/LibraryBooks'
+import Book from 'material-ui-icons/Book'
+import Subject from 'material-ui-icons/Subject'
+
+import Bookmark from 'material-ui-icons/Bookmark'
+import Label from 'material-ui-icons/Label'
+import FormatListBulleted from 'material-ui-icons/FormatListBulleted'
+
+import Assignment from 'material-ui-icons/Assignment'
+import QuestionAnswer from 'material-ui-icons/QuestionAnswer'
 
 const styles = {
   slideContainer: {
@@ -23,6 +37,11 @@ const styles = {
     minHeight: 100,
     color: '#fff',
   },
+
+  slide0: {
+    //backgroundColor: 'blue'
+  },
+
   slide1: {
     backgroundColor: '#FFF',
   },
@@ -36,56 +55,66 @@ const styles = {
 
 class Main extends Component {
 
-  state = {
-    index: 0,
+  handleChange = (event, view) => {
+    this.props.changeView(view)
   };
 
-  handleChange = (event, value) => {
-    this.setState({
-      index: value,
-    });
-  };
-
-  handleChangeIndex = index => {
-    this.setState({
-      index,
-    });
+  handleChangeIndex = view => {
+    this.props.changeView(view)
   };
 
   render() {
-    const { index } = this.state;
+    const { view } = this.props.settings;
 
     return (
 
       <MuiThemeProvider>
 
-        <div className="Main" style={{ width: '100vw' }}>
-          <GalleryContainer
-            images={this.props.book.images}
-            openGallery={this.props.openGallery}
-            closeGallery={this.props.closeGallery}
-            nextImage={this.props.nextImage}
-            previousImage={this.props.previousImage}
-            galleryDisplay={this.props.galleryDisplay}
-          />
+        <div className="Main" style={{ width: '100vw', maxWidth: '960px' }}>
+
           <ModalContainer {...this.props} />
           <AsideContainer {...this.props} />
 
           {/* <UndockedDrawer /> */}
-          <Tabs index={index} fullWidth onChange={this.handleChange}>
-            <Tab label="Book" />
-            <Tab label="Highlights" />
-            <Tab label="Activities" />
+          <Tabs index={view} fullWidth fixed onChange={this.handleChange}>
+            <Tab icon={<Settings />} />
+            <Tab icon={<Book />} />
+            <Tab icon={<FormatListBulleted />} />
+            <Tab icon={<QuestionAnswer />} />
           </Tabs>
 
-          <SwipeableViews index={index} onChangeIndex={this.handleChangeIndex} containerStyle={styles.slideContainer}>
+          <SwipeableViews
+            index={view}
+            onChangeIndex={this.handleChangeIndex}
+            containerStyle={styles.slideContainer}
+          >
+            <div style={Object.assign({}, styles.slide, styles.slide0)}>
+              <SettingsContainer
+                settings={this.props.settings}
+                toggleAudio={this.props.toggleAudio}
+                toggleHighlights={this.props.toggleHighlights}
+                toggleDarkMode={this.props.toggleDarkMode}
+                changeFontSize={this.props.changeFontSize}
+              />
+            </div>
             <div style={Object.assign({}, styles.slide, styles.slide1)}>
+              <GalleryContainer
+                images={this.props.book.images}
+                openGallery={this.props.openGallery}
+                closeGallery={this.props.closeGallery}
+                nextImage={this.props.nextImage}
+                previousImage={this.props.previousImage}
+                galleryDisplay={this.props.galleryDisplay}
+              />
+
               <BookContainer {...this.props} />
             </div>
             <div style={Object.assign({}, styles.slide, styles.slide2)}>
               <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
             </div>
-            <div style={Object.assign({}, styles.slide, styles.slide3)}>slide n°3</div>
+            <div style={Object.assign({}, styles.slide, styles.slide3)}>
+              slide n°3
+            </div>
           </SwipeableViews>
 
 

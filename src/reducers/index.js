@@ -4,7 +4,7 @@ import { combineReducers } from 'redux'
 import book from './bookReducer'
 import highlights from './highlightsReducer'
 import modal from './modalReducer'
-import visibility from './visibilityReducer'
+import settings from './settingsReducer'
 import asideDisplay from './asideReducer'
 import galleryDisplay from './galleryReducer'
 
@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   highlights,
   modal,
   asideDisplay,
-  visibility,
+  settings,
   galleryDisplay
 });
 
