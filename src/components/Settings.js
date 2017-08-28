@@ -15,7 +15,7 @@ function Settings(props){
   return (
     <div>
       <div style={switchContainerStyle}>
-        <h3>Show Highlights:</h3>
+        <h3>Show Highlights / Focus Reading Mode</h3>
         <Switch
           onChange={toggleHighlights}
           checked={settings.showHighlights}
@@ -36,6 +36,18 @@ function Settings(props){
           onChange={toggleDarkMode}
           checked={settings.darkMode}
         />
+      </div>
+
+      <div style={switchContainerStyle}>
+        <h3>Show Paragraph Numbers</h3>
+        <Switch
+          onChange={toggleDarkMode}
+          checked={settings.darkMode}
+        />
+      </div>
+
+      <div style={switchContainerStyle}>
+        <h3>Advanced Settings -- Dropdown</h3>
       </div>
 
     </div>

@@ -2,6 +2,8 @@ import React from 'react'
 // import Lightbox from 'react-images'
 import ReactDOM from 'react-dom'
 import Gallery from '../components/Gallery'
+import GalleryStepper from '../components/GalleryStepper'
+
 import Dialog, {
   DialogActions,
   DialogContent,
@@ -78,6 +80,7 @@ export default class GalleryContainer extends React.Component {
         <DialogActions style={{justifyContent: 'center'}}>
           {renderHTML(imageCaption)}
         </DialogActions>
+        {/*
         <DialogActions>
         {galleryDisplay.imageIndex > 0
           ? <Button onClick={previousImage} style={buttonStyle}><ChevronLeft /></Button>
@@ -87,6 +90,15 @@ export default class GalleryContainer extends React.Component {
           ? <Button onClick={nextImage} style={buttonStyle}><ChevronRight /></Button>
           : <div style={buttonStyle}></div>
         }
+        </DialogActions>
+        */}
+        <DialogActions>
+          <GalleryStepper
+            position={galleryDisplay.imageIndex}
+            length={images[galleryDisplay.galleryIndex].length}
+            nextImage={this.props.nextImage}
+            previousImage={this.props.previousImage}
+          />
         </DialogActions>
       </Dialog>
     )

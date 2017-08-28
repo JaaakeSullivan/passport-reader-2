@@ -14,6 +14,7 @@ import ModalContainer from '../containers/ModalContainer'
 import AsideContainer from '../containers/AsideContainer'
 import SettingsContainer from '../containers/SettingsContainer'
 import AudioContainer from '../containers/AudioContainer'
+import DotsMobileStepper from './DotsMobileStepper'
 
 import Settings from 'material-ui-icons/Settings'
 
@@ -32,15 +33,18 @@ const styles = {
   slideContainer: {
     height: '100vh',
     WebkitOverflowScrolling: 'touch', // iOS momentum scrolling
+
   },
   slide: {
     padding: 15,
     minHeight: 100,
     color: '#fff',
+    marginTop: '48px',
+    maxWidth: '960px'
   },
 
   slide0: {
-    //backgroundColor: 'blue'
+
   },
 
   slide1: {
@@ -52,6 +56,16 @@ const styles = {
   slide3: {
     backgroundColor: '#6AC0FF',
   },
+  menuStyle: {
+    position: 'absolute',
+    top: 0,
+    zIndex: 99,
+    backgroundColor: 'white',
+    width: '100vw',
+    maxWidth: '960px',
+    display: 'flex',
+    justifyContent: 'space-around'
+  }
 };
 
 class Main extends Component {
@@ -69,56 +83,55 @@ class Main extends Component {
 
     return (
 
-      <MuiThemeProvider>
-
-        <div className="Main" style={{ width: '100vw', maxWidth: '960px' }}>
-
-          <ModalContainer {...this.props} />
-          <AsideContainer {...this.props} />
-
-          {/* <UndockedDrawer /> */}
-          <Tabs index={view} fullWidth fixed onChange={this.handleChange}>
-            <Tab icon={<Settings />} />
-            <Tab icon={<Book />} />
-            <Tab icon={<FormatListBulleted />} />
-            <Tab icon={<QuestionAnswer />} />
-          </Tabs>
-
-          <SwipeableViews
-            index={view}
-            onChangeIndex={this.handleChangeIndex}
-            containerStyle={styles.slideContainer}
-          >
-            <div style={Object.assign({}, styles.slide, styles.slide0)}>
-              <SettingsContainer
-                settings={this.props.settings}
-                toggleAudio={this.props.toggleAudio}
-                toggleHighlights={this.props.toggleHighlights}
-                toggleDarkMode={this.props.toggleDarkMode}
-                changeFontSize={this.props.changeFontSize}
-              />
-            </div>
-            <div style={Object.assign({}, styles.slide, styles.slide1)}>
-              <AudioContainer audio={this.props.book.audio}/>
-              <GalleryContainer
-                images={this.props.book.images}
-                openGallery={this.props.openGallery}
-                closeGallery={this.props.closeGallery}
-                nextImage={this.props.nextImage}
-                previousImage={this.props.previousImage}
-                galleryDisplay={this.props.galleryDisplay}
-              />
-              <BookContainer {...this.props} />
-            </div>
-            <div style={Object.assign({}, styles.slide, styles.slide2)}>
-              <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
-            </div>
-            <div style={Object.assign({}, styles.slide, styles.slide3)}>
-              slide n°3
-            </div>
-          </SwipeableViews>
+      <MuiThemeProvider style={{  }}>
+        <div className="Main" >
+          <div >
+            <ModalContainer {...this.props} />
+            <AsideContainer {...this.props} />
 
 
+            {/* <UndockedDrawer /> */}
+            <Tabs index={view} fullWidth fixed onChange={this.handleChange} style={styles.menuStyle}>
+              <Tab icon={<Settings />} />
+              <Tab icon={<Book />} />
+              <Tab icon={<FormatListBulleted />} />
+              <Tab icon={<QuestionAnswer />} />
+            </Tabs>
+            <SwipeableViews
+              index={view}
+              onChangeIndex={this.handleChangeIndex}
+              containerStyle={styles.slideContainer}
+            >
+              <div style={Object.assign({}, styles.slide, styles.slide0)}>
+                <SettingsContainer
+                  settings={this.props.settings}
+                  toggleAudio={this.props.toggleAudio}
+                  toggleHighlights={this.props.toggleHighlights}
+                  toggleDarkMode={this.props.toggleDarkMode}
+                  changeFontSize={this.props.changeFontSize}
+                />
+              </div>
+              <div style={Object.assign({}, styles.slide, styles.slide1)}>
+                <AudioContainer audio={this.props.book.audio}/>
+                <GalleryContainer
+                  images={this.props.book.images}
+                  openGallery={this.props.openGallery}
+                  closeGallery={this.props.closeGallery}
+                  nextImage={this.props.nextImage}
+                  previousImage={this.props.previousImage}
+                  galleryDisplay={this.props.galleryDisplay}
+                />
+                <BookContainer {...this.props} />
+              </div>
+              <div style={Object.assign({}, styles.slide, styles.slide2)}>
+                <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
+              </div>
+              <div style={Object.assign({}, styles.slide, styles.slide3)}>
+                slide n°3
+              </div>
+            </SwipeableViews>
+            <DotsMobileStepper style={{ position:'absoloute' }}/>
+          </div>
         </div>
       </MuiThemeProvider>
     );
