@@ -4,7 +4,6 @@ import './styles/App.css'
 import BookContainer from '../containers/BookContainer'
 import UndockedDrawer from './UndockedDrawer'
 import { MuiThemeProvider } from 'material-ui/styles'
-import ColorTabs from './ColorTabs'
 //import FullWidthTabs from './FullWidthTabs'
 import SwipeableViews from 'react-swipeable-views'
 import HighlightsList from './HighlightsList'
@@ -14,7 +13,7 @@ import ModalContainer from '../containers/ModalContainer'
 import AsideContainer from '../containers/AsideContainer'
 import SettingsContainer from '../containers/SettingsContainer'
 import AudioContainer from '../containers/AudioContainer'
-import DotsMobileStepper from './DotsMobileStepper'
+import NavigationMenu from './NavigationMenu'
 
 import Settings from 'material-ui-icons/Settings'
 
@@ -130,7 +129,8 @@ class Main extends Component {
                 slide n°3
               </div>
             </SwipeableViews>
-            <DotsMobileStepper style={{ position:'absoloute' }}/>
+
+            <NavigationMenu />
           </div>
         </div>
       </MuiThemeProvider>

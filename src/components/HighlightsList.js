@@ -8,14 +8,14 @@ import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import Divider from 'material-ui/Divider';
 
 
-const styles = createStyleSheet('HighlightsList', theme => ({
+const styles = theme => ({
   root: {
     width: '100%',
     // maxWidth: 360,
     textAlign: 'left',
     // background: theme.palette.background.paper,
   },
-}));
+});
 
 
 function HighlightsList(props) {

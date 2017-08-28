@@ -50,6 +50,14 @@ function Settings(props){
         <h3>Advanced Settings -- Dropdown</h3>
       </div>
 
+      <div style={switchContainerStyle}>
+        <h3>Navigation -- Top / Bottom</h3>
+      </div>
+
+      <div style={switchContainerStyle}>
+        <h3>Default Styles -- Button</h3>
+      </div>
+
     </div>
   )
 }

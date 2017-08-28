@@ -10,11 +10,11 @@ import pink from 'material-ui/colors/pink';
 import purple from 'material-ui/colors/purple';
 import yellow from 'material-ui/colors/yellow';
 
-const styleSheet = createStyleSheet('ColorSelectors', theme => ({
+const styleSheet = theme => ({
   icon: {
     margin: theme.spacing.unit,
   },
-}));
+});
 
 let handleHighlight = (props, color) => {
   let time = new Date();
