@@ -36,7 +36,6 @@ class NavigationMenu extends Component {
       <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
         <BottomNavigationButton label="Recents" value="recents" icon={<RestoreIcon />} />
         <BottomNavigationButton label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-        <DotsMobileStepper />
         <BottomNavigationButton label="Nearby" value="nearby" icon={<LocationOnIcon />} />
         <BottomNavigationButton label="Folder" value="folder" icon={<FolderIcon />} />
       </BottomNavigation>
