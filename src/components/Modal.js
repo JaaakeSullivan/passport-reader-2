@@ -8,11 +8,13 @@ import ColorSelectors from './ColorSelectors'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
 import ModalButtons from './ModalButtons'
+import WordsAPI from './WordsAPI'
 import Dialog, {
   DialogContent,
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog'
+
 
 
 const centerContent = {
@@ -79,6 +81,7 @@ class Modal extends Component {
           </DialogTitle>
 
           <DialogContent>
+            <WordsAPI />
             <div style={centerContent}>
               <ColorSelectors {...this.props} />
             </div>

@@ -111,7 +111,10 @@ class Main extends Component {
                 />
               </div>
               <div style={Object.assign({}, styles.slide, styles.slide1)}>
-                <AudioContainer audio={this.props.book.audio}/>
+                <AudioContainer
+                  audio={this.props.book.audio}
+                  showAudio={this.props.settings.showAudio}
+                />
                 <GalleryContainer
                   images={this.props.book.images}
                   openGallery={this.props.openGallery}

@@ -53,7 +53,12 @@ function modal (state=[], action) {
           toDelete: false,
           matches: [action.highlightClicked._id]
         }
-      }
+      };
+    case 'WORDS_API':
+      return {
+        ...state,
+        words: action.selectedText,
+      };
 
     default:
       return state;

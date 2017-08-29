@@ -14,6 +14,7 @@ const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
 const OPEN_HIGHLIGHT = 'OPEN_HIGHLIGHT'
 const UPDATE_COLOR = 'UPDATE_COLOR'
 const UPDATE_NOTE = 'UPDATE_NOTE'
+const WORDS_API = 'WORDS_API'
 
 
 // ===== gallery ===== //
@@ -182,5 +183,14 @@ export function changeView(view) {
   return {
     type: CHANGE_VIEW,
     view
+  }
+}
+
+export function wordsApi(
+  selectedText
+  ) {
+  return {
+    type: WORDS_API,
+    selectedText
   }
 }

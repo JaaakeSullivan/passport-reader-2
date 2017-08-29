@@ -10,6 +10,7 @@ function AudioContainer(props) {
 
 AudioContainer.propTypes = {
   audio: PropTypes.array.isRequired,
+  showAudio: PropTypes.bool.isRequired
 };
 
 export default AudioContainer

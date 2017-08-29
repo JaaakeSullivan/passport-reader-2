@@ -8,7 +8,12 @@ import RestoreIcon from 'material-ui-icons/Restore';
 import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 import FolderIcon from 'material-ui-icons/Folder';
-import DotsMobileStepper from './DotsMobileStepper'
+
+import Book from 'material-ui-icons/Book'
+import Settings from 'material-ui-icons/Settings'
+import FormatListBulleted from 'material-ui-icons/FormatListBulleted'
+import QuestionAnswer from 'material-ui-icons/QuestionAnswer'
+
 
 const styles = {
   root: {
@@ -34,10 +39,10 @@ class NavigationMenu extends Component {
 
     return (
       <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
-        <BottomNavigationButton label="Recents" value="recents" icon={<RestoreIcon />} />
-        <BottomNavigationButton label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-        <BottomNavigationButton label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-        <BottomNavigationButton label="Folder" value="folder" icon={<FolderIcon />} />
+        <BottomNavigationButton label="Settings" value="settings" icon={<Settings />} />
+        <BottomNavigationButton label="Book" value="book" icon={<Book />} />
+        <BottomNavigationButton label="Highlights" value="highlights" icon={<FormatListBulleted />} />
+        <BottomNavigationButton label="Activities" value="activities" icon={<QuestionAnswer />} />
       </BottomNavigation>
     );
   }

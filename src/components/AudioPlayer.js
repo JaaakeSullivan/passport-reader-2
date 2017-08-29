@@ -1,18 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { withStyles } from 'material-ui/styles'
 
-const audioPlayerStyle = {
-  color: 'black',
+const styles = theme => ({
+  root: {
+    width: '100%',
+    maxWidth: 960,
+    backgroundColor: 'red'
+  },
+});
+
+function AudioPlayer(props){
+  const classes = props.classes;
+
+  return (
+    <div className={classes.root}>
+      <h2>I'm the audio player!!! Dude</h2>
+    </div>
+  )
 }
 
-const AudioContainer = (props) => (
-  <div style={audioPlayerStyle}>
-    <h2>I'm the audio player!!!</h2>
-  </div>
-)
-
-AudioContainer.propTypes = {
+AudioPlayer.propTypes = {
   audio: PropTypes.array.isRequired,
 };
 
-export default AudioContainer
+export default withStyles(styles)(AudioPlayer);
