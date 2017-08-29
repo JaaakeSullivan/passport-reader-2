@@ -7,8 +7,14 @@ function AudioContainer(props) {
   // TODO need to check if props.showAudio is true and decide what to display
 
   return (
-    <AudioPlayer {...props}/>
-  )
+     <div>
+       {props.showAudio ? (
+         <AudioPlayer {...props}/>
+       ) : (
+         null
+       )}
+     </div>
+   );
 }
 
 AudioContainer.propTypes = {
