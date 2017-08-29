@@ -2,20 +2,25 @@
  * action types -- defined as strings to use in creators
  */
 
+ // ===== book ===== //
 const GET_BOOK = 'GET_BOOK'
+const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
+const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
+
+// ===== asides ===== //
+const OPEN_ASIDE = 'OPEN_ASIDE'
+const CLOSE_ASIDE = 'CLOSE_ASIDE'
+
+// ===== modal ===== //
 const OPEN_MODAL = 'OPEN_MODAL'
 const CLOSE_MODAL = 'CLOSE_MODAL'
 const ADD_HIGHLIGHT = 'ADD_HIGHLIGHT'
 const DELETE_HIGHLIGHT = 'DELETE_HIGHLIGHT'
-const OPEN_ASIDE = 'OPEN_ASIDE'
-const CLOSE_ASIDE = 'CLOSE_ASIDE'
-const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
-const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
 const OPEN_HIGHLIGHT = 'OPEN_HIGHLIGHT'
 const UPDATE_COLOR = 'UPDATE_COLOR'
 const UPDATE_NOTE = 'UPDATE_NOTE'
-const WORDS_API = 'WORDS_API'
-
+const LOOKUP_WORD = 'LOOKUP_WORD'
+const SAVE_DEFINITION = 'SAVE_DEFINITION'
 
 // ===== gallery ===== //
 const OPEN_GALLERY = 'OPEN_GALLERY'
@@ -186,11 +191,16 @@ export function changeView(view) {
   }
 }
 
-export function wordsApi(
-  selectedText
-  ) {
+export function lookupWord() {
   return {
-    type: WORDS_API,
-    selectedText
+    type: LOOKUP_WORD,
+  }
+}
+
+export function saveDefinition(word, definition) {
+  return {
+    type: SAVE_DEFINITION,
+    word,
+    definition
   }
 }

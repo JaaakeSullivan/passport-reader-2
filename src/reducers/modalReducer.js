@@ -20,6 +20,7 @@ function modal (state=[], action) {
         endPos: action.idAndPosition.endPos,
         betweenArray: action.betweenArray,
         highlightSelected: action.highlightSelected,
+        showDefinition: false,
       };
     case 'CLOSE_MODAL':
       return {
@@ -35,7 +36,8 @@ function modal (state=[], action) {
           value: false,
           toDelete: false,
           matches: []
-        }
+        },
+        showDefinition: false,
       };
     case 'OPEN_HIGHLIGHT':
       // console.log('openHighlight State', [...state])
@@ -52,12 +54,13 @@ function modal (state=[], action) {
           value: true,
           toDelete: false,
           matches: [action.highlightClicked._id]
-        }
+        },
+        showDefinition: false,
       };
-    case 'WORDS_API':
+    case 'LOOKUP_WORD':
       return {
         ...state,
-        words: action.selectedText,
+        showDefinition: true,
       };
 
     default:

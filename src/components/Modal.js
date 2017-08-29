@@ -8,7 +8,7 @@ import ColorSelectors from './ColorSelectors'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
 import ModalButtons from './ModalButtons'
-import WordsAPI from './WordsAPI'
+import WordsAPIContainer from '../containers/WordsAPIContainer'
 import Dialog, {
   DialogContent,
   DialogContentText,
@@ -78,10 +78,16 @@ class Modal extends Component {
         <Dialog open={this.props.modal.showModal} onRequestClose={this.props.closeModal}>
           <DialogTitle style={this.selectedTextBorder()}>
             {this.props.modal.selectedText}
+
           </DialogTitle>
 
           <DialogContent>
-            <WordsAPI />
+            <WordsAPIContainer
+              word={this.props.modal.selectedText}
+              showDefinition={this.props.modal.showDefinition}
+              lookupWord={this.props.lookupWord}
+              saveDefinition={this.props.saveDefinition}
+            />
             <div style={centerContent}>
               <ColorSelectors {...this.props} />
             </div>

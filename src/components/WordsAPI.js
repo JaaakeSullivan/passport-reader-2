@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { AxiosProvider, Get } from 'react-axios'
 import axios from 'axios'
+import Button from 'material-ui/Button'
 
 const axiosInstance = axios.create({
   baseURL: 'https://wordsapiv1.p.mashape.com/words/',
@@ -8,13 +9,11 @@ const axiosInstance = axios.create({
   headers: { 'X-Mashape-Key': 'yZPFHy2XLqmshfaf5FjvS2cgDODSp1cIEx3jsnYJHVyPyYWJ8b', 'Accept': 'application/json'}
 });
 
-
-class WordsAPI extends Component {
-
-  render() {
-    return (
+function WordsAPI(props) {
+  return (
+    <div>
       <AxiosProvider instance={axiosInstance}>
-        <Get url="bump">
+        <Get url={props.word}>
           {(error, response, isLoading) => {
             if(error) {
               return (<div>Something bad happened: {error.message}</div>)
@@ -26,7 +25,6 @@ class WordsAPI extends Component {
               //console.log(response);
               return (
                 <div>
-                  <div>{response.data.word}</div>
                   <div>{response.data.results[0].definition}</div>
                 </div>
               )
@@ -35,8 +33,9 @@ class WordsAPI extends Component {
           }}
         </Get>
       </AxiosProvider>
-    )
-  }
+    </div>
+  )
+
 }
 
 export default WordsAPI;

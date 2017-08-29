@@ -187,33 +187,53 @@ function ColorSelectors(props) {
     ...colorSelectStyle
   }
 
+  const flexCont = {
+    display: 'flex',
+    justifyContent: 'space-around'
+  }
+
   return (
-    <div>
-      <Label
-        className={classes.icon}
-        style={blueStyle}
-        onClick={() => {handleHighlight(props, 'blue')}}
-      />
-      <Label
-        className={classes.icon}
-        style={greenStyle}
-        onClick={() => {handleHighlight(props, 'green')}}
-      />
-      <Label
-        className={classes.icon}
-        style={yellowStyle}
-        onClick={() => {handleHighlight(props, 'yellow')}}
-      />
-      <Label
-        className={classes.icon}
-        style={purpleStyle}
-        onClick={() => {handleHighlight(props, 'purple')}}
-      />
-      <Label
-        className={classes.icon}
-        style={pinkStyle}
-        onClick={() => {handleHighlight(props, 'pink')}}
-      />
+    <div style={flexCont}>
+      <div>
+        <h5>highlight</h5>
+        <Label
+          className={classes.icon}
+          style={yellowStyle}
+          onClick={() => {handleHighlight(props, 'yellow')}}
+        />
+      </div>
+      <div>
+        <h5>remember</h5>
+        <Label
+          className={classes.icon}
+          style={greenStyle}
+          onClick={() => {handleHighlight(props, 'green')}}
+        />
+      </div>
+      <div>
+        <h5>define</h5>
+        <Label
+          className={classes.icon}
+          style={blueStyle}
+          onClick={() => {handleHighlight(props, 'blue')}}
+        />
+      </div>
+      <div>
+        <h5>important</h5>
+        <Label
+          className={classes.icon}
+          style={pinkStyle}
+          onClick={() => {handleHighlight(props, 'pink')}}
+        />
+      </div>
+      <div>
+        <h5>other</h5>
+        <Label
+          className={classes.icon}
+          style={purpleStyle}
+          onClick={() => {handleHighlight(props, 'purple')}}
+        />
+      </div>
     </div>
   );
 }
