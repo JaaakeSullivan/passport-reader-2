@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import Switch from 'material-ui/Switch'
 import { FormLabel } from 'material-ui/Form';
 import Radio from 'material-ui/Radio';
+import SpeedSettings from './SpeedSettings'
+
 
 const switchContainerStyle = {
   display: 'flex',
@@ -56,6 +58,10 @@ function Settings(props){
 
       <div style={switchContainerStyle}>
         <h3>Default Styles -- Button</h3>
+      </div>
+
+      <div>
+      <SpeedSettings />
       </div>
 
     </div>

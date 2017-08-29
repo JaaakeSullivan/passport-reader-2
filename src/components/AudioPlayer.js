@@ -1,21 +1,27 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from 'material-ui/styles'
+import ReactPlayer from 'react-player'
+
 
 const styles = theme => ({
   root: {
     width: '100%',
     maxWidth: 960,
-    backgroundColor: 'red'
+    backgroundColor: 'blue'
   },
 });
 
 function AudioPlayer(props){
+
   const classes = props.classes;
 
+
   return (
+
     <div className={classes.root}>
-      <h2>I'm the audio player!!! Dude</h2>
+      <ReactPlayer url={props.audio[0]} controls playbackRate={props.speed}/>
+
     </div>
   )
 }
