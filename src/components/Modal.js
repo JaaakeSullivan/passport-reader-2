@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import ModalDevelInfo from './ModalDevelInfo'
 //import { withStyles, createStyleSheet } from 'material-ui/styles';
 import ColorSelectors from './ColorSelectors'
+import ColorSelect from './ColorSelect'
+
 // import ColorTabs from './ColorTabs'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
@@ -14,8 +16,6 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog'
-
-
 
 const centerContent = {
   display: 'flex',
@@ -90,6 +90,11 @@ class Modal extends Component {
             />
             <div style={centerContent}>
               <ColorSelectors {...this.props} />
+            </div>
+            <div style={centerContent}>
+              <ColorSelect 
+                {...this.props}
+              />
             </div>
             <DeleteWarning {...this.props} />
             {/* <ModalDevelInfo {...this.props} /> */}
