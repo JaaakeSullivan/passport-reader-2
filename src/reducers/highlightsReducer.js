@@ -37,11 +37,11 @@ function highlights(state=[], action) {
   let colorCode;
 
   switch(action.color) {
-    case 'blue': colorCode = lightBlue['A100']; break;
-    case 'pink': colorCode = pink['A100']; break;
+    case 'blue': colorCode = lightBlue['A200']; break;
+    case 'pink': colorCode = pink['A200']; break;
     case 'yellow': colorCode = yellow['500']; break;
     case 'green': colorCode = lightGreen['A700']; break;
-    case 'purple': colorCode = purple['A100']; break;
+    case 'purple': colorCode = purple['A200']; break;
     default: break;
   }
 

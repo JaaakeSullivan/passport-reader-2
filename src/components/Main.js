@@ -129,7 +129,8 @@ class Main extends Component {
                 <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
               </div>
               <div style={Object.assign({}, styles.slide, styles.slide3)}>
-                slide n°3
+                <div>Activities - API call for notifications for items due</div>
+                <div>Ancillary Links</div>
               </div>
             </SwipeableViews>
 
