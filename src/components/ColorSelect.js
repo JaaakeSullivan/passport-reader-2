@@ -9,99 +9,72 @@ import FavoriteIcon from 'material-ui-icons/Favorite';
 import LocationOnIcon from 'material-ui-icons/LocationOn';
 import FolderIcon from 'material-ui-icons/Folder';
 import LabelIcon from 'material-ui-icons/Label';
+import handleHighlight from '../helpers/handleHighlightHelper';
+
+// ===== MATERIAL-UI COLOR IMPORTS ===== //
+import lightBlue from 'material-ui/colors/lightBlue';
+import lightGreen from 'material-ui/colors/lightGreen';
+import pink from 'material-ui/colors/pink';
+import purple from 'material-ui/colors/purple';
+import yellow from 'material-ui/colors/yellow';
+import grey from 'material-ui/colors/grey';
+
 
 const styles = {
   root: {
-    width: 500,
+    //width: 500,
   },
 };
 
-let handleHighlight = (props, color) => {
-  let time = new Date();
-  let timeStamp = Date.now();
-  let id = `hl-${timeStamp}`;
-
-  // USER UPDATES AN EXISTING HIGHLIGHT COLOR
-  if (props.modal.highlightSelected.value && !props.modal.highlightSelected.toDelete) {
-    props.updateColor(
-      props.modal.highlightSelected.matches[0],
-      color
-    ).then(props.highlightContent())
-
-  // USER DELETES OVERLAPPING HIGHLIGHTS AND ADDS NEW HIGHLIGHT
-  } else if (props.modal.highlightSelected.value && props.modal.highlightSelected.toDelete) {
-
-    props.deleteHighlight(props.modal.highlightSelected.matches)
-
-    props.addHighlight(
-      id,
-      props.modal.startId,
-      props.modal.endId,
-      props.modal.startPos,
-      props.modal.endPos,
-      props.modal.betweenArray,
-      color,
-      props.modal.selectedText,
-      time,
-      props.modal.note
-    )
-
-    .then(props.openHighlight(
-      {
-        showModal: true,
-        selectedText: props.modal.selectedText,
-        startId: props.modal.startId,
-        startPos: props.modal.startPos,
-        endId: props.modal.endId,
-        endPos: props.modal.endPos,
-        betweenArray: props.modal.betweenArray,
-        _id: id
-      }
-    ))
-    .then(props.highlightContent())
-
-  // USER CREATES A NEW NON-OVERLAPPING HIGHLIGHT
-  } else {
-    props.addHighlight(
-      id,
-      props.modal.startId,
-      props.modal.endId,
-      props.modal.startPos,
-      props.modal.endPos,
-      props.modal.betweenArray,
-      color,
-      props.modal.selectedText,
-      time,
-      props.modal.note
-    )
-    .then(props.openHighlight(
-      {
-        showModal: true,
-        selectedText: props.modal.selectedText,
-        startId: props.modal.startId,
-        startPos: props.modal.startPos,
-        endId: props.modal.endId,
-        endPos: props.modal.endPos,
-        betweenArray: props.modal.betweenArray,
-        _id: id
-      }
-    ))
-    .then(props.highlightContent())
-  }
-};
-
 function ColorSelect(props) {
+    styles.root = {
+      //backgroundColor: 'red'
+    }
 
     const classes = props.classes;
-    const value = props.highlights.getHighlight(props.modal.highlightSelected.matches[0]).color;
+    const color = props.highlights.getHighlight(props.modal.highlightSelected.matches[0]).color;
+
+    const activeStyles = {
+      color: props.highlights.getHighlight(props.modal.highlightSelected.matches[0]).colorCode,
+      //backgroundColor: grey[400],
+      boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+    }
+
+    const shadowSettings = '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)';
+
+    const inactiveStyles = {
+      // backgroundColor: grey[200],
+      // backgroundColor: '#e0e0e0'
+      // boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+    }
 
     return (
-      <BottomNavigation value={value}  className={classes.root}>
-        <BottomNavigationButton label="Concepts" value="yellow" icon={<LabelIcon />} onClick={() => {handleHighlight(props, 'yellow')}} />
-        <BottomNavigationButton label="People" value="green" icon={<LabelIcon />} onClick={() => {handleHighlight(props, 'green')}} />
-        <BottomNavigationButton label="Vocab" value="blue" icon={<LabelIcon />} onClick={() => {handleHighlight(props, 'blue')}} />
-        <BottomNavigationButton label="Important" value="pink" icon={<LabelIcon />} onClick={() => {handleHighlight(props, 'pink')}} />
-        <BottomNavigationButton label="Questions" value="purple" icon={<LabelIcon />} onClick={() => {handleHighlight(props, 'purple')}}/>       
+      <BottomNavigation value={color} className={classes.root}>
+        <BottomNavigationButton 
+          label="Concepts" value="yellow" icon={<LabelIcon />} 
+          style={color === 'yellow' ? activeStyles : {color: yellow['500'], ...inactiveStyles }} 
+          onClick={() => {handleHighlight(props, 'yellow')}} 
+        />
+        <BottomNavigationButton 
+          label="People" value="green" icon={<LabelIcon />} 
+          style={color === 'green' ? activeStyles : {color: lightGreen['A700'], ...inactiveStyles}} 
+          onClick={() => {handleHighlight(props, 'green')}} 
+        />
+        <BottomNavigationButton 
+          label="Vocab" value="blue" icon={<LabelIcon />} 
+          style={color === 'blue' ? activeStyles : {color: lightBlue['A100'], ...inactiveStyles}} 
+          onClick={() => {handleHighlight(props, 'blue')}} 
+        />
+        <BottomNavigationButton 
+          label="Important" value="pink" icon={<LabelIcon />} 
+          style={color === 'pink' ? activeStyles : {color: pink['A100'], ...inactiveStyles}} 
+          onClick={() => {handleHighlight(props, 'pink')}} 
+        />
+        <BottomNavigationButton 
+          label="Questions" value="purple" icon={<LabelIcon />} 
+          style={color === 'purple' ? activeStyles : {color: purple['A100'], ...inactiveStyles}} 
+          onClick={() => {handleHighlight(props, 'purple')}}
+        />       
       </BottomNavigation>
     );
   

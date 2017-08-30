@@ -1,6 +1,12 @@
 // import { sliceId } from '../helpers/selectHelpers';
 // import { getIndexOfId } from '../helpers/highlightsHelpers';
 
+import lightBlue from 'material-ui/colors/lightBlue';
+import lightGreen from 'material-ui/colors/lightGreen';
+import pink from 'material-ui/colors/pink';
+import purple from 'material-ui/colors/purple';
+import yellow from 'material-ui/colors/yellow';
+
 // we set state to an empty array to start off
 function highlights(state=[], action) {
   //console.log("from book reducer: ", state, action)
@@ -31,11 +37,11 @@ function highlights(state=[], action) {
   let colorCode;
 
   switch(action.color) {
-    case 'blue': colorCode = '#40C4FF'; break;
-    case 'pink': colorCode = '#FF4081'; break;
-    case 'yellow': colorCode = '#FFFF00'; break;
-    case 'green': colorCode = '#B2FF59'; break;
-    case 'purple': colorCode = '#E040FB'; break;
+    case 'blue': colorCode = lightBlue['A100']; break;
+    case 'pink': colorCode = pink['A100']; break;
+    case 'yellow': colorCode = yellow['500']; break;
+    case 'green': colorCode = lightGreen['A700']; break;
+    case 'purple': colorCode = purple['A100']; break;
     default: break;
   }
 

@@ -5,12 +5,16 @@ import Avatar from 'material-ui/Avatar';
 import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import pink from 'material-ui/colors/pink';
 
-const warningStyles = {
+const warningContainer = {
   display: 'flex',
   justifyContent: 'space-around',
   borderRadius: '100px',
   backgroundColor: pink['100'],
   margin: '0px 20px'
+}
+
+const warningContent = {
+  justifyContent: 'center'
 }
 
 function DeleteWarning(props) {
@@ -36,17 +40,17 @@ function DeleteWarning(props) {
 
   switch(deleteListing.length) {
     case(1):
-      warningNumber = 'One'
+      warningNumber = 'one'
       warningS = ''
       break;
     case(2):
-      warningNumber = 'Two'
+      warningNumber = 'two'
       break;
     case(3):
-      warningNumber = 'Three'
+      warningNumber = 'three'
       break;
     default:
-      warningNumber = 'Many'
+      warningNumber = 'many'
       break;
   }
 
@@ -54,8 +58,11 @@ function DeleteWarning(props) {
     return (
       <div>
         <List>
-          <div style={warningStyles}>
-            <div>WARNING: {warningNumber} hightlight{warningS} will be deleted</div>
+          <div style={warningContainer}>
+            <div style={warningContent}>
+              <div>Your selection conflicts with {warningNumber} highlight{warningS}</div>
+              <div>Choosing a color will delete the highlight below</div>
+            </div>
           </div>
           {deleteListing}
         </List>

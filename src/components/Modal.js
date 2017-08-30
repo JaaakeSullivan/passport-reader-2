@@ -88,12 +88,21 @@ class Modal extends Component {
               lookupWord={this.props.lookupWord}
               saveDefinition={this.props.saveDefinition}
             />
-            <div style={centerContent}>
+            {/*<div style={centerContent}>
               <ColorSelectors {...this.props} />
-            </div>
+            </div>*/}
             <div style={centerContent}>
               <ColorSelect 
-                {...this.props}
+                addHighlight={this.props.addHighlight}
+                openHighlight={this.props.openHighlight}
+                deleteHighlight={this.props.deleteHighlight}
+                highlightContent={this.props.highlightContent}
+                updateColor={this.props.updateColor}
+                color={this.props.highlights.getHighlight(this.props.modal.highlightSelected.matches[0]).color}
+                colorCode={this.props.highlights.getHighlight(this.props.modal.highlightSelected.matches[0]).colorCode}
+                handleHighlight={this.props.handleHighlight}
+                modal={this.props.modal}
+                highlights={this.props.highlights}
               />
             </div>
             <DeleteWarning {...this.props} />
