@@ -12,32 +12,40 @@ const styles = theme => ({
 });
 
 const headers = new Headers();
-const url = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/purse'
-const appId = '067c7ef4'
-const appKey = '85c78e7942c28000e4c9ea4087f501da'
+
+const url = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/test?key=5ca3f9ee-2ebd-4e28-8d3a-c230a95753ed'
+
 
 var dicInit = {
   method: 'GET',
-  headers: { 'app_id': config.oxfordAppId, 'app_key': config.oxfordAppKey},
-  headers: { 'app_id': appId, 'app_key': appKey},
-  mode: 'cors',
-  cach: 'default'
+  // headers: { 'app_id': config.oxfordAppId, 'app_key': config.oxfordAppKey},
+  // headers: { 'app_id': appId, 'app_key': appKey},
+  // mode: 'cors',
+  // cach: 'default'
 };
 
 function myTest() {
   console.log('testing fetch!!!')
 }
 
-fetch(url, dicInit).then(function(response) {
-  if(response.ok) {
-    console.log(response)
-  } 
-  throw new Error('Network is angry');
-}).then(function(myTest) {
-  console.log('more tests');
-}).catch(function(error) {
-  console.log('error', error);
+
+// >>> TIPS ON USING FETCH FOR XML: https://css-tricks.com/using-fetch/ <<< //
+
+fetch(url, {
+  method: "GET",
 })
+  .then(function(response) {
+    if(response.ok) {
+      console.log(response)
+      return response.text();
+    } else throw new Error('Network is angry');
+  })
+  .then(function(text) {
+    console.log(text)
+  })
+  .catch(function(error) {
+    console.log('error', error);
+  })
 
 function DictionaryContainer(props) {
   const classes = props.classes;
