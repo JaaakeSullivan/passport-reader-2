@@ -17,6 +17,8 @@ const axiosInstance = axios.create({
 function Dictionary(props) {
   return (
     <div>
+      <div>{appId}</div>
+      <div>{appKey}</div>
       <AxiosProvider instance={axiosInstance}>
         <Get url={`entries/en/${props.word}`}>
           {(error, response, isLoading) => {
