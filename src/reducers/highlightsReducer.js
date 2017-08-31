@@ -48,11 +48,11 @@ function highlights(state=[], action) {
   let colorHighlight;
 
   switch(action.color) {
-    case 'blue': colorHighlight = '#B3E5FC'; break;
-    case 'pink': colorHighlight = '#FF80AB'; break;
-    case 'yellow': colorHighlight = '#F4FF81'; break;
-    case 'green': colorHighlight = '#CCFF90'; break;
-    case 'purple': colorHighlight = '#EA80FC'; break;
+    case 'blue': colorHighlight = lightBlue['A100']; break;
+    case 'pink': colorHighlight = pink['A100']; break;
+    case 'yellow': colorHighlight = yellow['A100']; break;
+    case 'green': colorHighlight = lightGreen['A100']; break;
+    case 'purple': colorHighlight = purple['A100']; break;
     default: break;
   }
 

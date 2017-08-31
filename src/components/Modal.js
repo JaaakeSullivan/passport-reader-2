@@ -82,12 +82,14 @@ class Modal extends Component {
           </DialogTitle>
 
           <DialogContent>
-            <WordsAPIContainer
-              word={this.props.modal.selectedText}
-              showDefinition={this.props.modal.showDefinition}
-              lookupWord={this.props.lookupWord}
-              saveDefinition={this.props.saveDefinition}
-            />
+            <div style={centerContent}>
+              <WordsAPIContainer
+                word={this.props.modal.selectedText}
+                showDefinition={this.props.modal.showDefinition}
+                lookupWord={this.props.lookupWord}
+                saveDefinition={this.props.saveDefinition}
+              />
+            </div>
             {/*<div style={centerContent}>
               <ColorSelectors {...this.props} />
             </div>*/}

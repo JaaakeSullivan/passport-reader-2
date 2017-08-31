@@ -6,7 +6,7 @@ import UndockedDrawer from './UndockedDrawer'
 import { MuiThemeProvider } from 'material-ui/styles'
 //import FullWidthTabs from './FullWidthTabs'
 import SwipeableViews from 'react-swipeable-views'
-import HighlightsList from './HighlightsList'
+import HighlightsContainer from './HighlightsContainer'
 import Tabs, { Tab } from 'material-ui/Tabs';
 import GalleryContainer from '../containers/GalleryContainer'
 import ModalContainer from '../containers/ModalContainer'
@@ -85,9 +85,9 @@ class Main extends Component {
       <MuiThemeProvider style={{  }}>
         <div className="Main" >
           <div >
+            {/*========== MODAL CONTAINERS =========*/}
             <ModalContainer {...this.props} />
             <AsideContainer {...this.props} />
-
 
             {/* <UndockedDrawer /> */}
             <Tabs index={view} fullWidth fixed onChange={this.handleChange} style={styles.menuStyle}>
@@ -96,11 +96,13 @@ class Main extends Component {
               <Tab icon={<FormatListBulleted />} />
               <Tab icon={<QuestionAnswer />} />
             </Tabs>
+
             <SwipeableViews
               index={view}
               onChangeIndex={this.handleChangeIndex}
               containerStyle={styles.slideContainer}
             >
+              {/*========== SETTINGS PAGE =========*/}
               <div style={Object.assign({}, styles.slide, styles.slide0)}>
                 <SettingsContainer
                   settings={this.props.settings}
@@ -110,6 +112,8 @@ class Main extends Component {
                   changeFontSize={this.props.changeFontSize}
                 />
               </div>
+
+             {/*========== BOOK PAGE =========*/}
               <div style={Object.assign({}, styles.slide, styles.slide1)}>
                 <AudioContainer
                   audio={this.props.book.audio}
@@ -125,15 +129,20 @@ class Main extends Component {
                 />
                 <BookContainer {...this.props} />
               </div>
+
+              {/*========== HIGHLIGHTS PAGE =========*/}
               <div style={Object.assign({}, styles.slide, styles.slide2)}>
-                <HighlightsList highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
+                <HighlightsContainer highlights={this.props.highlights} openHighlight={this.props.openHighlight}/>
               </div>
+
+              {/*========== ACTIVITIES PAGE =========*/}
               <div style={Object.assign({}, styles.slide, styles.slide3)}>
                 <div>Activities - API call for notifications for items due</div>
                 <div>Ancillary Links</div>
               </div>
             </SwipeableViews>
 
+            {/*========== BOTTOM NAVIGATION MENU =========*/}
             <NavigationMenu />
           </div>
         </div>

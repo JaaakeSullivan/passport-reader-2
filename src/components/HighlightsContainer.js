@@ -18,7 +18,7 @@ const styles = theme => ({
 });
 
 
-function HighlightsList(props) {
+function HighlightsContainer(props) {
 
   const classes = props.classes;
   const highlights = props.highlights;
@@ -55,8 +55,8 @@ function HighlightsList(props) {
 };
 
 
-HighlightsList.propTypes = {
+HighlightsContainer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HighlightsList);
+export default withStyles(styles)(HighlightsContainer);
