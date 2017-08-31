@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import Dictionary from '../components/Dictionary'
 import Button from 'material-ui/Button'
 import { withStyles } from 'material-ui/styles'
+import config from '../config.js'
 
 const styles = theme => ({
   button: {
@@ -10,6 +11,33 @@ const styles = theme => ({
   },
 });
 
+const headers = new Headers();
+const url = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/purse'
+const appId = '067c7ef4'
+const appKey = '85c78e7942c28000e4c9ea4087f501da'
+
+var dicInit = {
+  method: 'GET',
+  headers: { 'app_id': config.oxfordAppId, 'app_key': config.oxfordAppKey},
+  headers: { 'app_id': appId, 'app_key': appKey},
+  mode: 'cors',
+  cach: 'default'
+};
+
+function myTest() {
+  console.log('testing fetch!!!')
+}
+
+fetch(url, dicInit).then(function(response) {
+  if(response.ok) {
+    console.log(response)
+  } 
+  throw new Error('Network is angry');
+}).then(function(myTest) {
+  console.log('more tests');
+}).catch(function(error) {
+  console.log('error', error);
+})
 
 function DictionaryContainer(props) {
   const classes = props.classes;
