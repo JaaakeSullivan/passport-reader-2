@@ -1,8 +1,8 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actionCreators from '../actions/actionCreators';
+import * as actionCreators from './actions/actionCreators';
 import Main from './Main';
-import '../helpers/utilityHelpers'
+import './helpers/utilityHelpers'
 
 function mapStateToProps(state) {
 
@@ -18,6 +18,7 @@ function mapStateToProps(state) {
 
   return {
     book: state.book,
+    dictionary: state.dictionary,
     highlights: state.highlights,
     modal: state.modal,
     asideDisplay: state.asideDisplay,

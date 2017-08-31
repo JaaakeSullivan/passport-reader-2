@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
-import './styles/App.css'
+import './components/styles/App.css'
 
-import BookContainer from '../containers/BookContainer'
-import UndockedDrawer from './UndockedDrawer'
+import BookContainer from './containers/BookContainer'
+import UndockedDrawer from './components/UndockedDrawer'
+import NavigationMenu from './components/NavigationMenu'
 import { MuiThemeProvider } from 'material-ui/styles'
 //import FullWidthTabs from './FullWidthTabs'
 import SwipeableViews from 'react-swipeable-views'
-import HighlightsContainer from './HighlightsContainer'
 import Tabs, { Tab } from 'material-ui/Tabs';
-import GalleryContainer from '../containers/GalleryContainer'
-import ModalContainer from '../containers/ModalContainer'
-import AsideContainer from '../containers/AsideContainer'
-import SettingsContainer from '../containers/SettingsContainer'
-import AudioContainer from '../containers/AudioContainer'
-import NavigationMenu from './NavigationMenu'
+
+import GalleryContainer from './containers/GalleryContainer'
+import ModalContainer from './containers/ModalContainer'
+import AsideContainer from './containers/AsideContainer'
+import SettingsContainer from './containers/SettingsContainer'
+import AudioContainer from './containers/AudioContainer'
+import HighlightsContainer from './containers/HighlightsContainer'
 
 import Settings from 'material-ui-icons/Settings'
 
@@ -79,8 +80,9 @@ class Main extends Component {
             <ModalContainer {...this.props} />
             <AsideContainer {...this.props} />
 
-            {/* <UndockedDrawer /> */}
-
+            {/*==========================================*/}
+            {/*========== BEGIN SWIPEABLE VIEWS =========*/}
+            {/*==========================================*/}
             <SwipeableViews
               index={view}
               onChangeIndex={this.handleChangeIndex}

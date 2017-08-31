@@ -4,10 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import BottomNavigation, { BottomNavigationButton } from 'material-ui/BottomNavigation';
-import RestoreIcon from 'material-ui-icons/Restore';
-import FavoriteIcon from 'material-ui-icons/Favorite';
-import LocationOnIcon from 'material-ui-icons/LocationOn';
-import FolderIcon from 'material-ui-icons/Folder';
+import Badge from 'material-ui/Badge';
 
 import Book from 'material-ui-icons/Book'
 import Settings from 'material-ui-icons/Settings'
@@ -15,41 +12,40 @@ import FormatListBulleted from 'material-ui-icons/FormatListBulleted'
 import QuestionAnswer from 'material-ui-icons/QuestionAnswer'
 
 
-const styles = {
+const styles = theme => ({
   root: {
     width: '100vw',
     maxWidth: 960,
     position: 'absolute',
     bottom: 0
   },
-};
+  icon: {
+    display: 'block',
+  },
+  badge: {
+    margin: `0 ${theme.spacing.unit * 2}px`,
+  },
+});
 
-class NavigationMenu extends Component {
-  state = {
-    value: 'recents',
-  };
+function NavigationMenu(props) {
+  const classes = props.classes;
+  const value = props.view
 
-  handleChange = (event, value) => {
-    this.setState({ value });
-  };
-
-  render() {
-    const classes = this.props.classes;
-    const { value } = this.state;
-
-    return (
-      <BottomNavigation value={this.props.view} onChange={this.props.handleChange} className={classes.root}>
-        <BottomNavigationButton label="Settings" value={0} icon={<Settings />} />
-        <BottomNavigationButton label="Book" value={1} icon={<Book />} />
-        <BottomNavigationButton label="Highlights" value={2} icon={<FormatListBulleted />} />
-        <BottomNavigationButton label="Activities" value={3} icon={<QuestionAnswer />} />
-      </BottomNavigation>
-    );
-  }
+  return (
+    <BottomNavigation value={props.view} onChange={props.handleChange} className={classes.root}>
+      <BottomNavigationButton label="Settings" value={0} icon={<Settings className={classes.icon} />} />
+      <BottomNavigationButton label="Book" value={1} icon={<Book className={classes.icon} />} />
+      <BottomNavigationButton label="Highlights" value={2} icon={<FormatListBulleted className={classes.icon} />} />
+      <BottomNavigationButton label="Activities" value={3} icon={<QuestionAnswer className={classes.icon} />} />
+      {/*<BottomNavigationButton label="Activities" value={3} icon={<Badge className={classes.badge} badgeContent={4} color="accent"><QuestionAnswer className={classes.icon} /></Badge>} />*/}
+    </BottomNavigation>
+  );
 }
 
 NavigationMenu.propTypes = {
   classes: PropTypes.object.isRequired,
+  view: PropTypes.function,
+  handleChange: PropTypes.number
 };
 
 export default withStyles(styles)(NavigationMenu);

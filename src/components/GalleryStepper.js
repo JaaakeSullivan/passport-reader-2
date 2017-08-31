@@ -12,31 +12,27 @@ const styles = {
   },
 };
 
-class DotsMobileStepper extends Component {
+function GalleryStepper(props) {
+  let { length, position, previousImage, nextImage } = props
+  const classes = props.classes;
 
-
-  render() {
-    let { length, position, previousImage, nextImage } = this.props
-    const classes = this.props.classes;
-
-    return (
-      <MobileStepper
-        type="dots"
-        steps={length}
-        position="static"
-        activeStep={position}
-        onBack={previousImage}
-        onNext={nextImage}
-        disableBack={position === 0}
-        disableNext={position === length-1}
-        style={styles}
-      />
-    );
-  }
+  return (
+    <MobileStepper
+      type="dots"
+      steps={length}
+      position="static"
+      activeStep={position}
+      onBack={previousImage}
+      onNext={nextImage}
+      disableBack={position === 0}
+      disableNext={position === length-1}
+      style={styles}
+    />
+  );
 }
 
-DotsMobileStepper.propTypes = {
+GalleryStepper.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default DotsMobileStepper;
+export default GalleryStepper;

@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import renderHTML from 'react-render-html';
 
-class Book extends Component {
-
-  render() {
-    return (
-      <div onClick={this.props.handleSelect}>
-        {renderHTML(this.props.content)}
-      </div>
-    )
-  }
+function Book(props) {
+  return (
+    <div onClick={props.handleSelect}>
+      {renderHTML(props.content)}
+    </div>
+  )
 }
 
 export default Book;

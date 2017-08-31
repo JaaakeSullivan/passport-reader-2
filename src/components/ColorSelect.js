@@ -22,15 +22,15 @@ import grey from 'material-ui/colors/grey';
 
 const styles = {
   root: {
-    //width: 500,
+    maxWidth: 500,
   },
+  icon: {
+    display: 'block'
+  }
 };
 
 function ColorSelect(props) {
-    styles.root = {
-      //backgroundColor: 'red'
-    }
-
+    
     const classes = props.classes;
     const color = props.highlights.getHighlight(props.modal.highlightSelected.matches[0]).color;
 
@@ -41,7 +41,9 @@ function ColorSelect(props) {
       boxShadow: 'inset 0px 1px 5px 0px rgba(0, 0, 0, 0.2), inset 0px 2px 2px 0px rgba(0, 0, 0, 0.14), inset 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
     }
 
-    const shadowSettings = '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)';
+    const shadowSettings = {
+      boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+    }
 
     const inactiveStyles = {
       // backgroundColor: grey[200],
@@ -52,33 +54,32 @@ function ColorSelect(props) {
     return (
       <BottomNavigation value={color} className={classes.root}>
         <BottomNavigationButton 
-          label="Concepts" value="yellow" icon={<LabelIcon />} 
+          label="Concepts" value="yellow" icon={<LabelIcon className={classes.icon} />} 
           style={color === 'yellow' ? activeStyles : {color: yellow['500'], ...inactiveStyles }} 
           onClick={() => {handleHighlight(props, 'yellow')}} 
         />
         <BottomNavigationButton 
-          label="People" value="green" icon={<LabelIcon />} 
+          label="People" value="green" icon={<LabelIcon className={classes.icon} />} 
           style={color === 'green' ? activeStyles : {color: lightGreen['A700'], ...inactiveStyles}} 
           onClick={() => {handleHighlight(props, 'green')}} 
         />
         <BottomNavigationButton 
-          label="Vocab" value="blue" icon={<LabelIcon />} 
+          label="Vocab" value="blue" icon={<LabelIcon className={classes.icon} />} 
           style={color === 'blue' ? activeStyles : {color: lightBlue['A100'], ...inactiveStyles}} 
           onClick={() => {handleHighlight(props, 'blue')}} 
         />
         <BottomNavigationButton 
-          label="Important" value="pink" icon={<LabelIcon />} 
+          label="Important" value="pink" icon={<LabelIcon className={classes.icon} />} 
           style={color === 'pink' ? activeStyles : {color: pink['A100'], ...inactiveStyles}} 
           onClick={() => {handleHighlight(props, 'pink')}} 
         />
         <BottomNavigationButton 
-          label="Questions" value="purple" icon={<LabelIcon />} 
+          label="Questions" value="purple" icon={<LabelIcon className={classes.icon} />} 
           style={color === 'purple' ? activeStyles : {color: purple['A100'], ...inactiveStyles}} 
           onClick={() => {handleHighlight(props, 'purple')}}
         />       
       </BottomNavigation>
     );
-  
 }
 
 ColorSelect.propTypes = {

@@ -55,12 +55,6 @@ export default class GalleryContainer extends React.Component {
   render() {
     const { galleryDisplay, images, nextImage, previousImage } = this.props;
 
-    // const actionButtons =
-    //   <div>
-    //     <Button onClick={previousImage}>PREVIOUS</Button>
-    //     <Button onClick={nextImage}>NEXT</Button>
-    //   </div>;
-
     let imageSrc=images[galleryDisplay.galleryIndex][galleryDisplay.imageIndex].src;
     let imageCaption=images[galleryDisplay.galleryIndex][galleryDisplay.imageIndex].caption;
 
@@ -80,18 +74,7 @@ export default class GalleryContainer extends React.Component {
         <DialogActions style={{justifyContent: 'center'}}>
           {renderHTML(imageCaption)}
         </DialogActions>
-        {/*
-        <DialogActions>
-        {galleryDisplay.imageIndex > 0
-          ? <Button onClick={previousImage} style={buttonStyle}><ChevronLeft /></Button>
-          : <div style={buttonStyle}></div>
-        }
-        {galleryDisplay.imageIndex < images[galleryDisplay.galleryIndex].length-1
-          ? <Button onClick={nextImage} style={buttonStyle}><ChevronRight /></Button>
-          : <div style={buttonStyle}></div>
-        }
-        </DialogActions>
-        */}
+
         <DialogActions>
           <GalleryStepper
             position={galleryDisplay.imageIndex}

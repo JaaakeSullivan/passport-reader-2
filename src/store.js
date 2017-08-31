@@ -21,6 +21,13 @@ const defaultState = {
     images: [],
     audio: []
   },
+  dictionary: {
+    word: '',
+    fetching: false,
+    error: '',
+    definitionIndex: 0,
+    response: {},
+  },
   galleryDisplay: {
     showGallery: false,
     galleryIndex: 0,

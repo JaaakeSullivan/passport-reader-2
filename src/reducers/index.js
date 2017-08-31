@@ -7,6 +7,7 @@ import modal from './modalReducer'
 import settings from './settingsReducer'
 import asideDisplay from './asideReducer'
 import galleryDisplay from './galleryReducer'
+import dictionary from './dictionaryReducer'
 
 const rootReducer = combineReducers({
   book,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   modal,
   asideDisplay,
   settings,
-  galleryDisplay
+  galleryDisplay,
+  dictionary
 });
 
 export default rootReducer;

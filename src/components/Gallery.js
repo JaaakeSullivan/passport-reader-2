@@ -10,14 +10,13 @@ const galleryStyles = {
 
 function Gallery(props) {
 	const { classes, images, galleryIndex, openGallery } = props;
-	console.log('images', images)
-
+	
 	const renderGallery = images.map((image, imageIndex) =>
-			<div className="gallery" key={imageIndex}>
-				<Button onClick={(e) => openGallery(galleryIndex, imageIndex)}>
-					<img src={image.thumbnail} className="gallery-thumbnail" alt="" />
-				</Button>
-			</div>
+		<div className="gallery" key={imageIndex}>
+			<Button onClick={(e) => openGallery(galleryIndex, imageIndex)}>
+				<img src={image.thumbnail} className="gallery-thumbnail" alt="" />
+			</Button>
+		</div>
 	);
 
 	return (

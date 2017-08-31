@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import store from './store'
-import App from './components/App';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
@@ -24,9 +24,6 @@ store.dispatch({
   type: 'HIGHLIGHT_CONTENT'
 })
 
-// store.dispatch({
-//   type: 'OPEN_ASIDE'
-// })
 
 ReactDOM.render(
 

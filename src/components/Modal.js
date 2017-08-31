@@ -3,14 +3,14 @@
 import React, { Component } from 'react'
 import ModalDevelInfo from './ModalDevelInfo'
 //import { withStyles, createStyleSheet } from 'material-ui/styles';
-import ColorSelectors from './ColorSelectors'
+
 import ColorSelect from './ColorSelect'
 
 // import ColorTabs from './ColorTabs'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
 import ModalButtons from './ModalButtons'
-import WordsAPIContainer from '../containers/WordsAPIContainer'
+import DictionaryContainer from '../containers/DictionaryContainer'
 import Dialog, {
   DialogContent,
   DialogContentText,
@@ -64,7 +64,7 @@ class Modal extends Component {
           borderWidth: '0px 10px 0px 10px',
           margin: '10px',
           borderRadius: '10px',
-          // backgroundColor: 'rgba(0, 0, 0, .1)'
+          boxShadow: 'inset 0px 1px 5px 0px rgba(0, 0, 0, 0.2), inset 0px 2px 2px 0px rgba(0, 0, 0, 0.14), inset 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
         }
       )
     }
@@ -76,23 +76,26 @@ class Modal extends Component {
       <div>
 
         <Dialog open={this.props.modal.showModal} onRequestClose={this.props.closeModal}>
+          {/*========== SELECTED TEXT =========*/}
+
           <DialogTitle style={this.selectedTextBorder()}>
             {this.props.modal.selectedText}
 
           </DialogTitle>
 
           <DialogContent>
-            <div style={centerContent}>
-              <WordsAPIContainer
+
+          {/*========== WORDS API =========*/}
+            <div>
+              <DictionaryContainer
                 word={this.props.modal.selectedText}
                 showDefinition={this.props.modal.showDefinition}
                 lookupWord={this.props.lookupWord}
                 saveDefinition={this.props.saveDefinition}
               />
             </div>
-            {/*<div style={centerContent}>
-              <ColorSelectors {...this.props} />
-            </div>*/}
+
+            {/*========== COLOR SELECTOR =========*/}
             <div style={centerContent}>
               <ColorSelect 
                 addHighlight={this.props.addHighlight}
@@ -107,18 +110,20 @@ class Modal extends Component {
                 highlights={this.props.highlights}
               />
             </div>
+
+            {/*========== DELETE WARNING =========*/}
             <DeleteWarning {...this.props} />
+
+            {/*========== DEVELOPMENT INFO =========*/}
             {/* <ModalDevelInfo {...this.props} /> */}
+
+            {/*========== NOTE FORM -- DISPLAY ON HIGHLIGHTS =========*/}
             {this.noteForm()}
+
+            {/*========== MODAL BUTTONS =========*/}
             {this.currentHighlight()}
+
           </DialogContent>
-
-          {/*
-          <DialogActions style={style} >
-            {this.currentHighlight()}
-          </DialogActions>
-          */}
-
 
         </Dialog>
       </div>

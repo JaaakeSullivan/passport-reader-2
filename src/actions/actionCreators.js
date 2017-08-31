@@ -2,7 +2,7 @@
  * action types -- defined as strings to use in creators
  */
 
- // ===== book ===== //
+// ===== book ===== //
 const GET_BOOK = 'GET_BOOK'
 const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
 const INITIALIZE_CONTENT = 'INITIALIZE_CONTENT'
@@ -19,7 +19,17 @@ const DELETE_HIGHLIGHT = 'DELETE_HIGHLIGHT'
 const OPEN_HIGHLIGHT = 'OPEN_HIGHLIGHT'
 const UPDATE_COLOR = 'UPDATE_COLOR'
 const UPDATE_NOTE = 'UPDATE_NOTE'
+
+// ===== delete ===== //
 const LOOKUP_WORD = 'LOOKUP_WORD'
+
+// ===== dictionary ===== //
+const FETCH_DEFINITION = 'FETCH_DEFINITION'
+const FETCH_DEFINITION_FAIL = 'FETCH_DEFINITION_FAIL'
+const FETCH_DEFINITION_SUCCESS = 'FETCH_DEFINITION_SUCCESS'
+const REQUEST_DEFINITION = 'REQUEST_DEFINITION'
+const NEXT_DEFINITION = 'NEXT_DEFINITION'
+const PREVIOUS_DEFINITION = 'PREVIOUS_DEFINITION'
 const SAVE_DEFINITION = 'SAVE_DEFINITION'
 
 // ===== gallery ===== //
@@ -35,11 +45,12 @@ const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'
 const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE'
 const CHANGE_VIEW = 'CHANGE_VIEW'
 
-/*
- * action creators
- */
 
-// Open modal and populate with content
+// ========================================== //
+//                    BOOK                    //
+// ========================================== //
+
+// TODO: create GET_BOOK action
 
 export function initializeContent(
   content
@@ -55,6 +66,10 @@ export function highlightContent() {
     type: HIGHLIGHT_CONTENT
   }
 }
+
+// ========================================== //
+//                    MODAL                   //
+// ========================================== //
 
 export function openModal(
     selectedText,
@@ -84,6 +99,7 @@ export function openHighlight(highlightClicked) {
   }
 }
 
+// ===== TAKE / UPDATE A NOTE ===== //
 export function updateNote(_id, note) {
   console.log(note)
   return {
@@ -116,6 +132,12 @@ export function deleteHighlight(matchesToDelete) {
   }
 }
 
+
+// ========================================== //
+//                   ASIDES                   //
+// ========================================== //
+
+
 export function openAside(id) {
   return {
     type: OPEN_ASIDE,
@@ -130,6 +152,9 @@ export function closeAside() {
   }
 }
 
+// ========================================== //
+//                   GALLARY                  //
+// ========================================== //
 
 export function openGallery(galleryIndex, imageIndex) {
   return {
@@ -157,7 +182,9 @@ export function previousImage() {
   }
 }
 
-// ===== settings ===== //
+// ========================================== //
+//                  SETTINGS                  //
+// ========================================== //
 
 export function toggleAudio() {
   return {
@@ -191,9 +218,54 @@ export function changeView(view) {
   }
 }
 
+
+// ========================================== //
+//                 DICTIONARY                 //
+// ========================================== //
+
 export function lookupWord() {
   return {
-    type: LOOKUP_WORD,
+    type: LOOKUP_WORD
+  }
+}
+
+export function fetchDefinition(word) {
+  return {
+    type: FETCH_DEFINITION,
+    word
+  }
+}
+
+export function fetchDefinitionFail(error) {
+  return {
+    type: FETCH_DEFINITION_FAIL,
+    error
+  }
+}
+
+export function fetchDefinitionSuccess(response) {
+  return {
+    type: FETCH_DEFINITION_SUCCESS,
+    response
+  }
+}
+
+export function requestDefinition(word) {
+  return {
+    type: REQUEST_DEFINITION,
+    word
+  }
+}
+
+export function previousDefinition() {
+  return {
+    type: SAVE_DEFINITION
+  }
+}
+
+export function nextDefinition() {
+  return {
+    type: NEXT_DEFINITION
   }
 }
 
@@ -204,3 +276,10 @@ export function saveDefinition(word, definition) {
     definition
   }
 }
+
+// export const addHighlight = (_id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note ) => dispatch => {
+//   dispatch({
+//     type: ADD_HIGHLIGHT, _id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note
+//   })
+//   return (Promise.resolve())
+// };
