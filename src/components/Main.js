@@ -55,16 +55,6 @@ const styles = {
   slide3: {
     backgroundColor: '#6AC0FF',
   },
-  menuStyle: {
-    position: 'absolute',
-    top: 0,
-    zIndex: 99,
-    backgroundColor: 'white',
-    width: '100vw',
-    maxWidth: '960px',
-    display: 'flex',
-    justifyContent: 'space-around'
-  }
 };
 
 class Main extends Component {
@@ -90,12 +80,6 @@ class Main extends Component {
             <AsideContainer {...this.props} />
 
             {/* <UndockedDrawer /> */}
-            <Tabs index={view} fullWidth fixed onChange={this.handleChange} style={styles.menuStyle}>
-              <Tab icon={<Settings />} />
-              <Tab icon={<Book />} />
-              <Tab icon={<FormatListBulleted />} />
-              <Tab icon={<QuestionAnswer />} />
-            </Tabs>
 
             <SwipeableViews
               index={view}
@@ -143,7 +127,10 @@ class Main extends Component {
             </SwipeableViews>
 
             {/*========== BOTTOM NAVIGATION MENU =========*/}
-            <NavigationMenu />
+            <NavigationMenu 
+              handleChange={this.handleChange}
+              view={this.props.settings.view}
+            />
           </div>
         </div>
       </MuiThemeProvider>

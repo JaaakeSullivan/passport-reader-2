@@ -38,11 +38,11 @@ class NavigationMenu extends Component {
     const { value } = this.state;
 
     return (
-      <BottomNavigation value={value} onChange={this.handleChange} className={classes.root}>
-        <BottomNavigationButton label="Settings" value="settings" icon={<Settings />} />
-        <BottomNavigationButton label="Book" value="book" icon={<Book />} />
-        <BottomNavigationButton label="Highlights" value="highlights" icon={<FormatListBulleted />} />
-        <BottomNavigationButton label="Activities" value="activities" icon={<QuestionAnswer />} />
+      <BottomNavigation value={this.props.view} onChange={this.props.handleChange} className={classes.root}>
+        <BottomNavigationButton label="Settings" value={0} icon={<Settings />} />
+        <BottomNavigationButton label="Book" value={1} icon={<Book />} />
+        <BottomNavigationButton label="Highlights" value={2} icon={<FormatListBulleted />} />
+        <BottomNavigationButton label="Activities" value={3} icon={<QuestionAnswer />} />
       </BottomNavigation>
     );
   }
