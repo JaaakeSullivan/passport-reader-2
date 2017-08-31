@@ -10,14 +10,13 @@ const appKey = '85c78e7942c28000e4c9ea4087f501da'
 const axiosInstance = axios.create({
   baseURL: 'https://od-api.oxforddictionaries.com/api/v1',
   timeout: 2000,
-  headers: { 'app_id': config.oxfordAppId, 'app_key': config.oxfordAppKey}
+  // headers: { 'app_id': config.oxfordAppId, 'app_key': config.oxfordAppKey}
+  headers: { 'app_id': appId, 'app_key': appKey}  
 });
 
 function Dictionary(props) {
   return (
     <div>
-      {/*<div>{config.oxfordAppId}</div>
-      <div>{config.oxfordAppKey}</div>*/}
       <AxiosProvider instance={axiosInstance}>
         <Get url={`entries/en/${props.word}`}>
           {(error, response, isLoading) => {
