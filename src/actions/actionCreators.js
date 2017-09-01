@@ -2,6 +2,10 @@
  * action types -- defined as strings to use in creators
  */
 
+import fetch from 'isomorphic-fetch'
+import { parseString } from 'xml2js'
+import config from '../config'
+
 // ===== book ===== //
 const GET_BOOK = 'GET_BOOK'
 const HIGHLIGHT_CONTENT = 'HIGHLIGHT_CONTENT'
@@ -24,10 +28,13 @@ const UPDATE_NOTE = 'UPDATE_NOTE'
 const LOOKUP_WORD = 'LOOKUP_WORD'
 
 // ===== dictionary ===== //
+const REQUEST_DEFINITION = 'REQUEST_DEFINITION'
+const RECEIVE_DEFINITION = 'RECEIVE_DEFINITION'
 const FETCH_DEFINITION = 'FETCH_DEFINITION'
 const FETCH_DEFINITION_FAIL = 'FETCH_DEFINITION_FAIL'
 const FETCH_DEFINITION_SUCCESS = 'FETCH_DEFINITION_SUCCESS'
-const REQUEST_DEFINITION = 'REQUEST_DEFINITION'
+const NEXT_WORD = 'NEXT_WORD'
+const PREVIOUS_WORD = 'PREVIOUS_WORD'
 const NEXT_DEFINITION = 'NEXT_DEFINITION'
 const PREVIOUS_DEFINITION = 'PREVIOUS_DEFINITION'
 const SAVE_DEFINITION = 'SAVE_DEFINITION'
@@ -64,6 +71,26 @@ export function initializeContent(
 export function highlightContent() {
   return {
     type: HIGHLIGHT_CONTENT
+  }
+}
+
+
+// ========================================== //
+//                   ASIDES                   //
+// ========================================== //
+
+
+export function openAside(id) {
+  return {
+    type: OPEN_ASIDE,
+    id
+  }
+
+}
+
+export function closeAside() {
+  return {
+    type: CLOSE_ASIDE
   }
 }
 
@@ -134,23 +161,100 @@ export function deleteHighlight(matchesToDelete) {
 
 
 // ========================================== //
-//                   ASIDES                   //
+//                 DICTIONARY                 //
 // ========================================== //
 
-
-export function openAside(id) {
+export function lookupWord() {
   return {
-    type: OPEN_ASIDE,
-    id
-  }
-
-}
-
-export function closeAside() {
-  return {
-    type: CLOSE_ASIDE
+    type: LOOKUP_WORD
   }
 }
+
+export function requestDefinition(word) {
+  return {
+    type: REQUEST_DEFINITION,
+    word
+  }
+}
+
+export function receiveDefinition(word, response) {
+  return {
+    type: RECEIVE_DEFINITION,
+    word,
+    response
+  }
+}
+
+export function fetchDefinition(word) {
+  return function (dispatch) {
+    dispatch(requestDefinition(word)) 
+    return fetch(`http://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=${config.mwDictionary}`)
+      .then(
+        response => response.text(),
+        error => console.log('An error with the dictionary occured.', error)      
+      )
+      .then(
+        text => parseString(text, function (err, result) {
+          dispatch(receiveDefinition(word, result.entry_list.entry))
+        })
+        // text => dispatch(receiveDefinition(word, parseString(text)))
+      )
+  }
+}
+
+export function fetchDefinitionFail(error) {
+  return {
+    type: FETCH_DEFINITION_FAIL,
+    error
+  }
+}
+
+export function fetchDefinitionSuccess(response) {
+  return {
+    type: FETCH_DEFINITION_SUCCESS,
+    response
+  }
+}
+
+export function previousWord() {
+  return {
+    type: PREVIOUS_WORD
+  }
+}
+
+export function nextWord() {
+  return {
+    type: NEXT_WORD
+  }
+}
+
+export function previousDefinition() {
+  return {
+    type: PREVIOUS_DEFINITION
+  }
+}
+
+export function nextDefinition() {
+  return {
+    type: NEXT_DEFINITION
+  }
+}
+
+export function saveDefinition(word, definition) {
+  return {
+    type: SAVE_DEFINITION,
+    word,
+    definition
+  }
+}
+
+// export const addHighlight = (_id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note ) => dispatch => {
+//   dispatch({
+//     type: ADD_HIGHLIGHT, _id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note
+//   })
+//   return (Promise.resolve())
+// };
+
 
 // ========================================== //
 //                   GALLARY                  //
@@ -218,68 +322,3 @@ export function changeView(view) {
   }
 }
 
-
-// ========================================== //
-//                 DICTIONARY                 //
-// ========================================== //
-
-export function lookupWord() {
-  return {
-    type: LOOKUP_WORD
-  }
-}
-
-export function fetchDefinition(word) {
-  return {
-    type: FETCH_DEFINITION,
-    word
-  }
-}
-
-export function fetchDefinitionFail(error) {
-  return {
-    type: FETCH_DEFINITION_FAIL,
-    error
-  }
-}
-
-export function fetchDefinitionSuccess(response) {
-  return {
-    type: FETCH_DEFINITION_SUCCESS,
-    response
-  }
-}
-
-export function requestDefinition(word) {
-  return {
-    type: REQUEST_DEFINITION,
-    word
-  }
-}
-
-export function previousDefinition() {
-  return {
-    type: SAVE_DEFINITION
-  }
-}
-
-export function nextDefinition() {
-  return {
-    type: NEXT_DEFINITION
-  }
-}
-
-export function saveDefinition(word, definition) {
-  return {
-    type: SAVE_DEFINITION,
-    word,
-    definition
-  }
-}
-
-// export const addHighlight = (_id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note ) => dispatch => {
-//   dispatch({
-//     type: ADD_HIGHLIGHT, _id, startId, endId, startPos, endPos, betweenArray, color, selectedText, time, note
-//   })
-//   return (Promise.resolve())
-// };

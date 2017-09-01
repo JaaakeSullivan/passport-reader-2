@@ -2,23 +2,47 @@ function dictionary (state=[], action) {
   // console.log('action', action);
   // console.log("modal reducer has been triggered!");
   switch (action.type) {
-    case 'FETCH_DEFINITION':
+
+    case 'REQUEST_DEFINITION':
+      console.log('request', action)
+
       return {
         ...state,
+        isFetching: true,
+        error: '',
+        word: action.word
       };
 
+    case 'RECEIVE_DEFINITION':
+      console.log('receive', action)
+      return {
+        ...state,
+        isFetching: false,
+        response: action.response,
+        word: action.word,
+        error: '',
+        wordIndex: 0,
+        definitionIndex: 0,
+      };    
+      
     case 'FETCH_DEFINITION_FAIL':
       return {
         ...state,
-        error: 'Aw, shucks!',
+        isFetching: false,
+        error: 'action.error',
       };
 
-    case 'FETCH_DEFINITION_SUCCESS':
+    case 'NEXT_WORD':
       return {
         ...state,
-        definitionIndex: state.definitionIndex + 1,
+        wordIndex: state.wordIndex + 1,
       };
 
+    case 'PREVIOUS_WORD':
+      return {
+        ...state,
+        wordIndex: state.wordIndex - 1,
+      };
 
     case 'NEXT_DEFINITION':
       return {

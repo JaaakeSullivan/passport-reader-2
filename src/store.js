@@ -23,9 +23,10 @@ const defaultState = {
   },
   dictionary: {
     word: '',
-    fetching: false,
+    isFetching: false,
     error: '',
     definitionIndex: 0,
+    wordIndex: 0,
     response: {},
   },
   galleryDisplay: {

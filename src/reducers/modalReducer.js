@@ -57,7 +57,7 @@ function modal (state=[], action) {
         },
         showDefinition: false,
       };
-    case 'LOOKUP_WORD':
+    case 'RECEIVE_DEFINITION':
       return {
         ...state,
         showDefinition: true,

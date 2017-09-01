@@ -1,45 +1,21 @@
 import React, { Component } from 'react'
-import { AxiosProvider, Get } from 'react-axios'
-import axios from 'axios'
 import Button from 'material-ui/Button'
 import config from '../config.js'
 
-const appId = '067c7ef4'
-const appKey = '85c78e7942c28000e4c9ea4087f501da'
+// className={classes.definition}
+// word={props.response[wordIndex]} 
+// definition={props.response[wordIndex].def[definitionIndex].dt[0]}
+// partOfSpeech={props.response[wordIndex].fl[0]}
 
-const axiosInstance = axios.create({
-  baseURL: 'https://od-api.oxforddictionaries.com/api/v1',
-  timeout: 2000,
-  // headers: { 'app_id': config.oxfordAppId, 'app_key': config.oxfordAppKey}
-  headers: { 'app_id': appId, 'app_key': appKey}  
-});
+// ;
 
 function Dictionary(props) {
+
+
+  console.log('DIC COMPONENTS', props)
   return (
     <div>
-      <div>{appId}</div>
-      <div>{appKey}</div>
-      <AxiosProvider instance={axiosInstance}>
-        <Get url={`entries/en/${props.word}`}>
-          {(error, response, isLoading) => {
-            if(error) {
-              return (<div>Something bad happened: {error.message}</div>)
-            }
-            else if(isLoading) {
-              return (<div>Loading...</div>)
-            }
-            else if(response !== null) {
-              //console.log(response);
-              return (
-                <div>
-                  <div>{response.data.results[0].definition}</div>
-                </div>
-              )
-            }
-            return (<div>Default message before request is made.</div>)
-          }}
-        </Get>
-      </AxiosProvider>
+    <h4>{props.word} - {props.partOfSpeech}{props.definition}</h4>
     </div>
   )
 

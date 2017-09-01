@@ -5,7 +5,7 @@ import ModalDevelInfo from './ModalDevelInfo'
 //import { withStyles, createStyleSheet } from 'material-ui/styles';
 
 import ColorSelect from './ColorSelect'
-
+import Dictionary from './Dictionary'
 // import ColorTabs from './ColorTabs'
 import NoteForm from './NoteForm'
 import DeleteWarning from './DeleteWarning'
@@ -85,13 +85,18 @@ class Modal extends Component {
 
           <DialogContent>
 
-          {/*========== WORDS API =========*/}
+          {/*========== DICTIONARY =========*/}
             <div>
               <DictionaryContainer
                 word={this.props.modal.selectedText}
                 showDefinition={this.props.modal.showDefinition}
+                isFetching={this.props.dictionary.isFetching}
                 lookupWord={this.props.lookupWord}
                 saveDefinition={this.props.saveDefinition}
+                fetchDefinition={this.props.fetchDefinition}
+                response={this.props.dictionary.response}
+                wordIndex={this.props.dictionary.wordIndex}
+                definitionIndex={this.props.dictionary.definitionIndex}
               />
             </div>
 
