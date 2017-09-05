@@ -47,6 +47,8 @@ const PREVIOUS_IMAGE = 'PREVIOUS_IMAGE'
 
 // ===== settings ===== //
 const TOGGLE_AUDIO = 'TOGGLE_AUDIO'
+const OPEN_AUDIO = 'OPEN_AUDIO'
+const CLOSE_AUDIO = 'CLOSE_AUDIO'
 const TOGGLE_HIGHLIGHTS = 'TOGGLE_HIGHLIGHTS'
 const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE'
 const CHANGE_FONT_SIZE = 'CHANGE_FONT_SIZE'
@@ -293,6 +295,16 @@ export function previousImage() {
 export function toggleAudio() {
   return {
     type: TOGGLE_AUDIO
+  }
+}
+export function openAudio() {
+  return {
+    type: OPEN_AUDIO
+  }
+}
+export function closeAudio() {
+  return {
+    type: CLOSE_AUDIO
   }
 }
 

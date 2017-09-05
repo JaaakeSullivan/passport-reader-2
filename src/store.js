@@ -37,7 +37,7 @@ const defaultState = {
   highlights: highlightsDefault,
   settings: {
     showHighlights: true,
-    showAudio: true,
+    showAudio: false,
     fontSize: 1,
     darkMode: false,
     view: 1

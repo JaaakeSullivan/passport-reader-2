@@ -17,6 +17,16 @@ function settings(state=[], action) {
         ...state,
         showAudio: !state.showAudio
       };
+    case 'OPEN_AUDIO':
+      return {
+        ...state,
+        showAudio: true
+      };
+    case 'CLOSE_AUDIO':
+      return {
+        ...state,
+        showAudio: false
+      };
     case 'TOGGLE_HIGHLIGHTS':
       return {
         ...state,
