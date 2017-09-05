@@ -79,7 +79,13 @@ class Main extends Component {
             {/*========== MODAL CONTAINERS =========*/}
             <ModalContainer {...this.props} />
             <AsideContainer {...this.props} />
-
+            <AudioContainer
+              audio={this.props.book.audio}
+              showAudio={this.props.settings.showAudio}
+              toggleAudio={this.props.toggleAudio}
+              openAudio={this.props.openAudio}
+              closeAudio={this.props.closeAudio}
+            />
             {/*==========================================*/}
             {/*========== BEGIN SWIPEABLE VIEWS =========*/}
             {/*==========================================*/}
@@ -101,10 +107,7 @@ class Main extends Component {
 
              {/*========== BOOK PAGE =========*/}
               <div style={Object.assign({}, styles.slide, styles.slide1)}>
-                <AudioContainer
-                  audio={this.props.book.audio}
-                  showAudio={this.props.settings.showAudio}
-                />
+                
                 <GalleryContainer
                   images={this.props.book.images}
                   openGallery={this.props.openGallery}

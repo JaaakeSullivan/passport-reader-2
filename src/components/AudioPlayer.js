@@ -20,8 +20,7 @@ function AudioPlayer(props){
   return (
 
     <div className={classes.root}>
-      <ReactPlayer url={props.audio[0]} controls playbackRate={props.speed}/>
-
+      <ReactPlayer url={props.audio[0]} progressFrequency={1000} controls playbackRate={props.speed} height={50} width={'100%'} />
     </div>
   )
 }
