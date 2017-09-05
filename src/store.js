@@ -27,7 +27,7 @@ const defaultState = {
     error: '',
     definitionIndex: 0,
     wordIndex: 0,
-    response: {},
+    mwResponse: [],
   },
   galleryDisplay: {
     showGallery: false,

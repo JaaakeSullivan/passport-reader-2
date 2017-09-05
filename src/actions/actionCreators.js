@@ -188,7 +188,7 @@ export function receiveDefinition(word, response) {
 export function fetchDefinition(word) {
   return function (dispatch) {
     dispatch(requestDefinition(word)) 
-    return fetch(`http://www.dictionaryapi.com/api/v1/references/collegiate/xml/${word}?key=${config.mwDictionary}`)
+    return fetch(`http://www.dictionaryapi.com/api/v1/references/sd4/xml/${word}?key=${config.mwStudent}`)
       .then(
         response => response.text(),
         error => console.log('An error with the dictionary occured.', error)      

@@ -12,9 +12,12 @@ const styles = theme => ({
 });
 
 function DictionaryContainer(props) {
-  console.log('DIC PROPS', props)
   const classes = props.classes;
-  let { wordIndex, definitionIndex } = props;
+  let { wordIndex, definitionIndex } = props.dictionary;
+  
+  // console.log('wordIndex', wordIndex);
+  // console.log('DIC PROPS', props.dictionary.mwResponse[wordIndex]);
+
   const handleClick = () => {
     props.fetchDefinition(props.word)
   }
@@ -23,15 +26,14 @@ function DictionaryContainer(props) {
   const countPlaceholder = 1;
   const buttonText = props.isFetching ? '...one sec' : props.showDefinition ? 'Save Definition' : 'Lookup Definition';
 
-
   // if (countPlaceholder === 1) {
     return (
       <div>
-        {props.showDefinition && !props.isFetching 
+        {props.showDefinition && !props.isFetching
           ? <Dictionary 
-              word = {props.response[wordIndex].ew[0]}
-              definition = {props.response[wordIndex].def[definitionIndex].dt[0]}
-              partOfSpeech = {props.response[wordIndex].fl[0]}
+              word = {props.dictionary.word}
+              definition = {props.dictionary.mwResponse[wordIndex].definitions[definitionIndex]}
+              partOfSpeech = {props.dictionary.mwResponse[wordIndex].partOfSpeech}
             /> 
           : null
         }

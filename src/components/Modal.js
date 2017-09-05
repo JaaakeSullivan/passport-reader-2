@@ -91,11 +91,11 @@ class Modal extends Component {
                 word={this.props.modal.selectedText}
                 showDefinition={this.props.modal.showDefinition}
                 isFetching={this.props.dictionary.isFetching}
+                isReadyToDisplay={this.props.dictionary.isReadyToDisplay}
                 lookupWord={this.props.lookupWord}
                 saveDefinition={this.props.saveDefinition}
                 fetchDefinition={this.props.fetchDefinition}
-                response={this.props.dictionary.response}
-                wordIndex={this.props.dictionary.wordIndex}
+                dictionary={this.props.dictionary}
                 definitionIndex={this.props.dictionary.definitionIndex}
               />
             </div>
