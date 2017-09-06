@@ -15,9 +15,10 @@ import QuestionAnswer from 'material-ui-icons/QuestionAnswer'
 const styles = theme => ({
   root: {
     width: '100vw',
-    maxWidth: 960,
+    maxWidth: "100%s",
     position: 'absolute',
-    bottom: 0
+    bottom: 0,
+    zIndex: 2901,
   },
   icon: {
     display: 'block',

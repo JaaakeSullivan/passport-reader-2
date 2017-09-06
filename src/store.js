@@ -39,7 +39,7 @@ const defaultState = {
     showHighlights: true,
     showAudio: false,
     fontSize: 1,
-    darkMode: false,
+    darkMode: true,
     view: 1
   }
 };

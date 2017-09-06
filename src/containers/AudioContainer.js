@@ -8,24 +8,46 @@ import ModeEditIcon from 'material-ui-icons/ModeEdit';
 import Snackbar from 'material-ui/Snackbar';
 
 
+let dynamicStyles = {};
 
 const styles = theme => ({
   root: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',    
+    backgroundColor: 'white',
     height: 300,
     padding: '0 30px',
-    color: 'white',
+    border: 0,
   },
   button: {
     margin: theme.spacing.unit,
   },
+  
 });
 
 
+const darkStyles = theme => ({
+  root: {
+    backgroundColor: 'red',  
+    height: 300,
+    padding: '0 30px',
+    border: 0,
+    
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  
+});
+
+dynamicStyles = styles
+// dynamicStyles = darkStyles
+
 function AudioContainer(props) {
+
   // TODO need to check if props.showAudio is true and decide what to display
   const classes = props.classes;
+
   const { openAudio, closeAudio, audio, showAudio } = props;
+
   return (
     <div>
       <div>
@@ -51,4 +73,4 @@ AudioContainer.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AudioContainer);
+export default withStyles(dynamicStyles)(AudioContainer);

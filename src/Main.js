@@ -44,7 +44,6 @@ const styles = {
   },
 
   slide0: {
-
   },
 
   slide1: {
@@ -85,6 +84,7 @@ class Main extends Component {
               toggleAudio={this.props.toggleAudio}
               openAudio={this.props.openAudio}
               closeAudio={this.props.closeAudio}
+              darkMode={this.props.settings.darkMode}
             />
             {/*==========================================*/}
             {/*========== BEGIN SWIPEABLE VIEWS =========*/}
